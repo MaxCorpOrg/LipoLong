@@ -229,7 +229,7 @@ export default function Home() {
       ============================ */}
       <section
         id="s2"
-        className="snap-section text-[#e8ffff]"
+        className="snap-section text-[#e8ffff] s2-no-scroll"
         style={{
           background:
             "radial-gradient(circle at 50% 20%, #051418 0%, #030b0d 40%, #000607 100%)",
@@ -241,18 +241,14 @@ export default function Home() {
             <div key={i} className="dust-particle" style={{ top: p.top, left: p.left, animationDelay: p.delay }} />
           ))}
         </div>
-        <div className="w-full max-w-6xl mx-auto px-4 md:px-8 py-16 md:py-20">
-          <div
-            className="text-center mb-12 md:mb-16 slider-heading"
-            style={{ marginTop: "1cm" }}
-          >
-            <h2 className="text-3xl md:text-5xl font-extrabold mb-4 text-cyan-200">
+        <div className="s2-shell w-full max-w-[1600px] mx-auto px-4 md:px-10">
+          <div className="s2-head">
+            <h2 className="s2-title text-3xl md:text-5xl font-extrabold text-cyan-200">
               Результаты LipoLong
             </h2>
 
-            <p className="text-lg md:text-xl opacity-90 max-w-2xl mx-auto text-cyan-100">
-              Посмотри, как меняются зоны после процедуры. Слайды листаются
-              автоматически, но ты всегда можешь переключить их вручную.
+            <p className="s2-sub text-lg md:text-xl opacity-90 max-w-2xl text-cyan-100">
+              Посмотри, как меняются зоны после процедуры. Слайды листаются автоматически, но ты всегда можешь переключить их вручную.
             </p>
           </div>
 
@@ -465,7 +461,7 @@ export default function Home() {
             {/* ================================
                 СЕКЦИЯ 4 — КОНТАКТЫ LIPOLONG
             ================================ */}
-            <section id="s4" className="snap-section contacts-section px-4 md:px-0" ref={contactsRef}>
+            <section id="s4" className="snap-section contacts-section px-4 md:px-0 s4-no-scroll" ref={contactsRef}>
               {/* НЕОН ФОН */}
               <div className="contacts-glow" />
               {/* ПЫЛЬ в S4 */}
@@ -476,108 +472,92 @@ export default function Home() {
               </div>
               {/* local dust-layer removed to avoid duplicate particles; global dust-layer displays particles site-wide */}
 
-              <div className={`${contactsVisible ? "contacts-animated" : ""} w-full max-w-6xl mx-auto pt-20 pb-32`}>
+              <div className={`${contactsVisible ? "contacts-animated" : ""} w-full max-w-6xl mx-auto`}>
+                <div className="s4-shell">
+                  <div className="s4-head text-center">
+                    <h2 className="s4-title text-3xl md:text-5xl font-extrabold text-cyan-200">Запись на процедуру LipoLong</h2>
+                    <p className="s4-sub text-lg md:text-xl opacity-90 text-cyan-100">
+                      Выберите удобный способ связи — оставьте заявку через форму или оформите покупку напрямую. Мы поможем подобрать время и ответим на вопросы.
+                    </p>
+                  </div>
 
-
-                {/* Заголовок удалён по запросу — текст будет в контенте */}
-
-                {/* КОНТЕНТ ПОД ЗАГОЛОВКОМ */}
-
-                <div className="mt-6" style={{ position: "relative" }}>
-                  <div className="grid grid-cols-1 md:grid-cols-[470px,minmax(0,1fr)] items-start gap-10 mb-14">
-                    {/* Левая колонка: упаковка 470×470 */}
-                    <div className="flex justify-center md:justify-start">
-                      <div className="pack-animated-wrap" style={{ width: "470px", height: "470px", position: "relative" }}>
-                        <Image
-                          src="/images/pack-placeholder.png"
-                          alt="Упаковка LipoLong"
-                          width={470}
-                          height={470}
-                          style={{ objectFit: "contain" }}
-                          priority
-                        />
+                  <div className="s4-grid">
+                    <div className="s4-visual-card glass-card">
+                      <div className="s4-pack-frame">
+                        <div className="pack-animated-wrap">
+                          <Image
+                            src="/images/pack-placeholder.png"
+                            alt="Упаковка LipoLong"
+                            width={520}
+                            height={520}
+                            className="s4-pack-image"
+                            priority
+                          />
+                        </div>
+                      </div>
+                      <div className="s4-pack-content">
+                        <p className="s4-eyebrow">LipoLong — инновационный липомодулятор</p>
+                        <h3 className="s4-pack-title">Контур тела под контролем</h3>
+                        <p className="s4-pack-text">
+                          Локально уменьшает жировые отложения, корректирует контуры тела и помогает поддерживать результат без продолжительной реабилитации.
+                        </p>
+                        <ul className="s4-pack-list">
+                          <li>Безопасный состав: гиалуронат натрия + липолитики</li>
+                          <li>Короткая процедура и быстрый возврат к режиму</li>
+                          <li>Подходит для живота, боков, бедер и рук</li>
+                        </ul>
+                      </div>
+                      <dl className="s4-pack-meta">
+                        <div>
+                          <dt>Форма выпуска</dt>
+                          <dd>Ампула 8 мл</dd>
+                        </div>
+                        <div>
+                          <dt>Условия хранения</dt>
+                          <dd>При t° 2‑25°С, защищать от света</dd>
+                        </div>
+                      </dl>
+                      <div className="s4-actions">
+                        <a
+                          href="/order"
+                          role="button"
+                          className="btn-buy-primary"
+                          style={{ padding: "1rem 2rem", fontSize: "1.05rem" }}
+                        >
+                          Купить LipoLong
+                        </a>
                       </div>
                     </div>
-                    {/* Правая колонка: текст + кнопка */}
-                    <div className="flex flex-col items-center md:items-start text-center md:text-left">
-                      {/* Кнопка "Купить" возвращена */}
-                      <a
-                        href="/order"
-                        role="button"
-                        className="btn-buy-primary mb-6"
-                        style={{ padding: "1rem 2rem", fontSize: "1.1rem", display: "inline-flex", justifyContent: "center", alignItems: "center" }}
-                      >
-                        Купить LipoLong
-                      </a>
+
+                    <div className="glass-card p-6 md:p-10 w-full s4-form-card">
+                      <div className="s4-form-head">
+                        <p className="s4-pill s4-pill--ghost">Быстрая запись</p>
+                        <h3 className="text-2xl md:text-3xl font-bold text-cyan-100">Оставьте свои контакты</h3>
+                        <p className="text-sm md:text-base text-cyan-100/80">
+                          Мы уточним, какая зона интересует, подтвердим стоимость и согласуем время консультации.
+                        </p>
+                      </div>
+                      <div className="s4-form-fields">
+                        <label className="s4-field">
+                          <span>Как к вам обращаться?</span>
+                          <input type="text" className="glass-input" placeholder="Например, Анна" />
+                        </label>
+                        <label className="s4-field">
+                          <span>Телефон для связи</span>
+                          <input type="tel" className="glass-input" placeholder="+7 (___) ___-__-__" />
+                        </label>
+                        <label className="s4-field s4-field--textarea">
+                          <span>Комментарий или удобное время</span>
+                          <textarea className="glass-input" style={{ height: "110px", borderRadius: "1rem" }} placeholder="Опишите желаемую зону и формат консультации." />
+                        </label>
+                        <button className="glass-submit">
+                          Отправить заявку
+                        </button>
+                      </div>
                     </div>
-                  </div>
-
-                    {/* Жёстко позиционированный текст слева */}
-                  <div
-                    className="contacts-text-left text-cyan-100"
-                    style={{
-                      position: "absolute",
-                      top: "24vh",
-                      left: "6vw",
-                      width: "28vw",
-                    }}
-                  >
-                    <h3 className="text-2xl md:text-3xl font-bold mb-2">LipoLong — инновационный липомодулятор</h3>
-                    <p className="text-md md:text-lg leading-relaxed mb-2">Для локального уменьшения жировых отложений и коррекции контуров тела.</p>
-                    <p className="text-md md:text-lg mb-1">Безопасно, быстро, без реабилитации.</p>
-                  </div>
-
-                    {/* Жёстко позиционированный текст справа */}
-                  <div
-                    className="contacts-text-right text-cyan-100"
-                    style={{
-                      position: "absolute",
-                      top: "24vh",
-                      right: "6vw",
-                      width: "28vw",
-                    }}
-                  >
-                    <h3 className="text-2xl md:text-3xl font-bold mb-2">Уникальный состав: гиалуронат натрия</h3>
-                    <p className="text-md md:text-lg leading-relaxed mb-2">Комплекс липолитиков и аминокислот для максимального эффекта.</p>
-                    <p className="text-md md:text-lg mb-1">Результат — стройный силуэт и гладкая кожа.</p>
-                  </div>
-
-                  {/* Текст под изображением */}
-                  <div className="text-center text-cyan-100 opacity-90 mt-4" style={{ fontSize: "1.1rem" }}>
-                    Свяжись с нами удобным способом
                   </div>
                 </div>
-
-                  {/* ФОРМА */}
-                  <div className="glass-card p-6 md:p-10 w-full max-w-xl mx-auto">
-                    <h3 className="text-2xl font-bold mb-6 text-cyan-200 text-center">
-                      Быстрая запись
-                    </h3>
-                    <div className="flex flex-col gap-4">
-                      <input
-                        type="text"
-                        className="glass-input"
-                        placeholder="Как к вам обращаться?"
-                      />
-                      <input
-                        type="tel"
-                        className="glass-input"
-                        placeholder="+7 (___) ___-__-__"
-                      />
-                      <textarea
-                        className="glass-input"
-                        style={{ height: "110px", borderRadius: "1rem" }}
-                        placeholder="Какая зона интересует? Удобное время для связи."
-                      />
-                      <button className="glass-submit mt-2">
-                        Отправить заявку
-                      </button>
-                    </div>
-                  </div>
-
-                {/* Дополнительная форма удалена — оставляем только одну 'Быстрая запись' */}
-              </div> {/* <-- закрываем mt-6 */}
-        {/* <-- закрываем w-full max-w-6xl mx-auto ... */}
+              </div>
         </section>
       </main>
     );
