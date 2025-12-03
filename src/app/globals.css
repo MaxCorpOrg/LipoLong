@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap");
 @import "tailwindcss";
 
 @tailwind base;
@@ -6,6 +7,7 @@
 
 @layer base {
   :root {
+    --lipolong-font: "Space Grotesk", "Manrope", "Segoe UI", sans-serif;
     --lipolong-bg-dark: #020617;
     --lipolong-bg-panel: rgba(15, 23, 42, 0.9);
     --lipolong-text-strong: #e8ffff;
@@ -44,6 +46,26 @@
     margin: 0;
     scroll-snap-type: y mandatory;
     scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: var(--lipolong-font);
+    background: #01070a;
+    color: var(--lipolong-text-soft);
+    letter-spacing: -0.01em;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  button,
+  input,
+  textarea,
+  select {
+    font-family: var(--lipolong-font);
   }
 }
 
@@ -1099,14 +1121,25 @@
 }
 
 .slider-wrapper {
+  position: relative;
   width: 100%;
-  max-width: min(1500px, 98vw);
+  max-width: min(1400px, 96vw);
   margin-left: auto;
   margin-right: auto;
   display: flex;
   flex-direction: column;
-  gap: 1.25rem;
+  gap: 1.4rem;
   flex: 1;
+  padding: clamp(14px, 2vw, 22px);
+  border-radius: 1.8rem;
+  background:
+    radial-gradient(circle at 15% 10%, rgba(34, 211, 238, 0.08), transparent 52%),
+    radial-gradient(circle at 85% 8%, rgba(168, 85, 247, 0.08), transparent 52%),
+    rgba(3, 12, 18, 0.9);
+  border: 1px solid rgba(34, 211, 238, 0.18);
+  box-shadow:
+    0 0 26px rgba(34, 211, 238, 0.18),
+    0 10px 60px rgba(0, 0, 0, 0.45);
 }
 
 .slider-frame {
@@ -1114,8 +1147,9 @@
   width: 100%;
   height: 100%;
   display: flex;
-  align-items: stretch;
+  align-items: center;
   gap: clamp(12px, 2vw, 20px);
+  padding-inline: clamp(6px, 1vw, 12px);
 }
 
 .slider-card {
@@ -1128,6 +1162,11 @@
   gap: 1.25rem;
   align-items: center;
   height: 100%;
+  background: linear-gradient(145deg, rgba(8, 20, 32, 0.9), rgba(4, 13, 21, 0.92));
+  border: 1px solid rgba(148, 163, 184, 0.25);
+  box-shadow:
+    0 14px 40px rgba(0, 0, 0, 0.5),
+    0 0 32px rgba(34, 211, 238, 0.16);
 }
 
 @keyframes sliderFade {
@@ -1437,16 +1476,17 @@
 /* ТОЧКИ */
 
 .slider-dot {
-  width: 10px;
-  height: 10px;
+  width: 12px;
+  height: 12px;
   border-radius: 9999px;
-  border: 2px solid rgba(148, 163, 184, 0.9);
-  background: transparent;
-  transition: 0.25s;
+  border: 1px solid rgba(148, 163, 184, 0.9);
+  background: rgba(4, 13, 21, 0.9);
+  box-shadow: 0 0 12px rgba(34, 211, 238, 0.25);
+  transition: 0.25s ease;
 }
 
 .slider-dot--active {
-  width: 24px;
+  width: 28px;
   background: linear-gradient(90deg, #22d3ee, #a855f7, #f97316);
   border-color: transparent;
   box-shadow:
@@ -1456,8 +1496,30 @@
 
 /* Зазор между формой и текстом — 20 мм */
 
+.slider-copy {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
 .slider-label {
-  margin-top: 20mm;
+  margin-top: clamp(12px, 2vh, 18px);
+  letter-spacing: 0.22em;
+  color: rgba(125, 249, 255, 0.9);
+  text-shadow: 0 0 12px rgba(34, 211, 238, 0.45);
+}
+
+.slider-title {
+  letter-spacing: -0.015em;
+  color: #e8ffff;
+}
+
+.slider-subtitle {
+  color: rgba(165, 243, 252, 0.9);
+}
+
+.slider-description {
+  color: rgba(226, 232, 240, 0.9);
+  line-height: 1.6;
 }
 
 /* ============================

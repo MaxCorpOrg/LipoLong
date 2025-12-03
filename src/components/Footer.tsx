@@ -33,7 +33,6 @@ export default function Footer() {
 
       <div className="footer-shell w-full max-w-6xl mx-auto px-6 relative z-[2] text-[#e8ffff]">
         <div className="footer-head text-center md:text-left">
-          <p className="footer-pill">Контакты</p>
           <h2 className="footer-title">LipoLong</h2>
           <p className="footer-sub">
             Подберем удобное время консультации, расскажем о процедуре и сразу
