@@ -5,8 +5,9 @@ import DotNav from "@/components/DotNav";
 import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
-  title: "LipoLong — инъекционные методики и косметология",
-  description: "Современная эстетическая медицина. Процедуры, эффекты, консультации.",
+  title: "LipoLong — безопасная коррекция контуров тела",
+  description:
+    "Безоперационная липомодификация LipoLong: быстрый эффект, современный подход и безопасное восстановление.",
 };
 
 export default function RootLayout({

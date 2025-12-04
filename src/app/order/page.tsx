@@ -1,6 +1,6 @@
 import OrderForm from "@/components/OrderForm";
 import Image from "next/image";
-import nodemailer from "nodemailer";
+import { sendOrder, validateOrderPayload } from "@/lib/sendOrder";
 
 export const metadata = {
   title: "Запись на процедуру LipoLong",
@@ -21,7 +21,7 @@ const DUST_POINTS: DustPoint[] = [
 ];
 
 export default function OrderPage() {
-  async function sendOrder(formData: FormData): Promise<{ ok: boolean }> {
+  async function sendOrderAction(formData: FormData): Promise<{ ok: boolean }> {
     "use server";
 
     const name = formData.get("name")?.toString() ?? "";
@@ -29,80 +29,14 @@ export default function OrderPage() {
     const phone = formData.get("phone")?.toString() ?? "";
     const message = formData.get("message")?.toString() ?? "";
 
-    if (name.length < 2 || !/\S+@\S+/.test(email) || message.length < 3) {
-      throw new Error("Invalid input");
+    const validation = validateOrderPayload({ name, email, phone, message });
+    if (!validation.ok) {
+      throw new Error(validation.error ?? "Некорректные данные");
     }
 
-    const smtpHost = process.env.SMTP_HOST;
-    const smtpPort = Number(process.env.SMTP_PORT ?? 587);
-    const smtpUser = process.env.SMTP_USER;
-    const smtpPass = process.env.SMTP_PASS;
-    const mailTo = process.env.MAIL_TO ?? "Oblcom@bk.ru";
-    const mailFrom = process.env.MAIL_FROM ?? smtpUser ?? "no-reply@lipolong.local";
-
-    if (!smtpHost || !smtpUser || !smtpPass) {
-      console.error("SMTP env vars missing");
-      return { ok: false };
-    }
-
-    const transporter = nodemailer.createTransport({
-      host: smtpHost,
-      port: smtpPort,
-      secure: smtpPort === 465,
-      auth: { user: smtpUser, pass: smtpPass },
-    });
-
-    const emailSubject = "Новая заявка LipoLong";
-    const emailText = `Новая заявка LipoLong
-Имя: ${name}
-Email: ${email}
-Телефон: ${phone || "—"}
-Сообщение: ${message}`;
-
-    const htmlSafe = {
-      name: escapeHtml(name),
-      email: escapeHtml(email),
-      phone: escapeHtml(phone || "—"),
-      message: escapeHtml(message),
-    };
-
-    await transporter.sendMail({
-      from: mailFrom,
-      to: mailTo,
-      subject: emailSubject,
-      text: emailText,
-      html: `<p><strong>Новая заявка LipoLong</strong></p>
-<ul>
-  <li><strong>Имя:</strong> ${htmlSafe.name}</li>
-  <li><strong>Email:</strong> ${htmlSafe.email}</li>
-  <li><strong>Телефон:</strong> ${htmlSafe.phone}</li>
-  <li><strong>Сообщение:</strong><br/>${htmlSafe.message.replace(/\n/g, "<br/>")}</li>
-</ul>`,
-    });
-
-    const BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN;
-    const CHAT_ID = process.env.TELEGRAM_CHAT_ID;
-
-    if (BOT_TOKEN && CHAT_ID) {
-      const tgText = `Новая заявка на LipoLong%0AИмя: ${encodeURIComponent(
-        name
-      )}%0AEmail: ${encodeURIComponent(email)}%0AТелефон: ${encodeURIComponent(
-        phone
-      )}%0AСообщение: ${encodeURIComponent(message)}`;
-
-      const res = await fetch(
-        `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`,
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ chat_id: CHAT_ID, text: tgText }),
-        }
-      );
-
-      if (!res.ok) {
-        const body = await res.text();
-        console.error("TG error", res.status, body);
-      }
+    const result = await sendOrder({ name, email, phone, message });
+    if (!result.ok) {
+      throw new Error(result.error ?? "Не удалось отправить заявку");
     }
 
     return { ok: true };
@@ -169,18 +103,9 @@ Email: ${email}
           </div>
 
           {/* Правая колонка — форма */}
-          <OrderForm action={sendOrder} />
+          <OrderForm action={sendOrderAction} />
         </div>
       </div>
     </section>
   );
-}
-
-function escapeHtml(str: string) {
-  return str
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;")
-    .replace(/'/g, "&#39;");
 }

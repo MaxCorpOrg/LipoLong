@@ -2638,6 +2638,20 @@ nextjs-dev-overlay,
 
 }
 
+/* Mobile performance tweaks: soften heavy effects */
+@media (max-width: 640px) {
+  .section-dust {
+    display: none;
+  }
+  .hero-liquid-bg {
+    filter: blur(20px);
+    opacity: 0.7;
+  }
+  .hero-liquid-blob {
+    animation-duration: 7s;
+  }
+}
+
 
 
 
