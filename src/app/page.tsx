@@ -125,16 +125,16 @@ export default function Home() {
           <div className="flex justify-center mb-6 md:mb-8">
             <div className="hero-logo-wrap">
               <Image
-                src="/Logo.png"
-                alt="LipoLong"
-                width={420}
-                height={120}
-                className="hero-logo-image"
-                style={{ width: "min(82vw, 420px)", height: "auto" }}
-                priority
-              />
-            </div>
+              src="/Logo.png"
+              alt="LipoLong"
+              width={420}
+              height={120}
+              className="hero-logo-image"
+              sizes="(max-width: 640px) 82vw, 420px"
+              priority
+            />
           </div>
+        </div>
 
           {/* Текстовый заголовок оставляем как подзаголовок */}
           <h1 className="hero-title text-3xl md:text-5xl font-black mb-4 md:mb-6 leading-tight">
