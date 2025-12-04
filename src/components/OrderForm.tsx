@@ -6,10 +6,10 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 
 const schema = z.object({
-  name: z.string().min(2, "Введите имя"),
-  email: z.string().email("Неверный email"),
+  name: z.string().min(2, "Введите имя (мин. 2 символа)"),
+  email: z.string().email("Введите корректный email"),
   phone: z.string().min(6).optional().or(z.literal("")),
-  message: z.string().min(5, "Короткое сообщение"),
+  message: z.string().min(5, "Минимум 5 символов"),
 });
 
 type FormDataShape = z.infer<typeof schema>;
@@ -55,11 +55,10 @@ export default function OrderForm({ action }: { action: OrderAction }) {
       className="glass-card w-full max-w-xl mx-auto space-y-6 p-6 md:p-8"
     >
       <h3 className="text-2xl font-bold mb-2 text-cyan-200 text-center">
-        Быстрая заявка
+        Оставьте заявку
       </h3>
       <p className="text-sm md:text-base text-center text-cyan-100 opacity-80 mb-4">
-        Заполните несколько полей — мы свяжемся с вами и подберём оптимальный
-        формат процедуры.
+        Заполните форму, и мы подберём удобное время и ответим на вопросы.
       </p>
 
       <div>
@@ -69,7 +68,7 @@ export default function OrderForm({ action }: { action: OrderAction }) {
         <input
           {...register("name")}
           className="glass-input w-full"
-          placeholder="Как к вам обращаться?"
+          placeholder="Например, Иван"
         />
         {errors.name && (
           <p className="text-sm text-rose-400 mt-1">{errors.name.message}</p>
@@ -93,7 +92,7 @@ export default function OrderForm({ action }: { action: OrderAction }) {
 
       <div>
         <label className="block text-xs uppercase tracking-[0.18em] text-cyan-200 mb-1">
-          Телефон (опционально)
+          Телефон (необязательно)
         </label>
         <input
           {...register("phone")}
@@ -108,14 +107,14 @@ export default function OrderForm({ action }: { action: OrderAction }) {
 
       <div>
         <label className="block text-xs uppercase tracking-[0.18em] text-cyan-200 mb-1">
-          Сообщение
+          Комментарий
         </label>
         <textarea
           {...register("message")}
           rows={4}
           className="glass-input w-full"
           style={{ borderRadius: "1rem", height: "110px" }}
-          placeholder="Какая зона интересует? Удобное время для связи."
+          placeholder="Коротко опишите задачу или вопросы"
         />
         {errors.message && (
           <p className="text-sm text-rose-400 mt-1">{errors.message.message}</p>
@@ -133,12 +132,12 @@ export default function OrderForm({ action }: { action: OrderAction }) {
 
         {status === "success" && (
           <span className="text-sm text-cyan-300 text-center">
-            Спасибо! Заявка отправлена, скоро свяжемся.
+            Спасибо! Мы свяжемся с вами в ближайшее время.
           </span>
         )}
         {status === "error" && (
           <span className="text-sm text-rose-400 text-center">
-            Ошибка отправки. Попробуйте ещё раз позже.
+            Не удалось отправить. Попробуйте ещё раз.
           </span>
         )}
       </div>

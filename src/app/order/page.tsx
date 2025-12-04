@@ -1,14 +1,10 @@
-﻿
-
-
-// Р¤Р°Р№Р»: src/app/order/page.tsx
 import OrderForm from "@/components/OrderForm";
 import Image from "next/image";
 import nodemailer from "nodemailer";
 
 export const metadata = {
-  title: "Р—Р°РїРёСЃСЊ РЅР° РїСЂРѕС†РµРґСѓСЂСѓ LipoLong",
-  description: "Р‘С‹СЃС‚СЂР°СЏ Р·Р°СЏРІРєР° РЅР° РїСЂРѕС†РµРґСѓСЂСѓ LipoLong",
+  title: "Запись на процедуру LipoLong",
+  description: "Оставьте заявку на процедуру LipoLong",
 };
 
 type DustPoint = { top: string; left: string; delay: string };
@@ -33,7 +29,6 @@ export default function OrderPage() {
     const phone = formData.get("phone")?.toString() ?? "";
     const message = formData.get("message")?.toString() ?? "";
 
-    // Basic server-side validation
     if (name.length < 2 || !/\S+@\S+/.test(email) || message.length < 3) {
       throw new Error("Invalid input");
     }
@@ -47,7 +42,7 @@ export default function OrderPage() {
 
     if (!smtpHost || !smtpUser || !smtpPass) {
       console.error("SMTP env vars missing");
-      throw new Error("Server misconfiguration");
+      return { ok: false };
     }
 
     const transporter = nodemailer.createTransport({
@@ -89,7 +84,11 @@ Email: ${email}
     const CHAT_ID = process.env.TELEGRAM_CHAT_ID;
 
     if (BOT_TOKEN && CHAT_ID) {
-      const tgText = `Новая заявка на LipoLong%0AИмя: ${encodeURIComponent(name)}%0AEmail: ${encodeURIComponent(email)}%0AТелефон: ${encodeURIComponent(phone)}%0AСообщение: ${encodeURIComponent(message)}`;
+      const tgText = `Новая заявка на LipoLong%0AИмя: ${encodeURIComponent(
+        name
+      )}%0AEmail: ${encodeURIComponent(email)}%0AТелефон: ${encodeURIComponent(
+        phone
+      )}%0AСообщение: ${encodeURIComponent(message)}`;
 
       const res = await fetch(
         `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`,
@@ -111,10 +110,10 @@ Email: ${email}
 
   return (
     <section className="snap-section contacts-section px-4 md:px-0">
-      {/* РќР•РћРќРћР’Р«Р• РџРЇРўРќРђ РљРђРљ Р’ РЎР•РљР¦РР 4 */}
+      {/* Секция 4 */}
       <div className="contacts-glow" />
 
-      {/* РџР«Р›Р¬ */}
+      {/* Пыль */}
       <div className="dust-layer section-dust" aria-hidden="true">
         {DUST_POINTS.map((p, i) => (
           <div
@@ -126,7 +125,7 @@ Email: ${email}
       </div>
 
       <div className="w-full max-w-5xl mx-auto pt-28 pb-24 relative z-[2]">
-        {/* Р›РћР“РћРўРРџ РЎР’Р•Р РҐРЈ */}
+        {/* Логотип */}
         <div className="flex justify-center mb-8">
           <div className="hero-logo-wrap">
             <Image
@@ -140,38 +139,36 @@ Email: ${email}
           </div>
         </div>
 
-        {/* Р—РђР“РћР›РћР’РћРљ Р РџРћР”Р—РђР“РћР›РћР’РћРљ */}
+        {/* Заголовок и описание */}
         <div className="text-center mb-10">
           <h1 className="text-3xl md:text-5xl font-extrabold mb-4 text-cyan-200">
-            Р—Р°РїРёСЃСЊ РЅР° РїСЂРѕС†РµРґСѓСЂСѓ LipoLong
+            Запись на процедуру LipoLong
           </h1>
           <p className="text-lg md:text-xl opacity-90 max-w-2xl mx-auto text-cyan-100">
-            РћСЃС‚Р°РІСЊС‚Рµ Р·Р°СЏРІРєСѓ, Рё РјС‹ РїРѕРґР±РµСЂС‘Рј СѓРґРѕР±РЅРѕРµ РІСЂРµРјСЏ, РѕР±СЉСЏСЃРЅРёРј РїСЂРѕС‚РѕРєРѕР»
-            РїСЂРѕС†РµРґСѓСЂС‹ Рё РѕС‚РІРµС‚РёРј РЅР° РІСЃРµ РІРѕРїСЂРѕСЃС‹.
+            Оставьте контакты и пару слов — подберём удобное время и ответим на вопросы.
           </p>
         </div>
 
-        {/* 2 РљРћР›РћРќРљР: РўР•РљРЎРў + Р¤РћР РњРђ */}
+        {/* 2 колонки: текст + форма */}
         <div className="grid gap-10 md:grid-cols-[minmax(0,1.1fr),minmax(0,1fr)] items-start">
-          {/* Р›РµРІР°СЏ РєРѕР»РѕРЅРєР° вЂ” РїРѕСЏСЃРЅРµРЅРёСЏ / РїСЂРµРёРјСѓС‰РµСЃС‚РІР° */}
+          {/* Левая колонка — процесс */}
           <div className="space-y-5 text-cyan-100 text-sm md:text-base">
             <h2 className="text-xl md:text-2xl font-semibold text-cyan-200">
-              Р§С‚Рѕ Р±СѓРґРµС‚ РїРѕСЃР»Рµ РѕС‚РїСЂР°РІРєРё Р·Р°СЏРІРєРё
+              Что будет после отправки заявки
             </h2>
             <ul className="space-y-2 opacity-90">
-              <li>вЂў Р’СЂР°С‡ РёР»Рё Р°РґРјРёРЅРёСЃС‚СЂР°С‚РѕСЂ СЃРІСЏР¶РµС‚СЃСЏ СЃ РІР°РјРё РІ С‚РµС‡РµРЅРёРµ 15вЂ“30 РјРёРЅСѓС‚.</li>
-              <li>вЂў РЈС‚РѕС‡РЅРёРј Р·РѕРЅСѓ РєРѕСЂСЂРµРєС†РёРё Рё РѕР¶РёРґР°РµРјС‹Р№ СЂРµР·СѓР»СЊС‚Р°С‚.</li>
-              <li>вЂў РџРѕРґР±РµСЂС‘Рј СѓРґРѕР±РЅРѕРµ РІСЂРµРјСЏ РєРѕРЅСЃСѓР»СЊС‚Р°С†РёРё РёР»Рё РїСЂРѕС†РµРґСѓСЂС‹.</li>
-              <li>вЂў РџСЂРё РЅРµРѕР±С…РѕРґРёРјРѕСЃС‚Рё РІС‹С€Р»РµРј РїРѕРґСЂРѕР±РЅС‹Рµ СЂРµРєРѕРјРµРЅРґР°С†РёРё РїРѕ РїРѕРґРіРѕС‚РѕРІРєРµ.</li>
+              <li>• Свяжемся в течение 15–30 минут.</li>
+              <li>• Уточним цели и зоны, расскажем о показаниях и противопоказаниях.</li>
+              <li>• Подберём комфортную дату и предложим стоимость.</li>
+              <li>• Дадим рекомендации по подготовке и восстановлению.</li>
             </ul>
 
             <div className="mt-4 text-xs md:text-sm opacity-70">
-              РњС‹ РЅРµ РїРµСЂРµРґР°С‘Рј РІР°С€Рё РґР°РЅРЅС‹Рµ С‚СЂРµС‚СЊРёРј Р»РёС†Р°Рј. РљРѕРЅС‚Р°РєС‚С‹ РёСЃРїРѕР»СЊР·СѓСЋС‚СЃСЏ
-              С‚РѕР»СЊРєРѕ РґР»СЏ СЃРІСЏР·Рё РїРѕ РїСЂРѕС†РµРґСѓСЂРµ LipoLong.
+              Мы не передаём данные третьим лицам. Используем только для связи и записи в LipoLong.
             </div>
           </div>
 
-          {/* РџСЂР°РІР°СЏ РєРѕР»РѕРЅРєР° вЂ” СЃС‚РµРєР»СЏРЅРЅР°СЏ С„РѕСЂРјР° */}
+          {/* Правая колонка — форма */}
           <OrderForm action={sendOrder} />
         </div>
       </div>
@@ -187,5 +184,3 @@ function escapeHtml(str: string) {
     .replace(/"/g, "&quot;")
     .replace(/'/g, "&#39;");
 }
-
-
