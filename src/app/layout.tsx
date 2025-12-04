@@ -16,7 +16,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="ru">
-      <body className="pt-16 bg-[#01070a] text-[var(--lipolong-text-soft)] antialiased">
+      <body className="bg-[#01070a] text-[var(--lipolong-text-soft)] antialiased">
         <Header />
         {children}
         <DotNav />

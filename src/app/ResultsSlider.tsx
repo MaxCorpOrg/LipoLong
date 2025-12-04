@@ -100,9 +100,11 @@ export default function ResultsSlider() {
               style={{
                 width: "100%",
                 height: "100%",
-                objectFit: "cover",
+                objectFit: "contain",
+                objectPosition: "center",
               }}
-              priority
+              loading="lazy"
+              sizes="(max-width: 640px) 100vw, (max-width: 1280px) 90vw, 1200px"
             />
           </div>
 
