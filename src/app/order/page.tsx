@@ -1,13 +1,14 @@
+﻿
 
 
-
-// Файл: src/app/order/page.tsx
+// Р¤Р°Р№Р»: src/app/order/page.tsx
 import OrderForm from "@/components/OrderForm";
 import Image from "next/image";
+import nodemailer from "nodemailer";
 
 export const metadata = {
-  title: "Запись на процедуру LipoLong",
-  description: "Быстрая заявка на процедуру LipoLong",
+  title: "Р—Р°РїРёСЃСЊ РЅР° РїСЂРѕС†РµРґСѓСЂСѓ LipoLong",
+  description: "Р‘С‹СЃС‚СЂР°СЏ Р·Р°СЏРІРєР° РЅР° РїСЂРѕС†РµРґСѓСЂСѓ LipoLong",
 };
 
 type DustPoint = { top: string; left: string; delay: string };
@@ -37,33 +38,72 @@ export default function OrderPage() {
       throw new Error("Invalid input");
     }
 
-    const BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN;
-    const CHAT_ID = process.env.TELEGRAM_CHAT_ID;
+    const smtpHost = process.env.SMTP_HOST;
+    const smtpPort = Number(process.env.SMTP_PORT ?? 587);
+    const smtpUser = process.env.SMTP_USER;
+    const smtpPass = process.env.SMTP_PASS;
+    const mailTo = process.env.MAIL_TO ?? "Oblcom@bk.ru";
+    const mailFrom = process.env.MAIL_FROM ?? smtpUser ?? "no-reply@lipolong.local";
 
-    if (!BOT_TOKEN || !CHAT_ID) {
-      console.error("Telegram env vars missing");
+    if (!smtpHost || !smtpUser || !smtpPass) {
+      console.error("SMTP env vars missing");
       throw new Error("Server misconfiguration");
     }
 
-    const text = `Новая заявка на LipoLong%0AИмя: ${escapeHtml(
-      name
-    )}%0AEmail: ${escapeHtml(email)}%0AТелефон: ${escapeHtml(
-      phone
-    )}%0AСообщение: ${escapeHtml(message)}`;
+    const transporter = nodemailer.createTransport({
+      host: smtpHost,
+      port: smtpPort,
+      secure: smtpPort === 465,
+      auth: { user: smtpUser, pass: smtpPass },
+    });
 
-    const res = await fetch(
-      `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`,
-      {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ chat_id: CHAT_ID, text, parse_mode: "HTML" }),
+    const emailSubject = "Новая заявка LipoLong";
+    const emailText = `Новая заявка LipoLong
+Имя: ${name}
+Email: ${email}
+Телефон: ${phone || "—"}
+Сообщение: ${message}`;
+
+    const htmlSafe = {
+      name: escapeHtml(name),
+      email: escapeHtml(email),
+      phone: escapeHtml(phone || "—"),
+      message: escapeHtml(message),
+    };
+
+    await transporter.sendMail({
+      from: mailFrom,
+      to: mailTo,
+      subject: emailSubject,
+      text: emailText,
+      html: `<p><strong>Новая заявка LipoLong</strong></p>
+<ul>
+  <li><strong>Имя:</strong> ${htmlSafe.name}</li>
+  <li><strong>Email:</strong> ${htmlSafe.email}</li>
+  <li><strong>Телефон:</strong> ${htmlSafe.phone}</li>
+  <li><strong>Сообщение:</strong><br/>${htmlSafe.message.replace(/\n/g, "<br/>")}</li>
+</ul>`,
+    });
+
+    const BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN;
+    const CHAT_ID = process.env.TELEGRAM_CHAT_ID;
+
+    if (BOT_TOKEN && CHAT_ID) {
+      const tgText = `Новая заявка на LipoLong%0AИмя: ${encodeURIComponent(name)}%0AEmail: ${encodeURIComponent(email)}%0AТелефон: ${encodeURIComponent(phone)}%0AСообщение: ${encodeURIComponent(message)}`;
+
+      const res = await fetch(
+        `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ chat_id: CHAT_ID, text: tgText }),
+        }
+      );
+
+      if (!res.ok) {
+        const body = await res.text();
+        console.error("TG error", res.status, body);
       }
-    );
-
-    if (!res.ok) {
-      const body = await res.text();
-      console.error("TG error", res.status, body);
-      throw new Error("Telegram send failed");
     }
 
     return { ok: true };
@@ -71,10 +111,10 @@ export default function OrderPage() {
 
   return (
     <section className="snap-section contacts-section px-4 md:px-0">
-      {/* НЕОНОВЫЕ ПЯТНА КАК В СЕКЦИИ 4 */}
+      {/* РќР•РћРќРћР’Р«Р• РџРЇРўРќРђ РљРђРљ Р’ РЎР•РљР¦РР 4 */}
       <div className="contacts-glow" />
 
-      {/* ПЫЛЬ */}
+      {/* РџР«Р›Р¬ */}
       <div className="dust-layer section-dust" aria-hidden="true">
         {DUST_POINTS.map((p, i) => (
           <div
@@ -86,7 +126,7 @@ export default function OrderPage() {
       </div>
 
       <div className="w-full max-w-5xl mx-auto pt-28 pb-24 relative z-[2]">
-        {/* ЛОГОТИП СВЕРХУ */}
+        {/* Р›РћР“РћРўРРџ РЎР’Р•Р РҐРЈ */}
         <div className="flex justify-center mb-8">
           <div className="hero-logo-wrap">
             <Image
@@ -100,38 +140,38 @@ export default function OrderPage() {
           </div>
         </div>
 
-        {/* ЗАГОЛОВОК И ПОДЗАГОЛОВОК */}
+        {/* Р—РђР“РћР›РћР’РћРљ Р РџРћР”Р—РђР“РћР›РћР’РћРљ */}
         <div className="text-center mb-10">
           <h1 className="text-3xl md:text-5xl font-extrabold mb-4 text-cyan-200">
-            Запись на процедуру LipoLong
+            Р—Р°РїРёСЃСЊ РЅР° РїСЂРѕС†РµРґСѓСЂСѓ LipoLong
           </h1>
           <p className="text-lg md:text-xl opacity-90 max-w-2xl mx-auto text-cyan-100">
-            Оставьте заявку, и мы подберём удобное время, объясним протокол
-            процедуры и ответим на все вопросы.
+            РћСЃС‚Р°РІСЊС‚Рµ Р·Р°СЏРІРєСѓ, Рё РјС‹ РїРѕРґР±РµСЂС‘Рј СѓРґРѕР±РЅРѕРµ РІСЂРµРјСЏ, РѕР±СЉСЏСЃРЅРёРј РїСЂРѕС‚РѕРєРѕР»
+            РїСЂРѕС†РµРґСѓСЂС‹ Рё РѕС‚РІРµС‚РёРј РЅР° РІСЃРµ РІРѕРїСЂРѕСЃС‹.
           </p>
         </div>
 
-        {/* 2 КОЛОНКИ: ТЕКСТ + ФОРМА */}
+        {/* 2 РљРћР›РћРќРљР: РўР•РљРЎРў + Р¤РћР РњРђ */}
         <div className="grid gap-10 md:grid-cols-[minmax(0,1.1fr),minmax(0,1fr)] items-start">
-          {/* Левая колонка — пояснения / преимущества */}
+          {/* Р›РµРІР°СЏ РєРѕР»РѕРЅРєР° вЂ” РїРѕСЏСЃРЅРµРЅРёСЏ / РїСЂРµРёРјСѓС‰РµСЃС‚РІР° */}
           <div className="space-y-5 text-cyan-100 text-sm md:text-base">
             <h2 className="text-xl md:text-2xl font-semibold text-cyan-200">
-              Что будет после отправки заявки
+              Р§С‚Рѕ Р±СѓРґРµС‚ РїРѕСЃР»Рµ РѕС‚РїСЂР°РІРєРё Р·Р°СЏРІРєРё
             </h2>
             <ul className="space-y-2 opacity-90">
-              <li>• Врач или администратор свяжется с вами в течение 15–30 минут.</li>
-              <li>• Уточним зону коррекции и ожидаемый результат.</li>
-              <li>• Подберём удобное время консультации или процедуры.</li>
-              <li>• При необходимости вышлем подробные рекомендации по подготовке.</li>
+              <li>вЂў Р’СЂР°С‡ РёР»Рё Р°РґРјРёРЅРёСЃС‚СЂР°С‚РѕСЂ СЃРІСЏР¶РµС‚СЃСЏ СЃ РІР°РјРё РІ С‚РµС‡РµРЅРёРµ 15вЂ“30 РјРёРЅСѓС‚.</li>
+              <li>вЂў РЈС‚РѕС‡РЅРёРј Р·РѕРЅСѓ РєРѕСЂСЂРµРєС†РёРё Рё РѕР¶РёРґР°РµРјС‹Р№ СЂРµР·СѓР»СЊС‚Р°С‚.</li>
+              <li>вЂў РџРѕРґР±РµСЂС‘Рј СѓРґРѕР±РЅРѕРµ РІСЂРµРјСЏ РєРѕРЅСЃСѓР»СЊС‚Р°С†РёРё РёР»Рё РїСЂРѕС†РµРґСѓСЂС‹.</li>
+              <li>вЂў РџСЂРё РЅРµРѕР±С…РѕРґРёРјРѕСЃС‚Рё РІС‹С€Р»РµРј РїРѕРґСЂРѕР±РЅС‹Рµ СЂРµРєРѕРјРµРЅРґР°С†РёРё РїРѕ РїРѕРґРіРѕС‚РѕРІРєРµ.</li>
             </ul>
 
             <div className="mt-4 text-xs md:text-sm opacity-70">
-              Мы не передаём ваши данные третьим лицам. Контакты используются
-              только для связи по процедуре LipoLong.
+              РњС‹ РЅРµ РїРµСЂРµРґР°С‘Рј РІР°С€Рё РґР°РЅРЅС‹Рµ С‚СЂРµС‚СЊРёРј Р»РёС†Р°Рј. РљРѕРЅС‚Р°РєС‚С‹ РёСЃРїРѕР»СЊР·СѓСЋС‚СЃСЏ
+              С‚РѕР»СЊРєРѕ РґР»СЏ СЃРІСЏР·Рё РїРѕ РїСЂРѕС†РµРґСѓСЂРµ LipoLong.
             </div>
           </div>
 
-          {/* Правая колонка — стеклянная форма */}
+          {/* РџСЂР°РІР°СЏ РєРѕР»РѕРЅРєР° вЂ” СЃС‚РµРєР»СЏРЅРЅР°СЏ С„РѕСЂРјР° */}
           <OrderForm action={sendOrder} />
         </div>
       </div>
@@ -141,9 +181,11 @@ export default function OrderPage() {
 
 function escapeHtml(str: string) {
   return str
-    .replace(/&/g, "%26")
-    .replace(/</g, "%3C")
-    .replace(/>/g, "%3E")
-    .replace(/#/g, "%23");
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#39;");
 }
+
 
