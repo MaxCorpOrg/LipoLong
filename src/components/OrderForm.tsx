@@ -66,6 +66,7 @@ export default function OrderForm({ action }: { action: OrderAction }) {
           Имя
         </label>
         <input
+          id="order-name"
           {...register("name")}
           className="glass-input w-full"
           placeholder="Например, Иван"
@@ -80,6 +81,7 @@ export default function OrderForm({ action }: { action: OrderAction }) {
           Email
         </label>
         <input
+          id="order-email"
           {...register("email")}
           className="glass-input w-full"
           placeholder="you@example.com"
@@ -95,6 +97,7 @@ export default function OrderForm({ action }: { action: OrderAction }) {
           Телефон (необязательно)
         </label>
         <input
+          id="order-phone"
           {...register("phone")}
           className="glass-input w-full"
           placeholder="+7 (___) ___-__-__"
@@ -110,6 +113,7 @@ export default function OrderForm({ action }: { action: OrderAction }) {
           Комментарий
         </label>
         <textarea
+          id="order-message"
           {...register("message")}
           rows={4}
           className="glass-input w-full"

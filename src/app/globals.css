@@ -629,8 +629,9 @@ nextjs-dev-overlay,
 
 .hero-logo-image {
   display: block;
-  width: 100%;
+  width: auto;
   height: auto;
+  max-width: 100%;
   transform-origin: center center;
   animation: heroLogoBreath 6s ease-in-out infinite;
   will-change: transform, filter;

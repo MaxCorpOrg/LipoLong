@@ -123,7 +123,7 @@ export default function Home() {
         <div className="hero-content container mx-auto px-6 text-center relative z-[1]">
           {/* ЛОГОТИП КАК БОЛЬШОЙ ЗАГОЛОВОК */}
           <div className="flex justify-center mb-6 md:mb-8">
-            <div className="hero-logo-wrap">
+            <div className="hero-logo-wrap max-w-[420px] w-full">
               <Image
               src="/Logo.png"
               alt="LipoLong"
