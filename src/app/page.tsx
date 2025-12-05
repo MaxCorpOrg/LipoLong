@@ -130,7 +130,6 @@ export default function Home() {
                 width={420}
                 height={120}
                 className="hero-logo-image"
-                style={{ width: "min(82vw, 420px)", height: "auto" }}
                 priority
               />
             </div>
