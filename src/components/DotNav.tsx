@@ -1,5 +1,6 @@
 'use client';
-import { useEffect, useState } from "react";
+
+import { useEffect, useRef, useState } from "react";
 
 export default function DotNav() {
   const [active, setActive] = useState(0);
@@ -8,15 +9,16 @@ export default function DotNav() {
       ? document.querySelectorAll<HTMLElement>(".snap-section").length
       : 0
   );
+  const sectionsRef = useRef<HTMLElement[]>([]);
 
   useEffect(() => {
     const sections = Array.from(
       document.querySelectorAll<HTMLElement>(".snap-section")
     );
-    if (sections.length !== count) {
-      setTimeout(() => setCount(sections.length), 0);
-    }
-    // IntersectionObserver — быстрый отклик при любом способе скролла
+    sectionsRef.current = sections;
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setCount(sections.length);
+
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -38,11 +40,11 @@ export default function DotNav() {
       observer.observe(sec);
     });
 
-    // Фолбек на случай, если секции динамически появляются или не задетектил IO
     const handleScrollFallback = () => {
+      const current = sectionsRef.current;
       const scrollPos = window.scrollY + window.innerHeight / 2;
-      for (let i = 0; i < sections.length; i++) {
-        const sec = sections[i];
+      for (let i = 0; i < current.length; i++) {
+        const sec = current[i];
         const rectTop = sec.getBoundingClientRect().top + window.scrollY;
         const height = sec.clientHeight;
         if (rectTop <= scrollPos && rectTop + height > scrollPos) {
@@ -58,7 +60,7 @@ export default function DotNav() {
       observer.disconnect();
       window.removeEventListener("scroll", handleScrollFallback);
     };
-  }, [count]);
+  }, []);
 
   const scrollTo = (i: number) => {
     setActive(i);
@@ -76,8 +78,12 @@ export default function DotNav() {
   ];
 
   return (
-    <div role="navigation" aria-label="Навигация по секциям" data-count={count} className="dotnav-root hidden md:flex md:flex-col md:gap-3 md:items-center">
-      {/* screen-reader-only live region for announcements */}
+    <div
+      role="navigation"
+      aria-label="Навигация по секциям"
+      data-count={count}
+      className="dotnav-root hidden md:flex md:flex-col md:gap-3 md:items-center"
+    >
       <div aria-live="polite" className="sr-only" role="status">
         {SECTION_LABELS[active] ?? `Секция ${active + 1}`}
       </div>
