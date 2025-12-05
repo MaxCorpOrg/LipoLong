@@ -6,10 +6,23 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 
 const schema = z.object({
-  name: z.string().min(2, "Введите имя (мин. 2 символа)"),
-  email: z.string().email("Введите корректный email"),
-  phone: z.string().min(6).optional().or(z.literal("")),
-  message: z.string().min(5, "Минимум 5 символов"),
+  name: z
+    .string()
+    .min(2, "Введите имя (мин. 2 символа)")
+    .max(120, "Слишком длинное имя"),
+  email: z
+    .string()
+    .email("Введите корректный email")
+    .max(120, "Слишком длинный email"),
+  phone: z
+    .string()
+    .max(32, "Слишком длинный номер")
+    .optional()
+    .or(z.literal("")),
+  message: z
+    .string()
+    .min(5, "Минимум 5 символов")
+    .max(2000, "Слишком длинное сообщение"),
 });
 
 type FormDataShape = z.infer<typeof schema>;
@@ -69,7 +82,8 @@ export default function OrderForm({ action }: { action: OrderAction }) {
           id="order-name"
           {...register("name")}
           className="glass-input w-full"
-          placeholder="Например, Иван"
+          placeholder="Например, Анна"
+          maxLength={120}
         />
         {errors.name && (
           <p className="text-sm text-rose-400 mt-1">{errors.name.message}</p>
@@ -86,6 +100,7 @@ export default function OrderForm({ action }: { action: OrderAction }) {
           className="glass-input w-full"
           placeholder="you@example.com"
           type="email"
+          maxLength={120}
         />
         {errors.email && (
           <p className="text-sm text-rose-400 mt-1">{errors.email.message}</p>
@@ -102,6 +117,7 @@ export default function OrderForm({ action }: { action: OrderAction }) {
           className="glass-input w-full"
           placeholder="+7 (___) ___-__-__"
           type="tel"
+          maxLength={32}
         />
         {errors.phone && (
           <p className="text-sm text-rose-400 mt-1">{errors.phone.message}</p>
@@ -119,6 +135,7 @@ export default function OrderForm({ action }: { action: OrderAction }) {
           className="glass-input w-full"
           style={{ borderRadius: "1rem", height: "110px" }}
           placeholder="Коротко опишите задачу или вопросы"
+          maxLength={2000}
         />
         {errors.message && (
           <p className="text-sm text-rose-400 mt-1">{errors.message.message}</p>
