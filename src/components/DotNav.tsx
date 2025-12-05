@@ -4,11 +4,7 @@ import { useEffect, useRef, useState } from "react";
 
 export default function DotNav() {
   const [active, setActive] = useState(0);
-  const [count, setCount] = useState(() =>
-    typeof document !== "undefined"
-      ? document.querySelectorAll<HTMLElement>(".snap-section").length
-      : 0
-  );
+  const [count, setCount] = useState(0);
   const sectionsRef = useRef<HTMLElement[]>([]);
 
   useEffect(() => {
