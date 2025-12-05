@@ -8,9 +8,23 @@ export type OrderPayload = {
 };
 
 export function validateOrderPayload(payload: OrderPayload): { ok: boolean; error?: string } {
-  if (payload.name.trim().length < 2) return { ok: false, error: "Укажите имя (мин. 2 символа)" };
-  if (!/\S+@\S+/.test(payload.email)) return { ok: false, error: "Некорректный email" };
-  if (payload.message.trim().length < 3) return { ok: false, error: "Слишком короткое сообщение" };
+  const name = payload.name.trim();
+  const email = payload.email.trim();
+  const phone = (payload.phone ?? "").trim();
+  const message = payload.message.trim();
+
+  if (name.length < 2) return { ok: false, error: "Укажите имя (мин. 2 символа)" };
+  if (name.length > 120) return { ok: false, error: "Слишком длинное имя" };
+  if (!/\S+@\S+/.test(email)) return { ok: false, error: "Некорректный email" };
+  if (email.length > 120) return { ok: false, error: "Email слишком длинный" };
+  if (phone.length > 32) return { ok: false, error: "Телефон слишком длинный" };
+  if (message.length < 3) return { ok: false, error: "Слишком короткое сообщение" };
+  if (message.length > 2000) return { ok: false, error: "Сообщение слишком длинное" };
+
+  payload.name = name;
+  payload.email = email;
+  payload.phone = phone;
+  payload.message = message;
   return { ok: true };
 }
 
