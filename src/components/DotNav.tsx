@@ -1,19 +1,22 @@
 'use client';
 
 import { useEffect, useRef, useState } from "react";
+import { usePathname } from "next/navigation";
 
 export default function DotNav() {
   const [active, setActive] = useState(0);
   const [count, setCount] = useState(0);
   const sectionsRef = useRef<HTMLElement[]>([]);
+  const pathname = usePathname();
 
   useEffect(() => {
     const sections = Array.from(
       document.querySelectorAll<HTMLElement>(".snap-section")
     );
     sectionsRef.current = sections;
-    // eslint-disable-next-line react-hooks/set-state-in-effect
-    setCount(sections.length);
+    if (sections.length !== count) {
+      setTimeout(() => setCount(sections.length), 0);
+    }
 
     const observer = new IntersectionObserver(
       (entries) => {
@@ -50,13 +53,14 @@ export default function DotNav() {
       }
     };
 
+    handleScrollFallback();
     window.addEventListener("scroll", handleScrollFallback, { passive: true });
 
     return () => {
       observer.disconnect();
       window.removeEventListener("scroll", handleScrollFallback);
     };
-  }, []);
+  }, [pathname, count]);
 
   const scrollTo = (i: number) => {
     setActive(i);
