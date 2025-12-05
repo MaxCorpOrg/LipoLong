@@ -6,7 +6,7 @@ import DotNav from "@/components/DotNav";
 import Footer from "@/components/Footer";
 
 const spaceGrotesk = Space_Grotesk({
-  subsets: ["latin", "latin-ext", "cyrillic"],
+  subsets: ["latin", "latin-ext"],
   weight: ["400", "500", "600", "700"],
   display: "swap",
 });
