@@ -3,19 +3,46 @@ import { useEffect, useState } from "react";
 
 export default function DotNav() {
   const [active, setActive] = useState(0);
-  const [count, setCount] = useState(0);
+  const [count, setCount] = useState(() =>
+    typeof document !== "undefined"
+      ? document.querySelectorAll<HTMLElement>(".snap-section").length
+      : 0
+  );
 
   useEffect(() => {
-    const handleScroll = () => {
-      const sections = document.querySelectorAll(".snap-section");
-      const len = sections.length;
-      setCount((prev) => (prev !== len ? len : prev));
+    const sections = Array.from(
+      document.querySelectorAll<HTMLElement>(".snap-section")
+    );
+    if (sections.length !== count) {
+      setTimeout(() => setCount(sections.length), 0);
+    }
+    // IntersectionObserver — быстрый отклик при любом способе скролла
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const idx = Number(
+              (entry.target as HTMLElement).dataset.dotIndex ?? -1
+            );
+            if (!Number.isNaN(idx) && idx >= 0) {
+              setActive(idx);
+            }
+          }
+        });
+      },
+      { threshold: 0.35 }
+    );
 
+    sections.forEach((sec, i) => {
+      sec.dataset.dotIndex = String(i);
+      observer.observe(sec);
+    });
+
+    // Фолбек на случай, если секции динамически появляются или не задетектил IO
+    const handleScrollFallback = () => {
       const scrollPos = window.scrollY + window.innerHeight / 2;
-
-      for (let i = 0; i < len; i++) {
+      for (let i = 0; i < sections.length; i++) {
         const sec = sections[i];
-        if (!(sec instanceof Element)) continue;
         const rectTop = sec.getBoundingClientRect().top + window.scrollY;
         const height = sec.clientHeight;
         if (rectTop <= scrollPos && rectTop + height > scrollPos) {
@@ -25,28 +52,13 @@ export default function DotNav() {
       }
     };
 
-    window.addEventListener("scroll", handleScroll);
-    handleScroll();
-    // если секций ещё нет в DOM к моменту монтирования, сделать дополнительную попытку через небольшой таймаут
-    const recheckTimer = setTimeout(handleScroll, 200);
-
-    // MutationObserver: если контент загружается динамически — обновляем количество точек (debounced)
-    let mutationDebounce: ReturnType<typeof setTimeout> | null = null;
-    const observer = new MutationObserver(() => {
-      if (mutationDebounce) clearTimeout(mutationDebounce);
-      mutationDebounce = setTimeout(() => {
-        handleScroll();
-      }, 140);
-    });
-    observer.observe(document.body, { childList: true, subtree: true });
+    window.addEventListener("scroll", handleScrollFallback, { passive: true });
 
     return () => {
-      window.removeEventListener("scroll", handleScroll);
-      clearTimeout(recheckTimer);
-      if (mutationDebounce) clearTimeout(mutationDebounce);
       observer.disconnect();
+      window.removeEventListener("scroll", handleScrollFallback);
     };
-  }, []);
+  }, [count]);
 
   const scrollTo = (i: number) => {
     setActive(i);
