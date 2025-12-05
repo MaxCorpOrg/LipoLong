@@ -577,6 +577,23 @@ export default function Home() {
                 </div>
               </div>
         </section>
-      </main>
-    );
+      {/* Мобильная плавающая кнопка CTA */}
+      <div className="mobile-cta-bar md:hidden">
+        <a
+          href="/order"
+          className="mobile-cta-btn primary"
+          aria-label="Записаться на процедуру LipoLong"
+        >
+          Записаться
+        </a>
+        <a
+          href="#s2"
+          className="mobile-cta-btn ghost"
+          aria-label="Смотреть результаты LipoLong"
+        >
+          Результаты
+        </a>
+      </div>
+    </main>
+  );
 }
