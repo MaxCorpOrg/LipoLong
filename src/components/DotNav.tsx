@@ -13,16 +13,16 @@ export default function DotNav() {
 
       const scrollPos = window.scrollY + window.innerHeight / 2;
 
-      sections.forEach((sec, i) => {
-        if (sec instanceof Element) {
-          const rectTop = sec.getBoundingClientRect().top + window.scrollY;
-          const height = sec.clientHeight;
-
-          if (rectTop <= scrollPos && rectTop + height > scrollPos) {
-            setActive((prev) => (prev !== i ? i : prev));
-          }
+      for (let i = 0; i < len; i++) {
+        const sec = sections[i];
+        if (!(sec instanceof Element)) continue;
+        const rectTop = sec.getBoundingClientRect().top + window.scrollY;
+        const height = sec.clientHeight;
+        if (rectTop <= scrollPos && rectTop + height > scrollPos) {
+          setActive(i);
+          break;
         }
-      });
+      }
     };
 
     window.addEventListener("scroll", handleScroll);
@@ -49,6 +49,7 @@ export default function DotNav() {
   }, []);
 
   const scrollTo = (i: number) => {
+    setActive(i);
     const node = document.querySelectorAll(".snap-section")[i] as
       | Element
       | undefined;
@@ -58,9 +59,8 @@ export default function DotNav() {
   const SECTION_LABELS = [
     "Главная",
     "Результаты LipoLong",
-    "Процедура LipoLong",
-    "Заказ",
-    "Контакты",
+    "Как проходит процедура",
+    "Контакты LipoLong",
   ];
 
   return (
@@ -74,7 +74,7 @@ export default function DotNav() {
           key={i}
           onClick={() => scrollTo(i)}
           aria-label={SECTION_LABELS[i] ?? `Секция ${i + 1}`}
-          title={SECTION_LABELS[i] ? `${SECTION_LABELS[i]} (${i + 1})` : `Перейти к секции ${i + 1}`}
+          title={SECTION_LABELS[i] ?? `Секция ${i + 1}`}
           className={`dot ${active === i ? "dot--active" : ""}`}
           aria-current={active === i ? "true" : undefined}
         >
