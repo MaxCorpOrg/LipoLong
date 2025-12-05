@@ -5,7 +5,7 @@ import ResultsSlider from "./ResultsSlider";
 import Image from "next/image";
 
 /* ------------------------------
-   DUST POINTS вЂ” Р‘Р•Р— Math.random
+   DUST POINTS тАФ ╨С╨Х╨Ч Math.random
 ------------------------------ */
 
 type DustPoint = { top: string; left: string; delay: string };
@@ -33,7 +33,7 @@ const DUST_POINTS: DustPoint[] = [
 
 export default function Home() {
   /* ------------------------------
-      РђРќРРњРђР¦РРЇ РЁРђР“РћР’ (РЎР•РљР¦РРЇ 3)
+      ╨Р╨Э╨Ш╨Ь╨Р╨ж╨Ш╨п ╨и╨Р╨У╨Ю╨Т (╨б╨Х╨Ъ╨ж╨Ш╨п 3)
   ------------------------------ */
 
   type StepRef = HTMLDivElement | null;
@@ -55,7 +55,7 @@ export default function Home() {
           const index = Number(indexAttr);
           if (entry.isIntersecting && !Number.isNaN(index)) {
             setVisibleSteps((prev) => {
-              if (prev[index]) return prev; // СѓР¶Рµ Р°РЅРёРјРёСЂРѕРІР°РЅ
+              if (prev[index]) return prev; // ╤Г╨╢╨╡ ╨░╨╜╨╕╨╝╨╕╤А╨╛╨▓╨░╨╜
               const updated = [...prev];
               updated[index] = true;
               return updated;
@@ -99,7 +99,7 @@ export default function Home() {
   return (
     <main>
       {/* ============================
-          РЎР•РљР¦РРЇ 1 вЂ” HERO LIPOLONG
+          ╨б╨Х╨Ъ╨ж╨Ш╨п 1 тАФ HERO LIPOLONG
       ============================ */}
       <section className="snap-section hero-liquid">
         <div className="hero-liquid-bg">
@@ -109,7 +109,7 @@ export default function Home() {
           <div className="hero-liquid-blob hero-liquid-blob--4" />
           <div className="hero-liquid-blob hero-liquid-blob--5" />
         </div>
-        {/* РџР«Р›Р¬ РІ HERO */}
+        {/* ╨Я╨л╨Ы╨м ╨▓ HERO */}
         <div className="dust-layer section-dust" aria-hidden="true">
           {DUST_POINTS.map((p, i) => (
             <div
@@ -121,7 +121,7 @@ export default function Home() {
         </div>
 
         <div className="hero-content container mx-auto px-6 text-center relative z-[1]">
-          {/* Р›РћР“РћРўРРџ РљРђРљ Р‘РћР›Р¬РЁРћР™ Р—РђР“РћР›РћР’РћРљ */}
+          {/* ╨Ы╨Ю╨У╨Ю╨в╨Ш╨Я ╨Ъ╨Р╨Ъ ╨С╨Ю╨Ы╨м╨и╨Ю╨Щ ╨Ч╨Р╨У╨Ю╨Ы╨Ю╨Т╨Ю╨Ъ */}
           <div className="flex justify-center mb-6 md:mb-8">
             <div className="hero-logo-wrap max-w-[420px] w-full">
               <Image
@@ -131,38 +131,37 @@ export default function Home() {
               height={120}
               className="hero-logo-image"
               sizes="(max-width: 640px) 82vw, 420px"
-              style={{ width: "auto", height: "auto" }}
               priority
             />
           </div>
         </div>
 
-          {/* РўРµРєСЃС‚РѕРІС‹Р№ Р·Р°РіРѕР»РѕРІРѕРє РѕСЃС‚Р°РІР»СЏРµРј РєР°Рє РїРѕРґР·Р°РіРѕР»РѕРІРѕРє */}
+          {/* ╨в╨╡╨║╤Б╤В╨╛╨▓╤Л╨╣ ╨╖╨░╨│╨╛╨╗╨╛╨▓╨╛╨║ ╨╛╤Б╤В╨░╨▓╨╗╤П╨╡╨╝ ╨║╨░╨║ ╨┐╨╛╨┤╨╖╨░╨│╨╛╨╗╨╛╨▓╨╛╨║ */}
           <h1 className="hero-title text-3xl md:text-5xl font-black mb-4 md:mb-6 leading-tight">
-            РРЅРЅРѕРІР°С†РёРѕРЅРЅС‹Р№ РјРµС‚РѕРґ
+            ╨Ш╨╜╨╜╨╛╨▓╨░╤Ж╨╕╨╛╨╜╨╜╤Л╨╣ ╨╝╨╡╤В╨╛╨┤
             <br />
-            <span className="text-cyan-300">РєРѕРЅС‚СѓСЂРЅРѕР№ РєРѕСЂСЂРµРєС†РёРё С‚РµР»Р°</span>
+            <span className="text-cyan-300">╨║╨╛╨╜╤В╤Г╤А╨╜╨╛╨╣ ╨║╨╛╤А╤А╨╡╨║╤Ж╨╕╨╕ ╤В╨╡╨╗╨░</span>
           </h1>
 
           <p className="text-lg md:text-2xl mb-10 opacity-90 max-w-3xl mx-auto">
-            Р‘РµР·РѕРїРµСЂР°С†РёРѕРЅРЅР°СЏ Р»РёРїРѕРјРѕРґРёС„РёРєР°С†РёСЏ СЃ Р±С‹СЃС‚СЂС‹Рј СЌС„С„РµРєС‚РѕРј.
+            ╨С╨╡╨╖╨╛╨┐╨╡╤А╨░╤Ж╨╕╨╛╨╜╨╜╨░╤П ╨╗╨╕╨┐╨╛╨╝╨╛╨┤╨╕╤Д╨╕╨║╨░╤Ж╨╕╤П ╤Б ╨▒╤Л╤Б╤В╤А╤Л╨╝ ╤Н╤Д╤Д╨╡╨║╤В╨╛╨╝.
             <br />
-            РЎРѕРІСЂРµРјРµРЅРЅР°СЏ РїСЂРѕС†РµРґСѓСЂР° РґР»СЏ Р±РµР·РѕРїР°СЃРЅРѕРіРѕ РёР·РјРµРЅРµРЅРёСЏ РєРѕРЅС‚СѓСЂРѕРІ С‚РµР»Р°.
+            ╨б╨╛╨▓╤А╨╡╨╝╨╡╨╜╨╜╨░╤П ╨┐╤А╨╛╤Ж╨╡╨┤╤Г╤А╨░ ╨┤╨╗╤П ╨▒╨╡╨╖╨╛╨┐╨░╤Б╨╜╨╛╨│╨╛ ╨╕╨╖╨╝╨╡╨╜╨╡╨╜╨╕╤П ╨║╨╛╨╜╤В╤Г╤А╨╛╨▓ ╤В╨╡╨╗╨░.
           </p>
 
-          {/* РљРќРћРџРљР HERO вЂ” "РџРѕРґСЂРѕР±РЅРµРµ" РїРѕ С†РµРЅС‚СЂСѓ, "Р§Р°С‚" СЃРїСЂР°РІР° */}
+          {/* ╨Ъ╨Э╨Ю╨Я╨Ъ╨Ш HERO тАФ "╨Я╨╛╨┤╤А╨╛╨▒╨╜╨╡╨╡" ╨┐╨╛ ╤Ж╨╡╨╜╤В╤А╤Г, "╨з╨░╤В" ╤Б╨┐╤А╨░╨▓╨░ */}
           <div className="hero-buttons-row">
-            {/* РЎР»РѕС‚ СЃР»РµРІР° вЂ” РєРЅРѕРїРєР° "Р—Р°РїРёСЃР°С‚СЊСЃСЏ" */}
+            {/* ╨б╨╗╨╛╤В ╤Б╨╗╨╡╨▓╨░ тАФ ╨║╨╜╨╛╨┐╨║╨░ "╨Ч╨░╨┐╨╕╤Б╨░╤В╤М╤Б╤П" */}
             <div className="hero-btn-slot hero-btn-slot--left">
               <a
                 href="/order"
                 role="button"
-                aria-label="Р—Р°РїРёСЃР°С‚СЊСЃСЏ РЅР° РїСЂРѕС†РµРґСѓСЂСѓ LipoLong"
+                aria-label="╨Ч╨░╨┐╨╕╤Б╨░╤В╤М╤Б╤П ╨╜╨░ ╨┐╤А╨╛╤Ж╨╡╨┤╤Г╤А╤Г LipoLong"
                 className="btn-hero btn-hero--primary"
                 style={{ width: "5cm", height: "5vh", color: "#ffffff" }}
               >
                 <span className="btn-hero-icon" aria-hidden="true">
-                  {/* SVG РёРєРѕРЅРєР° "РєР°Р»РµРЅРґР°СЂСЊ + РіР°Р»РѕС‡РєР°" */}
+                  {/* SVG ╨╕╨║╨╛╨╜╨║╨░ "╨║╨░╨╗╨╡╨╜╨┤╨░╤А╤М + ╨│╨░╨╗╨╛╤З╨║╨░" */}
                   <svg
                     viewBox="0 0 24 24"
                     width="18"
@@ -173,53 +172,53 @@ export default function Home() {
                     strokeLinecap="round"
                     strokeLinejoin="round"
                   >
-                    {/* РІРµСЂС…РЅРёРµ "СѓС€РєРё" РєР°Р»РµРЅРґР°СЂСЏ */}
+                    {/* ╨▓╨╡╤А╤Е╨╜╨╕╨╡ "╤Г╤И╨║╨╕" ╨║╨░╨╗╨╡╨╜╨┤╨░╤А╤П */}
                     <path d="M8 3v3.5" />
                     <path d="M16 3v3.5" />
-                    {/* СЂР°РјРєР° РєР°Р»РµРЅРґР°СЂСЏ */}
+                    {/* ╤А╨░╨╝╨║╨░ ╨║╨░╨╗╨╡╨╜╨┤╨░╤А╤П */}
                     <rect x="3.2" y="5.5" width="17.6" height="15.3" rx="2.4" />
-                    {/* РіРѕСЂРёР·РѕРЅС‚Р°Р»СЊ РїРѕРґ С€Р°РїРєРѕР№ */}
+                    {/* ╨│╨╛╤А╨╕╨╖╨╛╨╜╤В╨░╨╗╤М ╨┐╨╛╨┤ ╤И╨░╨┐╨║╨╛╨╣ */}
                     <path d="M3.2 10h17.6" />
-                    {/* РіР°Р»РѕС‡РєР° Р·Р°РїРёСЃРё */}
+                    {/* ╨│╨░╨╗╨╛╤З╨║╨░ ╨╖╨░╨┐╨╕╤Б╨╕ */}
                     <path d="M9 14.5l2 2.1L15.5 12" />
                   </svg>
                 </span>
-                <span>Р—Р°РїРёСЃР°С‚СЊСЃСЏ</span>
+                <span>╨Ч╨░╨┐╨╕╤Б╨░╤В╤М╤Б╤П</span>
               </a>
             </div>
-            {/* РЎР»РѕС‚ С†РµРЅС‚СЂР° вЂ” РєРЅРѕРїРєР° "РџРѕРґСЂРѕР±РЅРµРµ" */}
+            {/* ╨б╨╗╨╛╤В ╤Ж╨╡╨╜╤В╤А╨░ тАФ ╨║╨╜╨╛╨┐╨║╨░ "╨Я╨╛╨┤╤А╨╛╨▒╨╜╨╡╨╡" */}
             <div className="hero-btn-slot hero-btn-slot--center">
               <a
                 href="#s2"
                 role="button"
-                aria-label="РџРѕРґСЂРѕР±РЅРµРµ Рѕ РїСЂРѕС†РµРґСѓСЂРµ LipoLong"
+                aria-label="╨Я╨╛╨┤╤А╨╛╨▒╨╜╨╡╨╡ ╨╛ ╨┐╤А╨╛╤Ж╨╡╨┤╤Г╤А╨╡ LipoLong"
                 className="btn-hero btn-hero--secondary"
-                // Р–РЃРЎРўРљРђРЇ РіРµРѕРјРµС‚СЂРёСЏ: С„РёР·РёС‡РµСЃРєРёР№ СЂР°Р·РјРµСЂ РєРЅРѕРїРєРё
+                // ╨Ц╨Б╨б╨в╨Ъ╨Р╨п ╨│╨╡╨╛╨╝╨╡╤В╤А╨╕╤П: ╤Д╨╕╨╖╨╕╤З╨╡╤Б╨║╨╕╨╣ ╤А╨░╨╖╨╝╨╡╤А ╨║╨╜╨╛╨┐╨║╨╕
                 style={{ width: "5cm", height: "5vh" }}
               >
-                РџРѕРґСЂРѕР±РЅРµРµ в†“
+                ╨Я╨╛╨┤╤А╨╛╨▒╨╜╨╡╨╡ тЖУ
               </a>
             </div>
 
-            {/* РЎР»РѕС‚ СЃРїСЂР°РІР° вЂ” РєРЅРѕРїРєР° "Р§Р°С‚" */}
+            {/* ╨б╨╗╨╛╤В ╤Б╨┐╤А╨░╨▓╨░ тАФ ╨║╨╜╨╛╨┐╨║╨░ "╨з╨░╤В" */}
             <div className="hero-btn-slot hero-btn-slot--right">
               <a
                 href="https://t.me/Zhirotop_Shop"
                 target="_blank"
                 rel="noopener noreferrer"
                 role="button"
-                aria-label="РћС‚РєСЂС‹С‚СЊ РѕР±С‰РёР№ С‡Р°С‚ LipoLong РІ Telegram"
+                aria-label="╨Ю╤В╨║╤А╤Л╤В╤М ╨╛╨▒╤Й╨╕╨╣ ╤З╨░╤В LipoLong ╨▓ Telegram"
                 className="btn-hero btn-hero--primary"
-                // РўР° Р¶Рµ РіРµРѕРјРµС‚СЂРёСЏ вЂ” С‡С‚РѕР±С‹ РєРЅРѕРїРєРё Р±С‹Р»Рё РѕРґРёРЅР°РєРѕРІС‹Рµ
+                // ╨в╨░ ╨╢╨╡ ╨│╨╡╨╛╨╝╨╡╤В╤А╨╕╤П тАФ ╤З╤В╨╛╨▒╤Л ╨║╨╜╨╛╨┐╨║╨╕ ╨▒╤Л╨╗╨╕ ╨╛╨┤╨╕╨╜╨░╨║╨╛╨▓╤Л╨╡
                 style={{ width: "5cm", height: "5vh", color: "#ffffff" }}
               >
                 <span className="btn-hero-icon" aria-hidden="true">
-                  {/* SVG РёРєРѕРЅРєР° С‡Р°С‚Р°. РСЃРїРѕР»СЊР·СѓРµРј stroke=currentColor, РёРєРѕРЅРєР° РІРѕР·СЊРјС‘С‚ С†РІРµС‚ РёР· .btn-hero-icon */}
+                  {/* SVG ╨╕╨║╨╛╨╜╨║╨░ ╤З╨░╤В╨░. ╨Ш╤Б╨┐╨╛╨╗╤М╨╖╤Г╨╡╨╝ stroke=currentColor, ╨╕╨║╨╛╨╜╨║╨░ ╨▓╨╛╨╖╤М╨╝╤С╤В ╤Ж╨▓╨╡╤В ╨╕╨╖ .btn-hero-icon */}
                   <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
                     <path d="M21 15a4 4 0 0 1-4 4H7l-4 4V5a2 2 0 0 1 2-2h14a4 4 0 0 1 4 4z" />
                   </svg>
                 </span>
-                <span>РћР±С‰РёР№ С‡Р°С‚</span>
+                <span>╨Ю╨▒╤Й╨╕╨╣ ╤З╨░╤В</span>
               </a>
             </div>
           </div>
@@ -227,7 +226,7 @@ export default function Home() {
       </section>
 
       {/* ============================
-          РЎР•РљР¦РРЇ 2 вЂ” РЎР›РђР™Р”Р•Р  Р Р•Р—РЈР›Р¬РўРђРўРћР’
+          ╨б╨Х╨Ъ╨ж╨Ш╨п 2 тАФ ╨б╨Ы╨Р╨Щ╨Ф╨Х╨а ╨а╨Х╨Ч╨г╨Ы╨м╨в╨Р╨в╨Ю╨Т
       ============================ */}
       <section
         id="s2"
@@ -237,7 +236,7 @@ export default function Home() {
             "radial-gradient(circle at 50% 20%, #051418 0%, #030b0d 40%, #000607 100%)",
         }}
       >
-        {/* РџР«Р›Р¬ РІ S2 */}
+        {/* ╨Я╨л╨Ы╨м ╨▓ S2 */}
         <div className="dust-layer section-dust" aria-hidden="true">
           {DUST_POINTS.map((p, i) => (
             <div key={i} className="dust-particle" style={{ top: p.top, left: p.left, animationDelay: p.delay }} />
@@ -246,11 +245,11 @@ export default function Home() {
         <div className="s2-shell w-full max-w-[1600px] mx-auto px-4 md:px-10">
           <div className="s2-head">
             <h2 className="s2-title text-3xl md:text-5xl font-extrabold text-cyan-200">
-              Р РµР·СѓР»СЊС‚Р°С‚С‹ LipoLong
+              ╨а╨╡╨╖╤Г╨╗╤М╤В╨░╤В╤Л LipoLong
             </h2>
 
             <p className="s2-sub text-lg md:text-xl opacity-90 max-w-2xl text-cyan-100">
-              РџРѕСЃРјРѕС‚СЂРё, РєР°Рє РјРµРЅСЏСЋС‚СЃСЏ Р·РѕРЅС‹ РїРѕСЃР»Рµ РїСЂРѕС†РµРґСѓСЂС‹. РЎР»Р°Р№РґС‹ Р»РёСЃС‚Р°СЋС‚СЃСЏ Р°РІС‚РѕРјР°С‚РёС‡РµСЃРєРё, РЅРѕ С‚С‹ РІСЃРµРіРґР° РјРѕР¶РµС€СЊ РїРµСЂРµРєР»СЋС‡РёС‚СЊ РёС… РІСЂСѓС‡РЅСѓСЋ.
+              ╨Я╨╛╤Б╨╝╨╛╤В╤А╨╕, ╨║╨░╨║ ╨╝╨╡╨╜╤П╤О╤В╤Б╤П ╨╖╨╛╨╜╤Л ╨┐╨╛╤Б╨╗╨╡ ╨┐╤А╨╛╤Ж╨╡╨┤╤Г╤А╤Л. ╨б╨╗╨░╨╣╨┤╤Л ╨╗╨╕╤Б╤В╨░╤О╤В╤Б╤П ╨░╨▓╤В╨╛╨╝╨░╤В╨╕╤З╨╡╤Б╨║╨╕, ╨╜╨╛ ╤В╤Л ╨▓╤Б╨╡╨│╨┤╨░ ╨╝╨╛╨╢╨╡╤И╤М ╨┐╨╡╤А╨╡╨║╨╗╤О╤З╨╕╤В╤М ╨╕╤Е ╨▓╤А╤Г╤З╨╜╤Г╤О.
             </p>
           </div>
 
@@ -259,7 +258,7 @@ export default function Home() {
       </section>
 
       {/* ============================
-          РЎР•РљР¦РРЇ 3 вЂ” РљРђРљ РџР РћРҐРћР”РРў РџР РћР¦Р•Р”РЈР Рђ
+          ╨б╨Х╨Ъ╨ж╨Ш╨п 3 тАФ ╨Ъ╨Р╨Ъ ╨Я╨а╨Ю╨е╨Ю╨Ф╨Ш╨в ╨Я╨а╨Ю╨ж╨Х╨Ф╨г╨а╨Р
       ============================ */}
       <section
         id="s3"
@@ -269,13 +268,13 @@ export default function Home() {
             "radial-gradient(circle at 10% 0%, #020617 0%, #020617 45%, #000000 100%)",
         }}
       >
-        {/* С„РѕРЅРѕРІС‹Рµ РЅРµРѕРЅРѕРІС‹Рµ РїСЏС‚РЅР° */}
+        {/* ╤Д╨╛╨╜╨╛╨▓╤Л╨╡ ╨╜╨╡╨╛╨╜╨╛╨▓╤Л╨╡ ╨┐╤П╤В╨╜╨░ */}
         <div className="procedure-liquid-bg">
           <div className="procedure-blob procedure-blob--1" />
           <div className="procedure-blob procedure-blob--2" />
           <div className="procedure-blob procedure-blob--3" />
         </div>
-        {/* РџР«Р›Р¬ РІ S3 */}
+        {/* ╨Я╨л╨Ы╨м ╨▓ S3 */}
         <div className="dust-layer section-dust" aria-hidden="true">
           {DUST_POINTS.map((p, i) => (
             <div key={i} className="dust-particle" style={{ top: p.top, left: p.left, animationDelay: p.delay }} />
@@ -285,17 +284,17 @@ export default function Home() {
         <div className="w-full max-w-6xl mx-auto px-4 md:px-8 py-16 md:py-24 relative z-[1]">
           <div className="text-center mb-10 md:mb-14 procedure-heading">
             <h2 className="text-3xl md:text-5xl font-extrabold mb-4 text-cyan-200">
-              РљР°Рє РїСЂРѕС…РѕРґРёС‚ РїСЂРѕС†РµРґСѓСЂР° LipoLong
+              ╨Ъ╨░╨║ ╨┐╤А╨╛╤Е╨╛╨┤╨╕╤В ╨┐╤А╨╛╤Ж╨╡╨┤╤Г╤А╨░ LipoLong
             </h2>
             <p className="text-lg md:text-xl opacity-90 max-w-2xl mx-auto text-cyan-100">
-              Р’СЃС‘ РїСЂРѕСЃС‚Рѕ: РєРѕРЅСЃСѓР»СЊС‚Р°С†РёСЏ, СЂР°Р·РјРµС‚РєР° Р·РѕРЅ, РёРЅСЉРµРєС†РёРё РїСЂРµРїР°СЂР°С‚Р° Рё
-              РЅР°Р±Р»СЋРґРµРЅРёРµ СЂРµР·СѓР»СЊС‚Р°С‚Р° РІ С‚РµС‡РµРЅРёРµ 7вЂ“10&nbsp;РґРЅРµР№. РљСѓСЂСЃ Рё РѕР±СЉС‘Рј
-              РїРѕРґР±РёСЂР°РµС‚ СЃРїРµС†РёР°Р»РёСЃС‚ РёРЅРґРёРІРёРґСѓР°Р»СЊРЅРѕ.
+              ╨Т╤Б╤С ╨┐╤А╨╛╤Б╤В╨╛: ╨║╨╛╨╜╤Б╤Г╨╗╤М╤В╨░╤Ж╨╕╤П, ╤А╨░╨╖╨╝╨╡╤В╨║╨░ ╨╖╨╛╨╜, ╨╕╨╜╤К╨╡╨║╤Ж╨╕╨╕ ╨┐╤А╨╡╨┐╨░╤А╨░╤В╨░ ╨╕
+              ╨╜╨░╨▒╨╗╤О╨┤╨╡╨╜╨╕╨╡ ╤А╨╡╨╖╤Г╨╗╤М╤В╨░╤В╨░ ╨▓ ╤В╨╡╤З╨╡╨╜╨╕╨╡ 7тАУ10&nbsp;╨┤╨╜╨╡╨╣. ╨Ъ╤Г╤А╤Б ╨╕ ╨╛╨▒╤К╤С╨╝
+              ╨┐╨╛╨┤╨▒╨╕╤А╨░╨╡╤В ╤Б╨┐╨╡╤Ж╨╕╨░╨╗╨╕╤Б╤В ╨╕╨╜╨┤╨╕╨▓╨╕╨┤╤Г╨░╨╗╤М╨╜╨╛.
             </p>
           </div>
 
           <div className="grid gap-6 md:gap-8 md:grid-cols-2 lg:grid-cols-4">
-            {/* РЁР°Рі 1 */}
+            {/* ╨и╨░╨│ 1 */}
             <div
               ref={(el) => {
                 stepRefs.current[0] = el;
@@ -321,18 +320,18 @@ export default function Home() {
                 </svg>
               </div>
               <div className="text-xs uppercase tracking-[0.22em] text-cyan-300 mb-3">
-                РЁР°Рі 1
+                ╨и╨░╨│ 1
               </div>
               <h3 className="text-lg md:text-xl font-semibold mb-2">
-                РљРѕРЅСЃСѓР»СЊС‚Р°С†РёСЏ Рё РїР»Р°РЅ
+                ╨Ъ╨╛╨╜╤Б╤Г╨╗╤М╤В╨░╤Ж╨╕╤П ╨╕ ╨┐╨╗╨░╨╜
               </h3>
               <p className="text-sm md:text-base opacity-90">
-                Р’СЂР°С‡ СЃРѕР±РёСЂР°РµС‚ Р°РЅР°РјРЅРµР·, РёСЃРєР»СЋС‡Р°РµС‚ РїСЂРѕС‚РёРІРѕРїРѕРєР°Р·Р°РЅРёСЏ Рё РІРјРµСЃС‚Рµ СЃ
-                С‚РѕР±РѕР№ РѕРїСЂРµРґРµР»СЏРµС‚ Р·РѕРЅС‹ РєРѕСЂСЂРµРєС†РёРё Рё РѕР¶РёРґР°РµРјС‹Р№ СЂРµР·СѓР»СЊС‚Р°С‚.
+                ╨Т╤А╨░╤З ╤Б╨╛╨▒╨╕╤А╨░╨╡╤В ╨░╨╜╨░╨╝╨╜╨╡╨╖, ╨╕╤Б╨║╨╗╤О╤З╨░╨╡╤В ╨┐╤А╨╛╤В╨╕╨▓╨╛╨┐╨╛╨║╨░╨╖╨░╨╜╨╕╤П ╨╕ ╨▓╨╝╨╡╤Б╤В╨╡ ╤Б
+                ╤В╨╛╨▒╨╛╨╣ ╨╛╨┐╤А╨╡╨┤╨╡╨╗╤П╨╡╤В ╨╖╨╛╨╜╤Л ╨║╨╛╤А╤А╨╡╨║╤Ж╨╕╨╕ ╨╕ ╨╛╨╢╨╕╨┤╨░╨╡╨╝╤Л╨╣ ╤А╨╡╨╖╤Г╨╗╤М╤В╨░╤В.
               </p>
             </div>
 
-            {/* РЁР°Рі 2 */}
+            {/* ╨и╨░╨│ 2 */}
             <div
               ref={(el) => {
                 stepRefs.current[1] = el;
@@ -360,19 +359,19 @@ export default function Home() {
               </div>
 
               <div className="text-xs uppercase tracking-[0.22em] text-cyan-300 mb-3">
-                РЁР°Рі 2
+                ╨и╨░╨│ 2
               </div>
               <h3 className="text-lg md:text-xl font-semibold mb-2">
-                РџРѕРґРіРѕС‚РѕРІРєР° Рё СЂР°Р·РјРµС‚РєР°
+                ╨Я╨╛╨┤╨│╨╛╤В╨╛╨▓╨║╨░ ╨╕ ╤А╨░╨╖╨╝╨╡╤В╨║╨░
               </h3>
               <p className="text-sm md:text-base opacity-90">
-                РљРѕР¶Р° РѕР±СЂР°Р±Р°С‚С‹РІР°РµС‚СЃСЏ Р°РЅС‚РёСЃРµРїС‚РёРєРѕРј, РїСЂРё РЅРµРѕР±С…РѕРґРёРјРѕСЃС‚Рё РЅР°РЅРѕСЃРёС‚СЃСЏ
-                Р°РЅРµСЃС‚РµР·РёСЂСѓСЋС‰РёР№ РєСЂРµРј, РєРѕСЃРјРµС‚РѕР»РѕРі СЂР°Р·РјРµС‡Р°РµС‚ РєРѕРЅС‚СѓСЂС‹ РІРІРµРґРµРЅРёСЏ
+                ╨Ъ╨╛╨╢╨░ ╨╛╨▒╤А╨░╨▒╨░╤В╤Л╨▓╨░╨╡╤В╤Б╤П ╨░╨╜╤В╨╕╤Б╨╡╨┐╤В╨╕╨║╨╛╨╝, ╨┐╤А╨╕ ╨╜╨╡╨╛╨▒╤Е╨╛╨┤╨╕╨╝╨╛╤Б╤В╨╕ ╨╜╨░╨╜╨╛╤Б╨╕╤В╤Б╤П
+                ╨░╨╜╨╡╤Б╤В╨╡╨╖╨╕╤А╤Г╤О╤Й╨╕╨╣ ╨║╤А╨╡╨╝, ╨║╨╛╤Б╨╝╨╡╤В╨╛╨╗╨╛╨│ ╤А╨░╨╖╨╝╨╡╤З╨░╨╡╤В ╨║╨╛╨╜╤В╤Г╤А╤Л ╨▓╨▓╨╡╨┤╨╡╨╜╨╕╤П
                 LipoLong.
               </p>
             </div>
 
-            {/* РЁР°Рі 3 */}
+            {/* ╨и╨░╨│ 3 */}
             <div
               ref={(el) => {
                 stepRefs.current[2] = el;
@@ -401,18 +400,18 @@ export default function Home() {
               </div>
 
               <div className="text-xs uppercase tracking-[0.22em] text-cyan-300 mb-3">
-                РЁР°Рі 3
+                ╨и╨░╨│ 3
               </div>
               <h3 className="text-lg md:text-xl font-semibold mb-2">
-                РРЅСЉРµРєС†РёРѕРЅРЅС‹Р№ СЌС‚Р°Рї
+                ╨Ш╨╜╤К╨╡╨║╤Ж╨╕╨╛╨╜╨╜╤Л╨╣ ╤Н╤В╨░╨┐
               </h3>
               <p className="text-sm md:text-base opacity-90">
-                РџСЂРµРїР°СЂР°С‚ РІРІРѕРґРёС‚СЃСЏ С‚РѕС‡РµС‡РЅРѕ РІ Р¶РёСЂРѕРІСѓСЋ С‚РєР°РЅСЊ. РџСЂРѕС†РµРґСѓСЂР° РѕР±С‹С‡РЅРѕ
-                Р·Р°РЅРёРјР°РµС‚ 20вЂ“40&nbsp;РјРёРЅСѓС‚ Рё РїРµСЂРµРЅРѕСЃРёС‚СЃСЏ РєРѕРјС„РѕСЂС‚РЅРѕ.
+                ╨Я╤А╨╡╨┐╨░╤А╨░╤В ╨▓╨▓╨╛╨┤╨╕╤В╤Б╤П ╤В╨╛╤З╨╡╤З╨╜╨╛ ╨▓ ╨╢╨╕╤А╨╛╨▓╤Г╤О ╤В╨║╨░╨╜╤М. ╨Я╤А╨╛╤Ж╨╡╨┤╤Г╤А╨░ ╨╛╨▒╤Л╤З╨╜╨╛
+                ╨╖╨░╨╜╨╕╨╝╨░╨╡╤В 20тАУ40&nbsp;╨╝╨╕╨╜╤Г╤В ╨╕ ╨┐╨╡╤А╨╡╨╜╨╛╤Б╨╕╤В╤Б╤П ╨║╨╛╨╝╤Д╨╛╤А╤В╨╜╨╛.
               </p>
             </div>
 
-            {/* РЁР°Рі 4 */}
+            {/* ╨и╨░╨│ 4 */}
             <div
               ref={(el) => {
                 stepRefs.current[3] = el;
@@ -441,32 +440,32 @@ export default function Home() {
               </div>
 
               <div className="text-xs uppercase tracking-[0.22em] text-cyan-300 mb-3">
-                РЁР°Рі 4
+                ╨и╨░╨│ 4
               </div>
               <h3 className="text-lg md:text-xl font-semibold mb-2">
-                Р’РѕСЃСЃС‚Р°РЅРѕРІР»РµРЅРёРµ Рё СЂРµР·СѓР»СЊС‚Р°С‚
+                ╨Т╨╛╤Б╤Б╤В╨░╨╜╨╛╨▓╨╗╨╡╨╜╨╕╨╡ ╨╕ ╤А╨╡╨╖╤Г╨╗╤М╤В╨░╤В
               </h3>
               <p className="text-sm md:text-base opacity-90">
-                РџРµСЂРІС‹Рµ РёР·РјРµРЅРµРЅРёСЏ РѕР±С‹С‡РЅРѕ Р·Р°РјРµС‚РЅС‹ С‡РµСЂРµР· 7вЂ“10&nbsp;РґРЅРµР№, РєСѓСЂСЃ
-                СЃРѕСЃС‚РѕРёС‚ РёР· РЅРµСЃРєРѕР»СЊРєРёС… СЃРµР°РЅСЃРѕРІ, РєРѕС‚РѕСЂС‹Рµ РїРѕРґР±РёСЂР°РµС‚ СЃРїРµС†РёР°Р»РёСЃС‚.
+                ╨Я╨╡╤А╨▓╤Л╨╡ ╨╕╨╖╨╝╨╡╨╜╨╡╨╜╨╕╤П ╨╛╨▒╤Л╤З╨╜╨╛ ╨╖╨░╨╝╨╡╤В╨╜╤Л ╤З╨╡╤А╨╡╨╖ 7тАУ10&nbsp;╨┤╨╜╨╡╨╣, ╨║╤Г╤А╤Б
+                ╤Б╨╛╤Б╤В╨╛╨╕╤В ╨╕╨╖ ╨╜╨╡╤Б╨║╨╛╨╗╤М╨║╨╕╤Е ╤Б╨╡╨░╨╜╤Б╨╛╨▓, ╨║╨╛╤В╨╛╤А╤Л╨╡ ╨┐╨╛╨┤╨▒╨╕╤А╨░╨╡╤В ╤Б╨┐╨╡╤Ж╨╕╨░╨╗╨╕╤Б╤В.
               </p>
             </div>
           </div>
 
           <p className="mt-10 text-sm md:text-base opacity-70 max-w-3xl mx-auto text-center">
-            LipoLong СЂР°Р±РѕС‚Р°РµС‚ СЃ Р¶РёСЂРѕРІС‹РјРё РєР»РµС‚РєР°РјРё РґРµР»РёРєР°С‚РЅРѕ, РЅРµ РїРѕРІСЂРµР¶РґР°СЏ С‚РєР°РЅРё
-            Рё СЃРѕС…СЂР°РЅСЏСЏ РєРѕРјС„РѕСЂС‚РЅС‹Р№ РїРµСЂРёРѕРґ РІРѕСЃСЃС‚Р°РЅРѕРІР»РµРЅРёСЏ.
+            LipoLong ╤А╨░╨▒╨╛╤В╨░╨╡╤В ╤Б ╨╢╨╕╤А╨╛╨▓╤Л╨╝╨╕ ╨║╨╗╨╡╤В╨║╨░╨╝╨╕ ╨┤╨╡╨╗╨╕╨║╨░╤В╨╜╨╛, ╨╜╨╡ ╨┐╨╛╨▓╤А╨╡╨╢╨┤╨░╤П ╤В╨║╨░╨╜╨╕
+            ╨╕ ╤Б╨╛╤Е╤А╨░╨╜╤П╤П ╨║╨╛╨╝╤Д╨╛╤А╤В╨╜╤Л╨╣ ╨┐╨╡╤А╨╕╨╛╨┤ ╨▓╨╛╤Б╤Б╤В╨░╨╜╨╛╨▓╨╗╨╡╨╜╨╕╤П.
           </p>
         </div>
       </section>
 
             {/* ================================
-                РЎР•РљР¦РРЇ 4 вЂ” РљРћРќРўРђРљРўР« LIPOLONG
+                ╨б╨Х╨Ъ╨ж╨Ш╨п 4 тАФ ╨Ъ╨Ю╨Э╨в╨Р╨Ъ╨в╨л LIPOLONG
             ================================ */}
             <section id="s4" className="snap-section contacts-section px-4 md:px-0 s4-no-scroll" ref={contactsRef}>
-              {/* РќР•РћРќ Р¤РћРќ */}
+              {/* ╨Э╨Х╨Ю╨Э ╨д╨Ю╨Э */}
               <div className="contacts-glow" />
-              {/* РџР«Р›Р¬ РІ S4 */}
+              {/* ╨Я╨л╨Ы╨м ╨▓ S4 */}
               <div className="dust-layer section-dust" aria-hidden="true">
                 {DUST_POINTS.map((p, i) => (
                   <div key={i} className="dust-particle" style={{ top: p.top, left: p.left, animationDelay: p.delay }} />
@@ -477,9 +476,9 @@ export default function Home() {
               <div className={`${contactsVisible ? "contacts-animated" : ""} w-full max-w-6xl mx-auto`}>
                 <div className="s4-shell">
                   <div className="s4-head text-center">
-                    <h2 className="s4-title text-3xl md:text-5xl font-extrabold text-cyan-200">Р—Р°РїРёСЃСЊ РЅР° РїСЂРѕС†РµРґСѓСЂСѓ LipoLong</h2>
+                    <h2 className="s4-title text-3xl md:text-5xl font-extrabold text-cyan-200">╨Ч╨░╨┐╨╕╤Б╤М ╨╜╨░ ╨┐╤А╨╛╤Ж╨╡╨┤╤Г╤А╤Г LipoLong</h2>
                     <p className="s4-sub text-lg md:text-xl opacity-90 text-cyan-100">
-                      Р’С‹Р±РµСЂРёС‚Рµ СѓРґРѕР±РЅС‹Р№ СЃРїРѕСЃРѕР± СЃРІСЏР·Рё вЂ” РѕСЃС‚Р°РІСЊС‚Рµ Р·Р°СЏРІРєСѓ С‡РµСЂРµР· С„РѕСЂРјСѓ РёР»Рё РѕС„РѕСЂРјРёС‚Рµ РїРѕРєСѓРїРєСѓ РЅР°РїСЂСЏРјСѓСЋ. РњС‹ РїРѕРјРѕР¶РµРј РїРѕРґРѕР±СЂР°С‚СЊ РІСЂРµРјСЏ Рё РѕС‚РІРµС‚РёРј РЅР° РІРѕРїСЂРѕСЃС‹.
+                      ╨Т╤Л╨▒╨╡╤А╨╕╤В╨╡ ╤Г╨┤╨╛╨▒╨╜╤Л╨╣ ╤Б╨┐╨╛╤Б╨╛╨▒ ╤Б╨▓╤П╨╖╨╕ тАФ ╨╛╤Б╤В╨░╨▓╤М╤В╨╡ ╨╖╨░╤П╨▓╨║╤Г ╤З╨╡╤А╨╡╨╖ ╤Д╨╛╤А╨╝╤Г ╨╕╨╗╨╕ ╨╛╤Д╨╛╤А╨╝╨╕╤В╨╡ ╨┐╨╛╨║╤Г╨┐╨║╤Г ╨╜╨░╨┐╤А╤П╨╝╤Г╤О. ╨Ь╤Л ╨┐╨╛╨╝╨╛╨╢╨╡╨╝ ╨┐╨╛╨┤╨╛╨▒╤А╨░╤В╤М ╨▓╤А╨╡╨╝╤П ╨╕ ╨╛╤В╨▓╨╡╤В╨╕╨╝ ╨╜╨░ ╨▓╨╛╨┐╤А╨╛╤Б╤Л.
                     </p>
                   </div>
 
@@ -489,7 +488,7 @@ export default function Home() {
                         <div className="pack-animated-wrap">
                           <Image
                             src="/images/pack-placeholder.png"
-                            alt="РЈРїР°РєРѕРІРєР° LipoLong"
+                            alt="╨г╨┐╨░╨║╨╛╨▓╨║╨░ LipoLong"
                             width={520}
                             height={520}
                             className="s4-pack-image"
@@ -498,25 +497,25 @@ export default function Home() {
                         </div>
                       </div>
                       <div className="s4-pack-content">
-                        <p className="s4-eyebrow">LipoLong вЂ” РёРЅРЅРѕРІР°С†РёРѕРЅРЅС‹Р№ Р»РёРїРѕРјРѕРґСѓР»СЏС‚РѕСЂ</p>
-                        <h3 className="s4-pack-title">РљРѕРЅС‚СѓСЂ С‚РµР»Р° РїРѕРґ РєРѕРЅС‚СЂРѕР»РµРј</h3>
+                        <p className="s4-eyebrow">LipoLong тАФ ╨╕╨╜╨╜╨╛╨▓╨░╤Ж╨╕╨╛╨╜╨╜╤Л╨╣ ╨╗╨╕╨┐╨╛╨╝╨╛╨┤╤Г╨╗╤П╤В╨╛╤А</p>
+                        <h3 className="s4-pack-title">╨Ъ╨╛╨╜╤В╤Г╤А ╤В╨╡╨╗╨░ ╨┐╨╛╨┤ ╨║╨╛╨╜╤В╤А╨╛╨╗╨╡╨╝</h3>
                         <p className="s4-pack-text">
-                          Р›РѕРєР°Р»СЊРЅРѕ СѓРјРµРЅСЊС€Р°РµС‚ Р¶РёСЂРѕРІС‹Рµ РѕС‚Р»РѕР¶РµРЅРёСЏ, РєРѕСЂСЂРµРєС‚РёСЂСѓРµС‚ РєРѕРЅС‚СѓСЂС‹ С‚РµР»Р° Рё РїРѕРјРѕРіР°РµС‚ РїРѕРґРґРµСЂР¶РёРІР°С‚СЊ СЂРµР·СѓР»СЊС‚Р°С‚ Р±РµР· РїСЂРѕРґРѕР»Р¶РёС‚РµР»СЊРЅРѕР№ СЂРµР°Р±РёР»РёС‚Р°С†РёРё.
+                          ╨Ы╨╛╨║╨░╨╗╤М╨╜╨╛ ╤Г╨╝╨╡╨╜╤М╤И╨░╨╡╤В ╨╢╨╕╤А╨╛╨▓╤Л╨╡ ╨╛╤В╨╗╨╛╨╢╨╡╨╜╨╕╤П, ╨║╨╛╤А╤А╨╡╨║╤В╨╕╤А╤Г╨╡╤В ╨║╨╛╨╜╤В╤Г╤А╤Л ╤В╨╡╨╗╨░ ╨╕ ╨┐╨╛╨╝╨╛╨│╨░╨╡╤В ╨┐╨╛╨┤╨┤╨╡╤А╨╢╨╕╨▓╨░╤В╤М ╤А╨╡╨╖╤Г╨╗╤М╤В╨░╤В ╨▒╨╡╨╖ ╨┐╤А╨╛╨┤╨╛╨╗╨╢╨╕╤В╨╡╨╗╤М╨╜╨╛╨╣ ╤А╨╡╨░╨▒╨╕╨╗╨╕╤В╨░╤Ж╨╕╨╕.
                         </p>
                         <ul className="s4-pack-list">
-                          <li>Р‘РµР·РѕРїР°СЃРЅС‹Р№ СЃРѕСЃС‚Р°РІ: РіРёР°Р»СѓСЂРѕРЅР°С‚ РЅР°С‚СЂРёСЏ + Р»РёРїРѕР»РёС‚РёРєРё</li>
-                          <li>РљРѕСЂРѕС‚РєР°СЏ РїСЂРѕС†РµРґСѓСЂР° Рё Р±С‹СЃС‚СЂС‹Р№ РІРѕР·РІСЂР°С‚ Рє СЂРµР¶РёРјСѓ</li>
-                          <li>РџРѕРґС…РѕРґРёС‚ РґР»СЏ Р¶РёРІРѕС‚Р°, Р±РѕРєРѕРІ, Р±РµРґРµСЂ Рё СЂСѓРє</li>
+                          <li>╨С╨╡╨╖╨╛╨┐╨░╤Б╨╜╤Л╨╣ ╤Б╨╛╤Б╤В╨░╨▓: ╨│╨╕╨░╨╗╤Г╤А╨╛╨╜╨░╤В ╨╜╨░╤В╤А╨╕╤П + ╨╗╨╕╨┐╨╛╨╗╨╕╤В╨╕╨║╨╕</li>
+                          <li>╨Ъ╨╛╤А╨╛╤В╨║╨░╤П ╨┐╤А╨╛╤Ж╨╡╨┤╤Г╤А╨░ ╨╕ ╨▒╤Л╤Б╤В╤А╤Л╨╣ ╨▓╨╛╨╖╨▓╤А╨░╤В ╨║ ╤А╨╡╨╢╨╕╨╝╤Г</li>
+                          <li>╨Я╨╛╨┤╤Е╨╛╨┤╨╕╤В ╨┤╨╗╤П ╨╢╨╕╨▓╨╛╤В╨░, ╨▒╨╛╨║╨╛╨▓, ╨▒╨╡╨┤╨╡╤А ╨╕ ╤А╤Г╨║</li>
                         </ul>
                       </div>
                       <dl className="s4-pack-meta">
                         <div>
-                          <dt>Р¤РѕСЂРјР° РІС‹РїСѓСЃРєР°</dt>
-                          <dd>РђРјРїСѓР»Р° 8 РјР»</dd>
+                          <dt>╨д╨╛╤А╨╝╨░ ╨▓╤Л╨┐╤Г╤Б╨║╨░</dt>
+                          <dd>╨Р╨╝╨┐╤Г╨╗╨░ 8 ╨╝╨╗</dd>
                         </div>
                         <div>
-                          <dt>РЈСЃР»РѕРІРёСЏ С…СЂР°РЅРµРЅРёСЏ</dt>
-                          <dd>РџСЂРё tВ° 2вЂ‘25В°РЎ, Р·Р°С‰РёС‰Р°С‚СЊ РѕС‚ СЃРІРµС‚Р°</dd>
+                          <dt>╨г╤Б╨╗╨╛╨▓╨╕╤П ╤Е╤А╨░╨╜╨╡╨╜╨╕╤П</dt>
+                          <dd>╨Я╤А╨╕ t┬░ 2тАС25┬░╨б, ╨╖╨░╤Й╨╕╤Й╨░╤В╤М ╨╛╤В ╤Б╨▓╨╡╤В╨░</dd>
                         </div>
                       </dl>
                       <div className="s4-actions">
@@ -526,34 +525,34 @@ export default function Home() {
                           className="btn-buy-primary"
                           style={{ padding: "1rem 2rem", fontSize: "1.05rem" }}
                         >
-                          РљСѓРїРёС‚СЊ LipoLong
+                          ╨Ъ╤Г╨┐╨╕╤В╤М LipoLong
                         </a>
                       </div>
                     </div>
 
                     <div className="glass-card p-6 md:p-10 w-full s4-form-card">
                       <div className="s4-form-head">
-                        <p className="s4-pill s4-pill--ghost">Р‘С‹СЃС‚СЂР°СЏ Р·Р°РїРёСЃСЊ</p>
-                        <h3 className="text-2xl md:text-3xl font-bold text-cyan-100">РћСЃС‚Р°РІСЊС‚Рµ СЃРІРѕРё РєРѕРЅС‚Р°РєС‚С‹</h3>
+                        <p className="s4-pill s4-pill--ghost">╨С╤Л╤Б╤В╤А╨░╤П ╨╖╨░╨┐╨╕╤Б╤М</p>
+                        <h3 className="text-2xl md:text-3xl font-bold text-cyan-100">╨Ю╤Б╤В╨░╨▓╤М╤В╨╡ ╤Б╨▓╨╛╨╕ ╨║╨╛╨╜╤В╨░╨║╤В╤Л</h3>
                         <p className="text-sm md:text-base text-cyan-100/80">
-                          РњС‹ СѓС‚РѕС‡РЅРёРј, РєР°РєР°СЏ Р·РѕРЅР° РёРЅС‚РµСЂРµСЃСѓРµС‚, РїРѕРґС‚РІРµСЂРґРёРј СЃС‚РѕРёРјРѕСЃС‚СЊ Рё СЃРѕРіР»Р°СЃСѓРµРј РІСЂРµРјСЏ РєРѕРЅСЃСѓР»СЊС‚Р°С†РёРё.
+                          ╨Ь╤Л ╤Г╤В╨╛╤З╨╜╨╕╨╝, ╨║╨░╨║╨░╤П ╨╖╨╛╨╜╨░ ╨╕╨╜╤В╨╡╤А╨╡╤Б╤Г╨╡╤В, ╨┐╨╛╨┤╤В╨▓╨╡╤А╨┤╨╕╨╝ ╤Б╤В╨╛╨╕╨╝╨╛╤Б╤В╤М ╨╕ ╤Б╨╛╨│╨╗╨░╤Б╤Г╨╡╨╝ ╨▓╤А╨╡╨╝╤П ╨║╨╛╨╜╤Б╤Г╨╗╤М╤В╨░╤Ж╨╕╨╕.
                         </p>
                       </div>
                       <div className="s4-form-fields">
                         <label className="s4-field">
-                          <span>РљР°Рє Рє РІР°Рј РѕР±СЂР°С‰Р°С‚СЊСЃСЏ?</span>
-                          <input id="lead-name" name="lead-name" type="text" className="glass-input" placeholder="РќР°РїСЂРёРјРµСЂ, РђРЅРЅР°" />
+                          <span>╨Ъ╨░╨║ ╨║ ╨▓╨░╨╝ ╨╛╨▒╤А╨░╤Й╨░╤В╤М╤Б╤П?</span>
+                          <input type="text" className="glass-input" placeholder="╨Э╨░╨┐╤А╨╕╨╝╨╡╤А, ╨Р╨╜╨╜╨░" />
                         </label>
                         <label className="s4-field">
-                          <span>РўРµР»РµС„РѕРЅ РґР»СЏ СЃРІСЏР·Рё</span>
-                          <input id="lead-phone" name="lead-phone" type="tel" className="glass-input" placeholder="+7 (___) ___-__-__" />
+                          <span>╨в╨╡╨╗╨╡╤Д╨╛╨╜ ╨┤╨╗╤П ╤Б╨▓╤П╨╖╨╕</span>
+                          <input\n                            id="lead-phone"\n                            name="lead-phone"\n                            type="tel"\n                            className="glass-input"\n                            placeholder="+7 (___) ___-__-__"\n                          />
                         </label>
                         <label className="s4-field s4-field--textarea">
-                          <span>РљРѕРјРјРµРЅС‚Р°СЂРёР№ РёР»Рё СѓРґРѕР±РЅРѕРµ РІСЂРµРјСЏ</span>
-                          <textarea id="lead-message" name="lead-message" className="glass-input" style={{ height: "110px", borderRadius: "1rem" }} placeholder="РћРїРёС€РёС‚Рµ Р¶РµР»Р°РµРјСѓСЋ Р·РѕРЅСѓ Рё С„РѕСЂРјР°С‚ РєРѕРЅСЃСѓР»СЊС‚Р°С†РёРё." />
+                          <span>╨Ъ╨╛╨╝╨╝╨╡╨╜╤В╨░╤А╨╕╨╣ ╨╕╨╗╨╕ ╤Г╨┤╨╛╨▒╨╜╨╛╨╡ ╨▓╤А╨╡╨╝╤П</span>
+                          <textarea className="glass-input" style={{ height: "110px", borderRadius: "1rem" }} placeholder="╨Ю╨┐╨╕╤И╨╕╤В╨╡ ╨╢╨╡╨╗╨░╨╡╨╝╤Г╤О ╨╖╨╛╨╜╤Г ╨╕ ╤Д╨╛╤А╨╝╨░╤В ╨║╨╛╨╜╤Б╤Г╨╗╤М╤В╨░╤Ж╨╕╨╕." />
                         </label>
                         <button className="glass-submit">
-                          РћС‚РїСЂР°РІРёС‚СЊ Р·Р°СЏРІРєСѓ
+                          ╨Ю╤В╨┐╤А╨░╨▓╨╕╤В╤М ╨╖╨░╤П╨▓╨║╤Г
                         </button>
                       </div>
                     </div>
