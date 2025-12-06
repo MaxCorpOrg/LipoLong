@@ -23,6 +23,8 @@
 # misc
 .DS_Store
 *.pem
+/.ssh
+*.code-workspace
 
 # debug
 npm-debug.log*
