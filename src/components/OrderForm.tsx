@@ -33,6 +33,7 @@ export default function OrderForm({ action }: { action: OrderAction }) {
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">(
     "idle"
   );
+  const [errorMessage, setErrorMessage] = useState<string>("");
 
   const {
     register,
@@ -46,6 +47,7 @@ export default function OrderForm({ action }: { action: OrderAction }) {
 
   const onSubmit = handleSubmit(async (values) => {
     setStatus("loading");
+    setErrorMessage("");
     try {
       const fd = new FormData();
       fd.append("name", values.name);
@@ -57,7 +59,12 @@ export default function OrderForm({ action }: { action: OrderAction }) {
       setStatus("success");
       reset();
     } catch (err) {
+      const message =
+        err instanceof Error && err.message
+          ? err.message
+          : "Не удалось отправить. Попробуйте ещё раз.";
       console.error(err);
+      setErrorMessage(message);
       setStatus("error");
     }
   });
@@ -158,7 +165,7 @@ export default function OrderForm({ action }: { action: OrderAction }) {
         )}
         {status === "error" && (
           <span className="text-sm text-rose-400 text-center">
-            Не удалось отправить. Попробуйте ещё раз.
+            {errorMessage || "Не удалось отправить. Попробуйте ещё раз."}
           </span>
         )}
       </div>
