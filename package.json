@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "test": "ts-node --esm --transpile-only tests/order.spec.ts"
+    "test": "ts-node --esm --experimentalSpecifierResolution=node --transpile-only tests/order.spec.ts"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.2",
