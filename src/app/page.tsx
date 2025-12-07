@@ -75,6 +75,27 @@ export default function Home() {
 
   /* ------------------------------ */
 
+  const heroRef = useRef<HTMLElement | null>(null);
+  const [showMobileCta, setShowMobileCta] = useState(false);
+
+  useEffect(() => {
+    const hero = heroRef.current;
+    if (!hero) return;
+
+    // Показываем плавающие кнопки, когда секция hero почти ушла из вьюпорта
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setShowMobileCta(entry.intersectionRatio < 0.25);
+      },
+      { threshold: [0, 0.1, 0.25, 0.5, 0.75, 1] }
+    );
+
+    observer.observe(hero);
+    return () => observer.disconnect();
+  }, []);
+
+  /* ------------------------------ */
+
   const contactsRef = useRef<HTMLElement | null>(null);
   const [contactsVisible, setContactsVisible] = useState(false);
 
@@ -101,7 +122,7 @@ export default function Home() {
       {/* ============================
           СЕКЦИЯ 1 — HERO LIPOLONG
       ============================ */}
-      <section className="snap-section hero-liquid">
+      <section className="snap-section hero-liquid" ref={heroRef}>
         <div className="hero-liquid-bg">
           <div className="hero-liquid-blob hero-liquid-blob--1" />
           <div className="hero-liquid-blob hero-liquid-blob--2" />
@@ -578,7 +599,7 @@ export default function Home() {
               </div>
         </section>
       {/* Мобильная плавающая кнопка CTA */}
-      <div className="mobile-cta-bar md:hidden">
+      <div className={`mobile-cta-bar md:hidden ${showMobileCta ? "mobile-cta-bar--visible" : ""}`} aria-hidden={!showMobileCta}>
         <a
           href="/order"
           className="mobile-cta-btn primary"
