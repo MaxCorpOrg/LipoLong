@@ -1,0 +1,63 @@
+/* Мобильный плавающий блок CTA */
+
+.mobile-cta-bar {
+  position: fixed;
+  bottom: calc(0.75rem + env(safe-area-inset-bottom, 0px));
+  left: 0.75rem;
+  right: 0.75rem;
+  z-index: 60;
+  display: flex;
+  gap: 0.5rem;
+  padding: 0.625rem;
+  padding-bottom: calc(0.625rem + env(safe-area-inset-bottom, 0px)); /* чуть приподнимаем над панелью мобильного браузера */
+  background: linear-gradient(135deg, rgba(3, 105, 161, 0.9), rgba(6, 182, 212, 0.82));
+  border: 1px solid rgba(125, 211, 252, 0.35);
+  border-radius: 9999px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.45), 0 0 30px rgba(14, 165, 233, 0.25);
+  backdrop-filter: blur(16px);
+  opacity: 0;
+  transform: translateY(110%);
+  pointer-events: none;
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.mobile-cta-bar--visible {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.mobile-cta-btn {
+  flex: 1;
+  text-align: center;
+  padding: 0.75rem 1rem;
+  border-radius: 9999px;
+  font-weight: 700;
+  font-size: 0.95rem;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  transition: transform 0.15s ease, box-shadow 0.2s ease, opacity 0.2s ease;
+}
+
+.mobile-cta-btn.primary {
+  background: linear-gradient(120deg, #38bdf8 0%, #0ea5e9 100%);
+  color: #0b1320;
+}
+
+.mobile-cta-btn.ghost {
+  background: rgba(255, 255, 255, 0.08);
+  color: #e8ffff;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.mobile-cta-btn:active {
+  transform: translateY(1px);
+  box-shadow: none;
+}
+
+@media (min-width: 768px) {
+  .mobile-cta-bar {
+    display: none;
+  }
+}
