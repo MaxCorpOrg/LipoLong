@@ -61,6 +61,14 @@ body,
   }
 }
 
+/* Offset for fixed header when jumping to anchors */
+#s2,
+#s3,
+#s4 {
+  scroll-margin-top: calc(80px + env(safe-area-inset-top, 0px));
+}
+
+
 /* В дев-режиме прячем стандартный оверлей Next.js с бейджем N */
 nextjs-portal,
 nextjs-dev-overlay,

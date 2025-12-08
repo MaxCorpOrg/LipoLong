@@ -1,6 +1,7 @@
 import OrderForm from "@/components/OrderForm";
 import Image from "next/image";
-import { sendOrder, validateOrderPayload } from "@/lib/sendOrder";
+import { sendOrder, validateOrderPayload, checkRateLimit } from "@/lib/sendOrder";
+import { headers } from "next/headers";
 
 export const metadata = {
   title: "Запись на процедуру LipoLong",
@@ -28,6 +29,18 @@ export default function OrderPage() {
     const email = formData.get("email")?.toString() ?? "";
     const phone = formData.get("phone")?.toString() ?? "";
     const message = formData.get("message")?.toString() ?? "";
+    const honeypot = formData.get("website")?.toString() ?? "";
+
+    if (honeypot.trim()) {
+      throw new Error("Подозрение на спам");
+    }
+
+    const ipHeader = headers().get("x-forwarded-for") || headers().get("x-real-ip") || "unknown";
+    const ip = ipHeader.split(",")[0].trim();
+    const rate = checkRateLimit(ip || "unknown");
+    if (!rate.ok) {
+      throw new Error(rate.error ?? "Превышен лимит отправок, попробуйте позже.");
+    }
 
     const validation = validateOrderPayload({ name, email, phone, message });
     if (!validation.ok) {

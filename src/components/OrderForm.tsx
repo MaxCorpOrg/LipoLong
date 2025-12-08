@@ -42,7 +42,7 @@ export default function OrderForm({ action }: { action: OrderAction }) {
     formState: { errors },
   } = useForm<FormDataShape>({
     resolver: zodResolver(schema),
-    defaultValues: { name: "", email: "", phone: "", message: "" },
+    defaultValues: { name: "", email: "", phone: "", message: "", website: "" } as any,
   });
 
   const onSubmit = handleSubmit(async (values) => {
@@ -147,6 +147,12 @@ export default function OrderForm({ action }: { action: OrderAction }) {
         {errors.message && (
           <p className="text-sm text-rose-400 mt-1">{errors.message.message}</p>
         )}
+      </div>
+
+      {/* Honeypot для ботов: реальным пользователям скрыт */}
+      <div style={{ display: "none" }} aria-hidden="true">
+        <label htmlFor="website">Ваш сайт</label>
+        <input id="website" tabIndex={-1} autoComplete="off" {...register("website" as any)} />
       </div>
 
       <div className="flex flex-col items-center gap-3 pt-2">

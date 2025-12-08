@@ -7,6 +7,27 @@ export type OrderPayload = {
   message: string;
 };
 
+const RATE_LIMIT_WINDOW_MS = 5 * 60 * 1000; // 5 минут
+const RATE_LIMIT_MAX = 5; // заявок за окно
+const rateLimitStore = new Map<string, { count: number; resetAt: number }>();
+
+export function checkRateLimit(ip: string): { ok: boolean; error?: string } {
+  const now = Date.now();
+  const entry = rateLimitStore.get(ip);
+
+  if (!entry || entry.resetAt < now) {
+    rateLimitStore.set(ip, { count: 1, resetAt: now + RATE_LIMIT_WINDOW_MS });
+    return { ok: true };
+  }
+
+  if (entry.count >= RATE_LIMIT_MAX) {
+    return { ok: false, error: "Слишком много заявок. Попробуйте чуть позже." };
+  }
+
+  entry.count += 1;
+  return { ok: true };
+}
+
 export function validateOrderPayload(payload: OrderPayload): { ok: boolean; error?: string } {
   const name = payload.name.trim();
   const email = payload.email.trim();
