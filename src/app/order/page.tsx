@@ -30,9 +30,25 @@ export default function OrderPage() {
     const phone = formData.get("phone")?.toString() ?? "";
     const message = formData.get("message")?.toString() ?? "";
     const honeypot = formData.get("website")?.toString() ?? "";
+    const startedAtRaw = formData.get("startedAt")?.toString() ?? "";
 
     if (honeypot.trim()) {
       throw new Error("Подозрение на спам");
+    }
+
+    const startedAt = Number(startedAtRaw);
+    const now = Date.now();
+    const minFillMs = 3000;
+    const maxFillMs = 30 * 60 * 1000;
+    if (!startedAt || Number.isNaN(startedAt)) {
+      throw new Error("Не удалось отправить заявку. Обновите страницу и попробуйте снова.");
+    }
+    const elapsed = now - startedAt;
+    if (elapsed < minFillMs) {
+      throw new Error("Слишком быстрое заполнение. Попробуйте ещё раз.");
+    }
+    if (elapsed > maxFillMs) {
+      throw new Error("Сессия формы устарела. Обновите страницу и отправьте снова.");
     }
 
     const ipHeader = headers().get("x-forwarded-for") || headers().get("x-real-ip") || "unknown";

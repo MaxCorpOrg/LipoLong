@@ -23,6 +23,8 @@ const schema = z.object({
     .string()
     .min(5, "Минимум 5 символов")
     .max(2000, "Слишком длинное сообщение"),
+  startedAt: z.string().optional(),
+  website: z.string().optional(),
 });
 
 type FormDataShape = z.infer<typeof schema>;
@@ -42,7 +44,14 @@ export default function OrderForm({ action }: { action: OrderAction }) {
     formState: { errors },
   } = useForm<FormDataShape>({
     resolver: zodResolver(schema),
-    defaultValues: { name: "", email: "", phone: "", message: "", website: "" } as any,
+    defaultValues: {
+      name: "",
+      email: "",
+      phone: "",
+      message: "",
+      website: "",
+      startedAt: Date.now().toString(),
+    } as any,
   });
 
   const onSubmit = handleSubmit(async (values) => {
@@ -54,10 +63,18 @@ export default function OrderForm({ action }: { action: OrderAction }) {
       fd.append("email", values.email);
       fd.append("phone", values.phone || "");
       fd.append("message", values.message);
+      fd.append("startedAt", values.startedAt || Date.now().toString());
 
       await action(fd);
       setStatus("success");
-      reset();
+      reset({
+        name: "",
+        email: "",
+        phone: "",
+        message: "",
+        website: "",
+        startedAt: Date.now().toString(),
+      } as any);
     } catch (err) {
       const message =
         err instanceof Error && err.message
@@ -153,6 +170,7 @@ export default function OrderForm({ action }: { action: OrderAction }) {
       <div style={{ display: "none" }} aria-hidden="true">
         <label htmlFor="website">Ваш сайт</label>
         <input id="website" tabIndex={-1} autoComplete="off" {...register("website" as any)} />
+        <input type="hidden" {...register("startedAt" as any)} />
       </div>
 
       <div className="flex flex-col items-center gap-3 pt-2">
