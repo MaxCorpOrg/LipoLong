@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useRef, useState } from "react";
-import ResultsSlider from "./ResultsSlider";
+import ResultsSlider from "../ResultsSlider";
 import Image from "next/image";
 
 /* ------------------------------

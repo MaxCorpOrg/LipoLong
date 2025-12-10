@@ -3,6 +3,8 @@
 import Link from "next/link";
 import { useState } from "react";
 
+import OutboundLink from "@/components/OutboundLink";
+
 const phone = {
   href: "tel:+79042440444",
   label: "Позвонить в LipoLong +7 (904) 244-04-44",
@@ -93,9 +95,15 @@ export default function Header() {
 
           <nav className="hidden md:flex items-center gap-2 sm:gap-3">
             {CONTACTS.map((item) => (
-              <a key={item.href} href={item.href} aria-label={item.label} className={item.className} target={item.href.startsWith("http") ? "_blank" : undefined} rel="noopener noreferrer">
-                {item.icon}
-              </a>
+              item.href.startsWith("http") ? (
+                <OutboundLink key={item.href} href={item.href} aria-label={item.label} className={item.className}>
+                  {item.icon}
+                </OutboundLink>
+              ) : (
+                <a key={item.href} href={item.href} aria-label={item.label} className={item.className}>
+                  {item.icon}
+                </a>
+              )
             ))}
           </nav>
         </div>
@@ -103,9 +111,15 @@ export default function Header() {
         {open ? (
           <div className="header-mobile-drawer md:hidden">
             {CONTACTS.map((item) => (
-              <a key={item.href} href={item.href} aria-label={item.label} className={item.className} target={item.href.startsWith("http") ? "_blank" : undefined} rel="noopener noreferrer">
-                {item.icon}
-              </a>
+              item.href.startsWith("http") ? (
+                <OutboundLink key={item.href} href={item.href} aria-label={item.label} className={item.className}>
+                  {item.icon}
+                </OutboundLink>
+              ) : (
+                <a key={item.href} href={item.href} aria-label={item.label} className={item.className}>
+                  {item.icon}
+                </a>
+              )
             ))}
           </div>
         ) : null}

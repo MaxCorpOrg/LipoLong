@@ -29,9 +29,7 @@ const schema = z.object({
 
 type FormDataShape = z.infer<typeof schema>;
 
-type OrderAction = (formData: FormData) => Promise<{ ok: boolean }>;
-
-export default function OrderForm({ action }: { action: OrderAction }) {
+export default function OrderForm() {
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">(
     "idle"
   );
@@ -58,14 +56,24 @@ export default function OrderForm({ action }: { action: OrderAction }) {
     setStatus("loading");
     setErrorMessage("");
     try {
-      const fd = new FormData();
-      fd.append("name", values.name);
-      fd.append("email", values.email);
-      fd.append("phone", values.phone || "");
-      fd.append("message", values.message);
-      fd.append("startedAt", values.startedAt || Date.now().toString());
+      const res = await fetch("/api/lead", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: values.name,
+          email: values.email,
+          phone: values.phone,
+          message: values.message,
+          startedAt: values.startedAt,
+          website: values.website,
+        }),
+      });
 
-      await action(fd);
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok || !data?.ok) {
+        throw new Error(data?.error || "Не удалось отправить. Попробуйте ещё раз.");
+      }
+
       setStatus("success");
       reset({
         name: "",
