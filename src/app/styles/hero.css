@@ -1,54 +1,94 @@
 /* Секция 1 — первый экран */
 
-@media (max-width: 640px) {
-  /* Правки первого экрана для небольших экранов */
-  .hero-liquid {
-    align-items: start;
-    justify-items: center;
-    padding-top: clamp(48px, 14vh, 180px);
-  }
-  .hero-content {
-    position: relative;
-    top: -100px;
-    padding-bottom: clamp(24px, 6vh, 72px);
-  }
-  .hero-title {
-    font-size: 1.45rem !important;
-    line-height: 1.25 !important;
-  }
-  .hero-liquid .hero-logo-wrap {
-    margin-top: 10px !important;
-  }
-}
-
-/* Мобильный первый экран: поднимаем контент выше, перекрывая центрирование snap-section */
-@media (max-width: 640px) {
-  .hero-liquid.snap-section {
-    align-items: flex-start !important;
-    justify-items: center !important;
-    padding-top: clamp(28px, 10vh, 140px) !important;
-  }
-  .hero-content {
-    top: -125px !important;
-    padding-bottom: clamp(12px, 4vh, 48px) !important;
-  }
-  .hero-content h1 {
-    margin-bottom: 10px !important;
-  }
-  .hero-content p {
-    margin-bottom: 14px !important;
-  }
-  .hero-buttons-row {
-    gap: 0.65rem;
-  }
-}
-
 .hero-liquid {
   position: relative;
   color: #eaffff;
   overflow: hidden;
   background: radial-gradient(circle at top left, #011216, #000a0d 50%, #000507 100%);
-  padding-bottom: clamp(24px, 8vh, 88px);
+  padding-block: clamp(18px, 5vh, 52px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  min-height: 100dvh;
+}
+
+.hero-content {
+  max-width: 1040px;
+  margin: 0 auto;
+  display: grid;
+  gap: clamp(10px, 2.6vh, 18px);
+  padding-inline: clamp(14px, 4vw, 22px);
+}
+
+.hero-title {
+  font-size: clamp(24px, 3.4vw, 36px) !important;
+  line-height: 1.12 !important;
+  letter-spacing: -0.015em;
+  margin-bottom: clamp(8px, 1.8vh, 16px) !important;
+}
+
+.hero-lead {
+  font-size: clamp(16px, 1.8vw, 19px) !important;
+  line-height: 1.42 !important;
+  margin-bottom: clamp(12px, 2.8vh, 20px) !important;
+}
+
+.hero-buttons-row {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: clamp(0.6rem, 1.4vw, 1rem);
+  margin-top: clamp(4px, 1vh, 12px);
+  margin-bottom: clamp(12px, 2.4vh, 20px);
+  max-width: 920px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+}
+
+.hero-btn-slot {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+@media (max-width: 767px) {
+  .hero-buttons-row {
+    padding-inline: 0.75rem;
+    margin-top: clamp(12px, 3vh, 24px);
+    margin-bottom: clamp(20px, 7vh, 46px);
+  }
+
+  .hero-btn-slot .btn-hero {
+    width: min(4.2cm, 88vw) !important;
+    max-width: 320px;
+    display: inline-flex;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .hero-btn-slot--left {
+    order: 1;
+  }
+
+  .hero-btn-slot--right {
+    order: 2;
+  }
+
+  .hero-btn-slot--center {
+    order: 3;
+  }
+}
+
+.hero-logo-wrap {
+  position: relative;
+  display: inline-block;
+  border-radius: 0.5rem;
+  padding: 0.15rem;
+  width: clamp(280px, 40vw, 480px);
+  max-width: 480px;
 }
 
 .hero-liquid.snap-section::after {
@@ -177,15 +217,6 @@
   100% { opacity: 0.4; }
 }
 
-.hero-logo-wrap {
-  position: relative;
-  display: inline-block;
-  border-radius: 0.5rem;
-  padding: 0.15rem;
-  width: min(82vw, 420px);
-  max-width: 420px;
-}
-
 .hero-logo-wrap::after {
   content: "";
   position: absolute;
@@ -208,6 +239,7 @@
   width: 100%;
   height: auto;
   max-width: 100%;
+  max-height: min(42vh, 400px);
   transform-origin: center center;
   animation: heroLogoBreath 6s ease-in-out infinite;
   will-change: transform, filter;
@@ -219,35 +251,6 @@
   40%  { transform: scale(1.03); }
   60%  { transform: scale(1.045); }
   100% { transform: scale(1); }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .hero-logo-image { animation: none; transition: none; }
-  .hero-logo-wrap::after { transition: none; }
-}
-
-.hero-buttons-row {
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
-  gap: 1rem;
-  max-width: 960px;
-  margin: 0 auto;
-  width: 100%;
-}
-
-.hero-btn-slot {
-  display: flex;
-  justify-content: center;
-  width: 100%;
-}
-
-.hero-btn-slot--center {
-  justify-content: center;
-}
-
-.hero-btn-slot--right {
-  justify-content: center;
 }
 
 @media (min-width: 768px) {
@@ -280,9 +283,11 @@
   justify-content: center;
   gap: 0.5rem;
   border-radius: 9999px;
-  padding: 0 1.8rem;
-  font-size: 0.8rem;
-  letter-spacing: 0.18em;
+  padding: 0 clamp(1.2rem, 2.3vw, 2.5rem);
+  min-height: clamp(46px, 6vh, 58px);
+  min-width: clamp(170px, 18vw, 240px);
+  font-size: clamp(0.78rem, 0.95vw, 0.95rem);
+  letter-spacing: 0.16em;
   text-transform: uppercase;
   font-weight: 700;
   border: 1px solid var(--lipolong-border-soft);
@@ -380,7 +385,7 @@
 .btn-hero--primary {
   background-image: linear-gradient(120deg, #06b6d4, #3b82f6, #8b5cf6);
   background-size: 220% 220%;
-  color: #021017;
+  color: #f8fdff;
   border-color: rgba(255, 255, 255, 0.32);
   animation: heroBtnPulse 5.6s ease-in-out infinite;
 }
@@ -447,34 +452,6 @@
   }
 }
 
-@media (max-width: 767px) {
-  .hero-buttons-row {
-    padding-inline: 0.75rem;
-    margin-top: clamp(12px, 3vh, 24px);
-    margin-bottom: clamp(20px, 7vh, 46px);
-  }
-
-  .hero-btn-slot .btn-hero {
-    width: min(4.2cm, 88vw) !important;
-    max-width: 320px;
-    display: inline-flex;
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  .hero-btn-slot--left {
-    order: 1;
-  }
-
-  .hero-btn-slot--right {
-    order: 2;
-  }
-
-  .hero-btn-slot--center {
-    order: 3;
-  }
-}
-
 /* Оптимизация под мобильные: убавляем тяжелые эффекты */
 @media (max-width: 640px) {
   .hero-liquid-bg {
@@ -483,5 +460,48 @@
   }
   .hero-liquid-blob {
     animation-duration: 7s;
+  }
+}
+
+/* Правки первого экрана для небольших экранов */
+@media (max-width: 640px) {
+  .hero-liquid {
+    align-items: start;
+    justify-items: center;
+    padding-top: clamp(48px, 14vh, 180px);
+  }
+  .hero-content {
+    position: relative;
+    top: -100px;
+    padding-bottom: clamp(24px, 6vh, 72px);
+  }
+  .hero-title {
+    font-size: 1.45rem !important;
+    line-height: 1.25 !important;
+  }
+  .hero-liquid .hero-logo-wrap {
+    margin-top: 10px !important;
+  }
+}
+
+/* Мобильный первый экран: поднимаем контент выше, перекрывая центрирование snap-section */
+@media (max-width: 640px) {
+  .hero-liquid.snap-section {
+    align-items: flex-start !important;
+    justify-items: center !important;
+    padding-top: clamp(28px, 10vh, 140px) !important;
+  }
+  .hero-content {
+    top: -125px !important;
+    padding-bottom: clamp(12px, 4vh, 48px) !important;
+  }
+  .hero-content h1 {
+    margin-bottom: 10px !important;
+  }
+  .hero-content p {
+    margin-bottom: 14px !important;
+  }
+  .hero-buttons-row {
+    gap: 0.65rem;
   }
 }

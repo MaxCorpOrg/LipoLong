@@ -48,7 +48,6 @@ body,
 #__next {
   height: 100%;
   margin: 0;
-  scroll-snap-type: y mandatory;
   scroll-behavior: smooth;
   width: 100%;
   overflow-x: hidden;
@@ -218,7 +217,7 @@ nextjs-dev-overlay,
 .snap-section {
   min-height: 100vh;
   min-height: 100dvh;
-  scroll-snap-align: start;
+  scroll-snap-align: none;
   display: grid;
   place-items: center;
   position: relative; /* нужно, чтобы слой с шиммером держался внутри блока */
@@ -278,7 +277,7 @@ nextjs-dev-overlay,
 .s4-shell {
   width: 100%;
   max-width: 1200px;
-  min-height: calc(100dvh - 32px);
+  min-height: clamp(680px, 100vh, 980px);
   display: flex;
   flex-direction: column;
   gap: clamp(18px, 3vh, 32px);

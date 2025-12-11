@@ -163,7 +163,7 @@ export default function Home() {
             <span className="text-cyan-300">контурной коррекции тела</span>
           </h1>
 
-          <p className="text-lg md:text-2xl mb-10 opacity-90 max-w-3xl mx-auto">
+          <p className="hero-lead text-lg md:text-2xl mb-10 opacity-90 max-w-3xl mx-auto">
             Безоперационная липомодификация с быстрым эффектом.
             <br />
             Современная процедура для безопасного изменения контуров тела.
@@ -178,7 +178,6 @@ export default function Home() {
                 role="button"
                 aria-label="Записаться на процедуру LipoLong"
                 className="btn-hero btn-hero--primary"
-                style={{ width: "5cm", height: "5vh", color: "#ffffff" }}
               >
                 <span className="btn-hero-icon" aria-hidden="true">
                   {/* SVG иконка "календарь + галочка" */}
@@ -213,8 +212,6 @@ export default function Home() {
                 role="button"
                 aria-label="Подробнее о процедуре LipoLong"
                 className="btn-hero btn-hero--secondary"
-                // ЖЁСТКАЯ геометрия: физический размер кнопки
-                style={{ width: "5cm", height: "5vh" }}
               >
                 Подробнее ↓
               </a>
@@ -229,8 +226,6 @@ export default function Home() {
                 role="button"
                 aria-label="Открыть общий чат LipoLong в Telegram"
                 className="btn-hero btn-hero--primary"
-                // Та же геометрия — чтобы кнопки были одинаковые
-                style={{ width: "5cm", height: "5vh", color: "#ffffff" }}
               >
                 <span className="btn-hero-icon" aria-hidden="true">
                   {/* SVG иконка чата. Используем stroke=currentColor, иконка возьмёт цвет из .btn-hero-icon */}
