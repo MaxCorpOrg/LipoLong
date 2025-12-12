@@ -1,9 +1,8 @@
 import OrderForm from "@/components/OrderForm";
 import Image from "next/image";
-import { sendOrder, validateOrderPayload, checkRateLimit } from "@/lib/sendOrder";
-import { headers } from "next/headers";
+import { Metadata } from "next";
 
-export const metadata = {
+export const metadata: Metadata = {
   title: "Запись на процедуру LipoLong",
   description: "Оставьте заявку на процедуру LipoLong",
 };
@@ -22,55 +21,6 @@ const DUST_POINTS: DustPoint[] = [
 ];
 
 export default function OrderPage() {
-  async function sendOrderAction(formData: FormData): Promise<{ ok: boolean }> {
-    "use server";
-
-    const name = formData.get("name")?.toString() ?? "";
-    const email = formData.get("email")?.toString() ?? "";
-    const phone = formData.get("phone")?.toString() ?? "";
-    const message = formData.get("message")?.toString() ?? "";
-    const honeypot = formData.get("website")?.toString() ?? "";
-    const startedAtRaw = formData.get("startedAt")?.toString() ?? "";
-
-    if (honeypot.trim()) {
-      throw new Error("Подозрение на спам");
-    }
-
-    const startedAt = Number(startedAtRaw);
-    const now = Date.now();
-    const minFillMs = 3000;
-    const maxFillMs = 30 * 60 * 1000;
-    if (!startedAt || Number.isNaN(startedAt)) {
-      throw new Error("Не удалось отправить заявку. Обновите страницу и попробуйте снова.");
-    }
-    const elapsed = now - startedAt;
-    if (elapsed < minFillMs) {
-      throw new Error("Слишком быстрое заполнение. Попробуйте ещё раз.");
-    }
-    if (elapsed > maxFillMs) {
-      throw new Error("Сессия формы устарела. Обновите страницу и отправьте снова.");
-    }
-
-    const ipHeader = headers().get("x-forwarded-for") || headers().get("x-real-ip") || "unknown";
-    const ip = ipHeader.split(",")[0].trim();
-    const rate = checkRateLimit(ip || "unknown");
-    if (!rate.ok) {
-      throw new Error(rate.error ?? "Превышен лимит отправок, попробуйте позже.");
-    }
-
-    const validation = validateOrderPayload({ name, email, phone, message });
-    if (!validation.ok) {
-      throw new Error(validation.error ?? "Некорректные данные");
-    }
-
-    const result = await sendOrder({ name, email, phone, message });
-    if (!result.ok) {
-      throw new Error(result.error ?? "Не удалось отправить заявку");
-    }
-
-    return { ok: true };
-  }
-
   return (
     <section className="snap-section contacts-section px-4 md:px-0">
       {/* Секция 4 */}
@@ -132,7 +82,7 @@ export default function OrderPage() {
           </div>
 
           {/* Правая колонка — форма */}
-          <OrderForm action={sendOrderAction} />
+          <OrderForm />
         </div>
       </div>
     </section>
