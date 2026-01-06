@@ -1435,4 +1435,47 @@ nextjs-dev-overlay,
   text-shadow: 0 0 12px #22d3ee;
 }
 
+/* Облегченные стили для мобильных и слабых устройств */
+@media (max-width: 1024px) {
+  .snap-section::before,
+  .snap-section::after {
+    content: none !important;
+    animation: none !important;
+  }
+
+  .slider-image::before,
+  .slider-image::after {
+    display: none !important;
+    animation: none !important;
+  }
+
+  .hero-liquid-bg,
+  .procedure-liquid-bg,
+  .contacts-glow::before,
+  .contacts-glow::after {
+    opacity: 0.45;
+    filter: blur(18px);
+    animation: none !important;
+  }
+
+  .glass-card,
+  .mobile-cta-bar {
+    backdrop-filter: blur(10px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .snap-section::before,
+  .snap-section::after,
+  .slider-image::before,
+  .slider-image::after {
+    animation: none !important;
+    transform: none !important;
+  }
+
+  .slider-image img {
+    animation: none !important;
+  }
+}
+
 }

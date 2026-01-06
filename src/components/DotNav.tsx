@@ -8,15 +8,15 @@ export default function DotNav() {
   const [count, setCount] = useState(0);
   const sectionsRef = useRef<HTMLElement[]>([]);
   const pathname = usePathname();
+  const setActiveIndex = (next: number) =>
+    setActive((prev) => (prev === next ? prev : next));
 
   useEffect(() => {
     const sections = Array.from(
       document.querySelectorAll<HTMLElement>(".snap-section")
     );
     sectionsRef.current = sections;
-    if (sections.length !== count) {
-      setTimeout(() => setCount(sections.length), 0);
-    }
+    setCount(sections.length);
 
     const observer = new IntersectionObserver(
       (entries) => {
@@ -26,7 +26,7 @@ export default function DotNav() {
               (entry.target as HTMLElement).dataset.dotIndex ?? -1
             );
             if (!Number.isNaN(idx) && idx >= 0) {
-              setActive(idx);
+              setActiveIndex(idx);
             }
           }
         });
@@ -39,18 +39,23 @@ export default function DotNav() {
       observer.observe(sec);
     });
 
+    let frame = 0;
     const handleScrollFallback = () => {
-      const current = sectionsRef.current;
-      const scrollPos = window.scrollY + window.innerHeight / 2;
-      for (let i = 0; i < current.length; i++) {
-        const sec = current[i];
-        const rectTop = sec.getBoundingClientRect().top + window.scrollY;
-        const height = sec.clientHeight;
-        if (rectTop <= scrollPos && rectTop + height > scrollPos) {
-          setActive(i);
-          break;
+      if (frame) return;
+      frame = window.requestAnimationFrame(() => {
+        frame = 0;
+        const current = sectionsRef.current;
+        const scrollPos = window.scrollY + window.innerHeight / 2;
+        for (let i = 0; i < current.length; i++) {
+          const sec = current[i];
+          const rectTop = sec.getBoundingClientRect().top + window.scrollY;
+          const height = sec.clientHeight;
+          if (rectTop <= scrollPos && rectTop + height > scrollPos) {
+            setActiveIndex(i);
+            break;
+          }
         }
-      }
+      });
     };
 
     handleScrollFallback();
@@ -59,8 +64,11 @@ export default function DotNav() {
     return () => {
       observer.disconnect();
       window.removeEventListener("scroll", handleScrollFallback);
+      if (frame) {
+        window.cancelAnimationFrame(frame);
+      }
     };
-  }, [pathname, count]);
+  }, [pathname]);
 
   const scrollTo = (i: number) => {
     setActive(i);

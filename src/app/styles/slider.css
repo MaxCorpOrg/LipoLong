@@ -235,12 +235,12 @@
   top: 10%;
   right: -20%;
   background: radial-gradient(circle, rgba(34, 211, 238, 0.55), transparent 70%);
-  filter: blur(90px);
-  opacity: 0.95;
+  filter: blur(60px);
+  opacity: 0.6;
   z-index: 1;
   mix-blend-mode: screen;
   pointer-events: none;
-  animation: globalBlob1 16s ease-in-out infinite alternate;
+  animation: globalBlob1 22s ease-in-out infinite alternate;
 }
 
 .snap-section::after {
@@ -251,15 +251,13 @@
   position: absolute;
   bottom: -10%;
   left: -15%;
-  background:
-    radial-gradient(circle, rgba(168, 85, 247, 0.55), transparent 70%),
-    linear-gradient(90deg, rgba(34,211,238,0.02), rgba(168,85,247,0.05), rgba(34,211,238,0.02));
-  filter: blur(95px);
-  opacity: 0.95;
+  background: radial-gradient(circle, rgba(168, 85, 247, 0.45), transparent 70%);
+  filter: blur(65px);
+  opacity: 0.6;
   z-index: 1;
   mix-blend-mode: screen;
   pointer-events: none;
-  animation: globalBlob2 22s ease-in-out infinite alternate, shimmerSweep 12s linear infinite;
+  animation: globalBlob2 26s ease-in-out infinite alternate;
 }
 
 @keyframes globalBlob1 {

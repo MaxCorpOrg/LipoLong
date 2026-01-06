@@ -1,6 +1,6 @@
 ﻿"use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 
 type Slide = {
@@ -44,14 +44,33 @@ const slides: Slide[] = [
 
 export default function ResultsSlider() {
   const [index, setIndex] = useState(0);
+  const [isVisible, setIsVisible] = useState(true);
+  const sliderRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
+    const node = sliderRef.current;
+    if (!node) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsVisible(entry.isIntersecting && entry.intersectionRatio > 0.25);
+      },
+      { threshold: [0.15, 0.25, 0.5] }
+    );
+
+    observer.observe(node);
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    if (!isVisible) return;
+
     const id = setInterval(
       () => setIndex((prev) => (prev + 1) % slides.length),
       6000
     );
     return () => clearInterval(id);
-  }, []);
+  }, [isVisible]);
 
   const goRelative = (delta: number) => {
     setIndex((prev) => (prev + delta + slides.length) % slides.length);
@@ -62,7 +81,7 @@ export default function ResultsSlider() {
   const current = slides[index];
 
   return (
-    <div className="slider-wrapper mx-auto">
+    <div ref={sliderRef} className="slider-wrapper mx-auto">
       <div className="slider-frame">
         <button
           type="button"
