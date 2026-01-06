@@ -31,6 +31,11 @@ const DUST_POINTS: DustPoint[] = [
   { top: "92%", left: "40%", delay: "2.6s" },
 ];
 
+const PHOTO_SCROLL_BG: React.CSSProperties = {
+  backgroundImage:
+    'linear-gradient(180deg, rgba(1, 7, 10, 0.78), rgba(0, 0, 0, 0.9)), url("/backgrounds/hero-scroll.png")',
+};
+
 export default function Home() {
   /* ------------------------------
       АНИМАЦИЯ ШАГОВ (СЕКЦИЯ 3)
@@ -122,25 +127,11 @@ export default function Home() {
       {/* ============================
           СЕКЦИЯ 1 — HERO LIPOLONG
       ============================ */}
-      <section className="snap-section hero-liquid" ref={heroRef}>
-        <div className="hero-liquid-bg">
-          <div className="hero-liquid-blob hero-liquid-blob--1" />
-          <div className="hero-liquid-blob hero-liquid-blob--2" />
-          <div className="hero-liquid-blob hero-liquid-blob--3" />
-          <div className="hero-liquid-blob hero-liquid-blob--4" />
-          <div className="hero-liquid-blob hero-liquid-blob--5" />
-        </div>
-        {/* ПЫЛЬ в HERO */}
-        <div className="dust-layer section-dust" aria-hidden="true">
-          {DUST_POINTS.map((p, i) => (
-            <div
-              key={i}
-              className="dust-particle"
-              style={{ top: p.top, left: p.left, animationDelay: p.delay }}
-            />
-          ))}
-        </div>
-
+      <section
+        className="snap-section hero-liquid photo-scroll-bg"
+        ref={heroRef}
+        style={PHOTO_SCROLL_BG}
+      >
         <div className="hero-content container mx-auto px-6 text-center relative z-[1]">
           {/* ЛОГОТИП КАК БОЛЬШОЙ ЗАГОЛОВОК */}
           <div className="flex justify-center mb-6 md:mb-8">
@@ -245,11 +236,8 @@ export default function Home() {
       ============================ */}
       <section
         id="s2"
-        className="snap-section text-[#e8ffff] s2-no-scroll"
-        style={{
-          background:
-            "radial-gradient(circle at 50% 20%, #051418 0%, #030b0d 40%, #000607 100%)",
-        }}
+        className="snap-section text-[#e8ffff] s2-no-scroll photo-scroll-bg"
+        style={PHOTO_SCROLL_BG}
       >
         {/* ПЫЛЬ в S2 */}
         <div className="dust-layer section-dust" aria-hidden="true">
@@ -277,11 +265,8 @@ export default function Home() {
       ============================ */}
       <section
         id="s3"
-        className="snap-section text-[#e8ffff] relative overflow-hidden"
-        style={{
-          background:
-            "radial-gradient(circle at 10% 0%, #020617 0%, #020617 45%, #000000 100%)",
-        }}
+        className="snap-section text-[#e8ffff] relative overflow-hidden photo-scroll-bg"
+        style={PHOTO_SCROLL_BG}
       >
         {/* фоновые неоновые пятна */}
         <div className="procedure-liquid-bg">
@@ -477,7 +462,12 @@ export default function Home() {
             {/* ================================
                 СЕКЦИЯ 4 — КОНТАКТЫ LIPOLONG
             ================================ */}
-            <section id="s4" className="snap-section contacts-section px-4 md:px-0 s4-no-scroll" ref={contactsRef}>
+            <section
+              id="s4"
+              className="snap-section contacts-section px-4 md:px-0 s4-no-scroll photo-scroll-bg"
+              ref={contactsRef}
+              style={PHOTO_SCROLL_BG}
+            >
               {/* НЕОН ФОН */}
               <div className="contacts-glow" />
               {/* ПЫЛЬ в S4 */}

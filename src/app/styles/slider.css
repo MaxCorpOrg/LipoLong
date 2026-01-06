@@ -227,51 +227,6 @@
   animation: sliderFireRing 16s linear infinite;
 }
 
-.snap-section::before {
-  content: "";
-  position: absolute;
-  width: 65vmax;
-  height: 65vmax;
-  top: 10%;
-  right: -20%;
-  background: radial-gradient(circle, rgba(34, 211, 238, 0.55), transparent 70%);
-  filter: blur(60px);
-  opacity: 0.6;
-  z-index: 1;
-  mix-blend-mode: screen;
-  pointer-events: none;
-  animation: globalBlob1 22s ease-in-out infinite alternate;
-}
-
-.snap-section::after {
-  /* Лиловое свечение снизу слева + общий шиммер */
-  width: 65vmax;
-  height: 65vmax;
-  content: "";
-  position: absolute;
-  bottom: -10%;
-  left: -15%;
-  background: radial-gradient(circle, rgba(168, 85, 247, 0.45), transparent 70%);
-  filter: blur(65px);
-  opacity: 0.6;
-  z-index: 1;
-  mix-blend-mode: screen;
-  pointer-events: none;
-  animation: globalBlob2 26s ease-in-out infinite alternate;
-}
-
-@keyframes globalBlob1 {
-  0% { transform: translate3d(0,0,0) scale(1); }
-  50% { transform: translate3d(12%, 6%, 0) scale(1.08); }
-  100% { transform: translate3d(20%, -6%, 0) scale(1); }
-}
-
-@keyframes globalBlob2 {
-  0% { transform: translate3d(0, 0, 0) scale(1); }
-  50% { transform: translate3d(-10%, -8%, 0) scale(1.05); }
-  100% { transform: translate3d(-20%, 4%, 0) scale(0.96); }
-}
-
 @keyframes sliderFire {
   0%   { opacity: 0;   transform: scale(0.94); }
   30%  { opacity: 0.8; transform: scale(1); }
