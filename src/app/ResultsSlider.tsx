@@ -107,7 +107,7 @@ export default function ResultsSlider() {
         {/* Карточка слайдера */}
         <div
           key={current.id}
-          className="slider-card advantage-card relative bg-slate-900/80 rounded-[28px] px-5 md:px-12 py-7 md:py-10 shadow-2xl backdrop-blur w-full text-center mx-auto border border-cyan-200/20"
+          className="slider-card relative w-full text-center mx-auto px-5 md:px-12 py-7 md:py-10"
         >
           {/* Фото */}
           <div className="slider-image flex items-center justify-center overflow-hidden">

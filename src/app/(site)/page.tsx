@@ -239,12 +239,6 @@ export default function Home() {
         className="snap-section text-[#e8ffff] s2-no-scroll photo-scroll-bg"
         style={PHOTO_SCROLL_BG}
       >
-        {/* ПЫЛЬ в S2 */}
-        <div className="dust-layer section-dust" aria-hidden="true">
-          {DUST_POINTS.map((p, i) => (
-            <div key={i} className="dust-particle" style={{ top: p.top, left: p.left, animationDelay: p.delay }} />
-          ))}
-        </div>
         <div className="s2-shell w-full max-w-[1600px] mx-auto px-4 md:px-10">
           <div className="s2-head">
             <h2 className="s2-title text-3xl md:text-5xl font-extrabold text-cyan-200">
@@ -268,19 +262,6 @@ export default function Home() {
         className="snap-section text-[#e8ffff] relative overflow-hidden photo-scroll-bg"
         style={PHOTO_SCROLL_BG}
       >
-        {/* фоновые неоновые пятна */}
-        <div className="procedure-liquid-bg">
-          <div className="procedure-blob procedure-blob--1" />
-          <div className="procedure-blob procedure-blob--2" />
-          <div className="procedure-blob procedure-blob--3" />
-        </div>
-        {/* ПЫЛЬ в S3 */}
-        <div className="dust-layer section-dust" aria-hidden="true">
-          {DUST_POINTS.map((p, i) => (
-            <div key={i} className="dust-particle" style={{ top: p.top, left: p.left, animationDelay: p.delay }} />
-          ))}
-        </div>
-
         <div className="w-full max-w-6xl mx-auto px-4 md:px-8 py-16 md:py-24 relative z-[1]">
           <div className="text-center mb-10 md:mb-14 procedure-heading">
             <h2 className="text-3xl md:text-5xl font-extrabold mb-4 text-cyan-200">
@@ -468,16 +449,6 @@ export default function Home() {
               ref={contactsRef}
               style={PHOTO_SCROLL_BG}
             >
-              {/* НЕОН ФОН */}
-              <div className="contacts-glow" />
-              {/* ПЫЛЬ в S4 */}
-              <div className="dust-layer section-dust" aria-hidden="true">
-                {DUST_POINTS.map((p, i) => (
-                  <div key={i} className="dust-particle" style={{ top: p.top, left: p.left, animationDelay: p.delay }} />
-                ))}
-              </div>
-              {/* local dust-layer removed to avoid duplicate particles; global dust-layer displays particles site-wide */}
-
               <div className={`${contactsVisible ? "contacts-animated" : ""} w-full max-w-6xl mx-auto`}>
                 <div className="s4-shell">
                   <div className="s4-head text-center">

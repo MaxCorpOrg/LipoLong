@@ -15,22 +15,6 @@ export default function Footer() {
       id="s5"
       className="snap-section footer-liquid relative pt-20 pb-16 overflow-hidden"
     >
-      <div className="footer-liquid-bg">
-        <div className="footer-blob footer-blob--1" />
-        <div className="footer-blob footer-blob--2" />
-        <div className="footer-blob footer-blob--3" />
-      </div>
-
-      <div className="dust-layer section-dust" aria-hidden="true">
-        {FOOTER_DUST_POINTS.map((p, i) => (
-          <div
-            key={i}
-            className="dust-particle"
-            style={{ top: p.top, left: p.left, animationDelay: p.delay }}
-          />
-        ))}
-      </div>
-
       <div className="footer-shell w-full max-w-6xl mx-auto px-6 relative z-[2] text-[#e8ffff]">
         <div className="footer-head text-center md:text-left">
           <h2 className="footer-title">LipoLong</h2>
