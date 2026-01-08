@@ -20,7 +20,7 @@ const slides: Slide[] = [
     subtitle: "Минус объём и мягкая талия без шрамов",
     description:
       "LipoLong выводит лишний жир точечно и без травмы: талия подтягивается, кожа остаётся гладкой, а реабилитация не нужна.",
-    img: "/stomach_and_sides.png",
+    img: "/stomach_and_sides.webp",
   },
   {
     id: 2,
@@ -29,7 +29,7 @@ const slides: Slide[] = [
     subtitle: "Уходят «ушки» и валики",
     description:
       "Методика работает мягко, не травмирует кожу и не требует реабилитации. Остаётся упругий, ровный контур без заломов.",
-    img: "/Buttocks_and_thighs.png",
+    img: "/Buttocks_and_thighs.webp",
   },
   {
     id: 3,
@@ -38,7 +38,7 @@ const slides: Slide[] = [
     subtitle: "Минус «крылья» и роллы у лопаток",
     description:
       "LipoLong точечно работает с уплотнениями: мышцы становятся рельефнее, а кожа — плотной и гладкой без синяков.",
-    img: "/Arms_and_back.png",
+    img: "/Arms_and_back.webp",
   },
 ];
 

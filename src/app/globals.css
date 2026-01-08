@@ -220,6 +220,12 @@ nextjs-dev-overlay,
   overflow: hidden;
 }
 
+.snap-section.s2-no-scroll {
+  display: block;
+  place-items: initial;
+  min-height: 0;
+}
+
 .photo-scroll-bg {
   background-size: cover;
   background-position: center top;

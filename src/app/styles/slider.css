@@ -2,38 +2,42 @@
 
 .s2-no-scroll {
   display: block;
-  padding-block: clamp(20px, 6vh, 48px);
+  padding-block: clamp(10px, 3vh, 22px);
   overflow: visible;
 }
 
+.snap-section.s2-no-scroll {
+  min-height: auto;
+}
+
 .s2-shell {
-  min-height: clamp(640px, 100vh, 960px);
+  min-height: auto;
   height: auto;
   display: flex;
   flex-direction: column;
-  gap: clamp(18px, 3.8vh, 28px);
-  justify-content: center;
+  gap: clamp(10px, 2.4vh, 18px);
+  justify-content: flex-start;
   align-items: center;
 }
 
 @media (max-width: 1024px) {
   .s2-shell {
-    min-height: clamp(640px, 100vh, 900px);
-    justify-content: center;
-    gap: clamp(18px, 4vh, 32px);
-    padding-block: clamp(20px, 8vh, 52px);
+    min-height: auto;
+    justify-content: flex-start;
+    gap: clamp(12px, 3vh, 20px);
+    padding-block: clamp(12px, 4vh, 28px);
   }
 }
 
 @media (min-width: 1024px) {
   .s2-no-scroll {
-    padding-block: clamp(18px, 5vh, 40px);
+    padding-block: clamp(10px, 3vh, 24px);
   }
 
   .s2-shell {
-    min-height: clamp(700px, 100vh, 980px);
-    justify-content: center;
-    gap: clamp(16px, 3vh, 24px);
+    min-height: auto;
+    justify-content: flex-start;
+    gap: clamp(12px, 2.6vh, 20px);
   }
 
   .slider-wrapper {
@@ -69,7 +73,7 @@
 
 .s2-sub {
   margin: 0 auto;
-  margin-bottom: clamp(12px, 2vh, 18px);
+  margin-bottom: clamp(6px, 1.2vh, 12px);
 }
 
 .slider-wrapper {
@@ -80,9 +84,9 @@
   margin-right: auto;
   display: flex;
   flex-direction: column;
-  gap: 1.4rem;
+  gap: 1rem;
   flex: 1;
-  padding: clamp(14px, 2vw, 22px);
+  padding: clamp(8px, 1.4vw, 16px);
   border-radius: 0;
   background: transparent;
   border: none;
@@ -127,11 +131,12 @@
 
 /* Размеры изображения в слайдере */
 .slider-image {
-  flex: 1;
-  aspect-ratio: 16 / 9;
-  min-height: clamp(220px, 40vw, 480px);
-  max-height: min(55vh, 500px);
+  flex: 0 0 auto;
+  width: min(1536px, 100%);
+  aspect-ratio: 1536 / 412;
   height: auto;
+  min-height: 0;
+  max-height: none;
   border-radius: 1.25rem;
   background: transparent;
   overflow: hidden;
@@ -380,9 +385,10 @@
   }
 
   .slider-image {
-    min-height: clamp(220px, 70vw, 380px);
-    max-height: 70vh;
     height: auto;
+    width: 100%;
+    min-height: 0;
+    max-height: none;
     border-radius: 1.1rem;
     padding: 0;
   }

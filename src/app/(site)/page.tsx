@@ -31,10 +31,26 @@ const DUST_POINTS: DustPoint[] = [
   { top: "92%", left: "40%", delay: "2.6s" },
 ];
 
-const PHOTO_SCROLL_BG: React.CSSProperties = {
-  backgroundImage:
-    'linear-gradient(180deg, rgba(1, 7, 10, 0.78), rgba(0, 0, 0, 0.9)), url("/backgrounds/hero-scroll.png")',
-};
+const makeScrollBg = (url: string, overlay: string): React.CSSProperties => ({
+  backgroundImage: `${overlay}, url("${url}")`,
+});
+
+const HERO_BG = makeScrollBg(
+  "/backgrounds/s1-hero.webp",
+  "linear-gradient(180deg, rgba(1, 7, 10, 0), rgba(0, 0, 0, 0))"
+);
+const RESULTS_BG = makeScrollBg(
+  "/backgrounds/hero-scroll.png",
+  "linear-gradient(180deg, rgba(1, 7, 10, 0), rgba(0, 0, 0, 0))"
+);
+const PROCEDURE_BG = makeScrollBg(
+  "/backgrounds/hero-scroll.png",
+  "linear-gradient(180deg, rgba(1, 7, 10, 0), rgba(0, 0, 0, 0))"
+);
+const CONTACTS_BG = makeScrollBg(
+  "/backgrounds/hero-scroll.png",
+  "linear-gradient(180deg, rgba(1, 7, 10, 0), rgba(0, 0, 0, 0))"
+);
 
 export default function Home() {
   /* ------------------------------
@@ -130,7 +146,7 @@ export default function Home() {
       <section
         className="snap-section hero-liquid photo-scroll-bg"
         ref={heroRef}
-        style={PHOTO_SCROLL_BG}
+        style={HERO_BG}
       >
         <div className="hero-content container mx-auto px-6 text-center relative z-[1]">
           {/* ЛОГОТИП КАК БОЛЬШОЙ ЗАГОЛОВОК */}
@@ -139,8 +155,8 @@ export default function Home() {
               <Image
                 src="/Logo.png"
                 alt="LipoLong"
-                width={420}
-                height={120}
+                width={853}
+                height={645}
                 className="hero-logo-image"
                 priority
               />
@@ -237,7 +253,7 @@ export default function Home() {
       <section
         id="s2"
         className="snap-section text-[#e8ffff] s2-no-scroll photo-scroll-bg"
-        style={PHOTO_SCROLL_BG}
+        style={RESULTS_BG}
       >
         <div className="s2-shell w-full max-w-[1600px] mx-auto px-4 md:px-10">
           <div className="s2-head">
@@ -260,7 +276,7 @@ export default function Home() {
       <section
         id="s3"
         className="snap-section text-[#e8ffff] relative overflow-hidden photo-scroll-bg"
-        style={PHOTO_SCROLL_BG}
+        style={PROCEDURE_BG}
       >
         <div className="w-full max-w-6xl mx-auto px-4 md:px-8 py-16 md:py-24 relative z-[1]">
           <div className="text-center mb-10 md:mb-14 procedure-heading">
@@ -447,7 +463,7 @@ export default function Home() {
               id="s4"
               className="snap-section contacts-section px-4 md:px-0 s4-no-scroll photo-scroll-bg"
               ref={contactsRef}
-              style={PHOTO_SCROLL_BG}
+              style={CONTACTS_BG}
             >
               <div className={`${contactsVisible ? "contacts-animated" : ""} w-full max-w-6xl mx-auto`}>
                 <div className="s4-shell">

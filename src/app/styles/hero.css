@@ -91,7 +91,10 @@
 
 .hero-logo-wrap {
   position: relative;
-  display: inline-block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-inline: auto;
   border-radius: 0.5rem;
   padding: 0.15rem;
   width: clamp(280px, 40vw, 480px);
@@ -128,7 +131,7 @@
 
 .hero-logo-image {
   display: block;
-  width: 100%;
+  width: auto;
   height: auto;
   max-width: 100%;
   max-height: min(42vh, 400px);
@@ -139,10 +142,10 @@
 }
 
 @keyframes heroLogoBreath {
-  0%   { transform: scale(1); }
-  40%  { transform: scale(1.03); }
-  60%  { transform: scale(1.045); }
-  100% { transform: scale(1); }
+  0%   { transform: scale(1.08); }
+  40%  { transform: scale(1.11); }
+  60%  { transform: scale(1.13); }
+  100% { transform: scale(1.08); }
 }
 
 @media (min-width: 768px) {

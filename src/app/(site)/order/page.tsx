@@ -44,8 +44,8 @@ export default function OrderPage() {
             <Image
               src="/Logo.png"
               alt="LipoLong"
-              width={320}
-              height={90}
+              width={853}
+              height={645}
               className="hero-logo-image"
               priority
             />
