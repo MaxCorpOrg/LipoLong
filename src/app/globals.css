@@ -621,20 +621,24 @@ nextjs-dev-overlay,
 .contacts-section {
   position: relative;
   overflow: hidden;
-  background-color: #01070a;
-  background-image: url("/backgrounds/s2-contacts-768.webp");
+  background-color: #000000;
   color: #e8ffff;
 }
 
+.results-section {
+  background-color: #000000;
+  background-image: url("/backgrounds/s3-contacts-768.webp");
+}
+
 @media (min-width: 768px) {
-  .contacts-section {
-    background-image: url("/backgrounds/s2-contacts-1280.webp");
+  .results-section {
+    background-image: url("/backgrounds/s3-contacts-1280.webp");
   }
 }
 
 @media (min-width: 1280px) {
-  .contacts-section {
-    background-image: url("/backgrounds/s2-contacts-1920.webp");
+  .results-section {
+    background-image: url("/backgrounds/s3-contacts-1920.webp");
   }
 }
 

@@ -4,15 +4,6 @@ import React, { useEffect, useRef, useState } from "react";
 import ResultsSlider from "../ResultsSlider";
 import Image from "next/image";
 
-const makeScrollBg = (url: string, overlay: string): React.CSSProperties => ({
-  backgroundImage: `${overlay}, url("${url}")`,
-});
-
-const RESULTS_BG = makeScrollBg(
-  "/backgrounds/hero-scroll.png",
-  "linear-gradient(180deg, rgba(1, 7, 10, 0), rgba(0, 0, 0, 0))"
-);
-
 export default function Home() {
   const heroRef = useRef<HTMLElement | null>(null);
   const [showMobileCta, setShowMobileCta] = useState(false);
@@ -81,10 +72,10 @@ export default function Home() {
           </div>
 
           {/* Текстовый заголовок оставляем как подзаголовок */}
-          <h1 className="hero-title text-3xl md:text-5xl font-black mb-4 md:mb-6 leading-tight">
+          <h1 className="hero-title text-3xl md:text-5xl font-black mb-4 md:mb-6 leading-tight text-cyan-200">
             Инновационный метод
             <br />
-            <span className="text-cyan-300">контурной коррекции тела</span>
+            <span className="text-cyan-200">контурной коррекции тела</span>
           </h1>
 
           <p className="hero-lead text-lg md:text-2xl mb-10 opacity-90 max-w-3xl mx-auto">
@@ -282,8 +273,7 @@ export default function Home() {
       ============================ */}
       <section
         id="s3"
-        className="snap-section text-[#e8ffff] s2-no-scroll photo-scroll-bg"
-        style={RESULTS_BG}
+        className="snap-section text-[#e8ffff] s2-no-scroll photo-scroll-bg results-section"
       >
         <div className="s2-shell w-full max-w-[1600px] mx-auto px-4 md:px-10">
           <div className="s2-head">
