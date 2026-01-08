@@ -35,10 +35,6 @@ const makeScrollBg = (url: string, overlay: string): React.CSSProperties => ({
   backgroundImage: `${overlay}, url("${url}")`,
 });
 
-const HERO_BG = makeScrollBg(
-  "/backgrounds/s1-hero.webp",
-  "linear-gradient(180deg, rgba(1, 7, 10, 0), rgba(0, 0, 0, 0))"
-);
 const RESULTS_BG = makeScrollBg(
   "/backgrounds/hero-scroll.png",
   "linear-gradient(180deg, rgba(1, 7, 10, 0), rgba(0, 0, 0, 0))"
@@ -146,7 +142,6 @@ export default function Home() {
       <section
         className="snap-section hero-liquid photo-scroll-bg"
         ref={heroRef}
-        style={HERO_BG}
       >
         <div className="hero-content container mx-auto px-6 text-center relative z-[1]">
           {/* ЛОГОТИП КАК БОЛЬШОЙ ЗАГОЛОВОК */}

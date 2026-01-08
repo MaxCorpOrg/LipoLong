@@ -12,6 +12,19 @@
   min-height: 100vh;
   min-height: 100dvh;
   background-color: #01070a;
+  background-image: url("/backgrounds/s1-hero-768.webp");
+}
+
+@media (min-width: 768px) {
+  .hero-liquid {
+    background-image: url("/backgrounds/s1-hero-1280.webp");
+  }
+}
+
+@media (min-width: 1280px) {
+  .hero-liquid {
+    background-image: url("/backgrounds/s1-hero-1920.webp");
+  }
 }
 
 .hero-content {
