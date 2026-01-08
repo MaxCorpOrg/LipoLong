@@ -4,42 +4,11 @@ import React, { useEffect, useRef, useState } from "react";
 import ResultsSlider from "../ResultsSlider";
 import Image from "next/image";
 
-/* ------------------------------
-   DUST POINTS — БЕЗ Math.random
------------------------------- */
-
-type DustPoint = { top: string; left: string; delay: string };
-
-const DUST_POINTS: DustPoint[] = [
-  { top: "8%", left: "10%", delay: "0s" },
-  { top: "18%", left: "32%", delay: "1.2s" },
-  { top: "26%", left: "70%", delay: "2.8s" },
-  { top: "40%", left: "15%", delay: "0.9s" },
-  { top: "52%", left: "45%", delay: "3.6s" },
-  { top: "64%", left: "78%", delay: "1.8s" },
-  { top: "72%", left: "22%", delay: "4.5s" },
-  { top: "86%", left: "60%", delay: "2.1s" },
-  { top: "12%", left: "82%", delay: "3.1s" },
-  { top: "35%", left: "55%", delay: "0.4s" },
-  { top: "58%", left: "5%", delay: "2.9s" },
-  { top: "68%", left: "38%", delay: "1.5s" },
-  { top: "78%", left: "90%", delay: "4.0s" },
-  { top: "5%", left: "55%", delay: "0.7s" },
-  { top: "28%", left: "5%", delay: "2.2s" },
-  { top: "48%", left: "90%", delay: "3.8s" },
-  { top: "88%", left: "8%", delay: "1.1s" },
-  { top: "92%", left: "40%", delay: "2.6s" },
-];
-
 const makeScrollBg = (url: string, overlay: string): React.CSSProperties => ({
   backgroundImage: `${overlay}, url("${url}")`,
 });
 
 const RESULTS_BG = makeScrollBg(
-  "/backgrounds/hero-scroll.png",
-  "linear-gradient(180deg, rgba(1, 7, 10, 0), rgba(0, 0, 0, 0))"
-);
-const PROCEDURE_BG = makeScrollBg(
   "/backgrounds/hero-scroll.png",
   "linear-gradient(180deg, rgba(1, 7, 10, 0), rgba(0, 0, 0, 0))"
 );
@@ -49,49 +18,6 @@ const CONTACTS_BG = makeScrollBg(
 );
 
 export default function Home() {
-  /* ------------------------------
-      АНИМАЦИЯ ШАГОВ (СЕКЦИЯ 3)
-  ------------------------------ */
-
-  type StepRef = HTMLDivElement | null;
-
-  const stepRefs = useRef<StepRef[]>([]);
-  const [visibleSteps, setVisibleSteps] = useState<boolean[]>([
-    false,
-    false,
-    false,
-    false,
-  ]);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          const indexAttr = entry.target.getAttribute("data-step-index");
-          if (!indexAttr) return;
-          const index = Number(indexAttr);
-          if (entry.isIntersecting && !Number.isNaN(index)) {
-            setVisibleSteps((prev) => {
-              if (prev[index]) return prev; // уже анимирован
-              const updated = [...prev];
-              updated[index] = true;
-              return updated;
-            });
-          }
-        });
-      },
-      { threshold: 0.3 }
-    );
-
-    stepRefs.current.forEach((el) => {
-      if (el) observer.observe(el);
-    });
-
-    return () => observer.disconnect();
-  }, []);
-
-  /* ------------------------------ */
-
   const heroRef = useRef<HTMLElement | null>(null);
   const [showMobileCta, setShowMobileCta] = useState(false);
 
@@ -210,9 +136,9 @@ export default function Home() {
             {/* Слот центра — кнопка "Подробнее" */}
             <div className="hero-btn-slot hero-btn-slot--center">
               <a
-                href="#s2"
+                href="#s3"
                 role="button"
-                aria-label="Подробнее о процедуре LipoLong"
+                aria-label="Подробнее о результатах LipoLong"
                 className="btn-hero btn-hero--secondary"
               >
                 Подробнее ↓
@@ -242,11 +168,126 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ============================
-          СЕКЦИЯ 2 — СЛАЙДЕР РЕЗУЛЬТАТОВ
-      ============================ */}
+      {/* ================================
+          СЕКЦИЯ 2 — КОНТАКТЫ LIPOLONG
+      ================================ */}
       <section
         id="s2"
+        className="snap-section contacts-section px-4 md:px-0 s4-no-scroll photo-scroll-bg"
+        ref={contactsRef}
+        style={CONTACTS_BG}
+      >
+        <div className={`${contactsVisible ? "contacts-animated" : ""} w-full max-w-6xl mx-auto`}>
+          <div className="s4-shell">
+            <div className="s4-head text-center">
+              <h2 className="s4-title text-3xl md:text-5xl font-extrabold text-cyan-200">Запись на процедуру LipoLong</h2>
+              <p className="s4-sub text-lg md:text-xl opacity-90 text-cyan-100">
+                Выберите удобный способ связи — оставьте заявку через форму или оформите покупку напрямую. Мы поможем подобрать время и ответим на вопросы.
+              </p>
+            </div>
+
+            <div className="s4-grid">
+              <div className="s4-visual-card glass-card">
+                <div className="s4-pack-frame">
+                  <div className="pack-animated-wrap">
+                    <Image
+                      src="/images/pack-placeholder.png"
+                      alt="Упаковка LipoLong"
+                      width={520}
+                      height={520}
+                      className="s4-pack-image"
+                      priority
+                    />
+                  </div>
+                </div>
+                <div className="s4-pack-content">
+                  <p className="s4-eyebrow">LipoLong — инновационный липомодулятор</p>
+                  <h3 className="s4-pack-title">Контур тела под контролем</h3>
+                  <p className="s4-pack-text">
+                    Локально уменьшает жировые отложения, корректирует контуры тела и помогает поддерживать результат без продолжительной реабилитации.
+                  </p>
+                  <ul className="s4-pack-list">
+                    <li>Безопасный состав: гиалуронат натрия + липолитики</li>
+                    <li>Короткая процедура и быстрый возврат к режиму</li>
+                    <li>Подходит для живота, боков, бедер и рук</li>
+                  </ul>
+                </div>
+                <dl className="s4-pack-meta">
+                  <div>
+                    <dt>Форма выпуска</dt>
+                    <dd>Ампула 8 мл</dd>
+                  </div>
+                  <div>
+                    <dt>Условия хранения</dt>
+                    <dd>При t° 2‑25°С, защищать от света</dd>
+                  </div>
+                </dl>
+                <div className="s4-actions">
+                  <a
+                    href="/order"
+                    role="button"
+                    className="btn-buy-primary"
+                    style={{ padding: "1rem 2rem", fontSize: "1.05rem" }}
+                  >
+                    Купить LipoLong
+                  </a>
+                </div>
+              </div>
+
+              <div className="glass-card p-6 md:p-10 w-full s4-form-card">
+                <div className="s4-form-head">
+                  <p className="s4-pill s4-pill--ghost">Быстрая запись</p>
+                  <h3 className="text-2xl md:text-3xl font-bold text-cyan-100">Оставьте свои контакты</h3>
+                  <p className="text-sm md:text-base text-cyan-100/80">
+                    Мы уточним, какая зона интересует, подтвердим стоимость и согласуем время консультации.
+                  </p>
+                </div>
+                <div className="s4-form-fields">
+                  <label className="s4-field" htmlFor="lead-name">
+                    <span>Как к вам обращаться?</span>
+                    <input
+                      id="lead-name"
+                      name="lead-name"
+                      type="text"
+                      className="glass-input"
+                      placeholder="Например, Анна"
+                    />
+                  </label>
+                  <label className="s4-field" htmlFor="lead-phone">
+                    <span>Телефон для связи</span>
+                    <input
+                      id="lead-phone"
+                      name="lead-phone"
+                      type="tel"
+                      className="glass-input"
+                      placeholder="+7 (___) ___-__-__"
+                    />
+                  </label>
+                  <label className="s4-field s4-field--textarea" htmlFor="lead-message">
+                    <span>Комментарий или удобное время</span>
+                    <textarea
+                      id="lead-message"
+                      name="lead-message"
+                      className="glass-input"
+                      style={{ height: "110px", borderRadius: "1rem" }}
+                      placeholder="Опишите желаемую зону и формат консультации."
+                    />
+                  </label>
+                  <button className="glass-submit">
+                    Отправить заявку
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ============================
+          СЕКЦИЯ 3 — СЛАЙДЕР РЕЗУЛЬТАТОВ
+      ============================ */}
+      <section
+        id="s3"
         className="snap-section text-[#e8ffff] s2-no-scroll photo-scroll-bg"
         style={RESULTS_BG}
       >
@@ -264,307 +305,6 @@ export default function Home() {
           <ResultsSlider />
         </div>
       </section>
-
-      {/* ============================
-          СЕКЦИЯ 3 — КАК ПРОХОДИТ ПРОЦЕДУРА
-      ============================ */}
-      <section
-        id="s3"
-        className="snap-section text-[#e8ffff] relative overflow-hidden photo-scroll-bg"
-        style={PROCEDURE_BG}
-      >
-        <div className="w-full max-w-6xl mx-auto px-4 md:px-8 py-16 md:py-24 relative z-[1]">
-          <div className="text-center mb-10 md:mb-14 procedure-heading">
-            <h2 className="text-3xl md:text-5xl font-extrabold mb-4 text-cyan-200">
-              Как проходит процедура LipoLong
-            </h2>
-            <p className="text-lg md:text-xl opacity-90 max-w-2xl mx-auto text-cyan-100">
-              Всё просто: консультация, разметка зон, инъекции препарата и
-              наблюдение результата в течение 7–10&nbsp;дней. Курс и объём
-              подбирает специалист индивидуально.
-            </p>
-          </div>
-
-          <div className="grid gap-6 md:gap-8 md:grid-cols-2 lg:grid-cols-4">
-            {/* Шаг 1 */}
-            <div
-              ref={(el) => {
-                stepRefs.current[0] = el;
-              }}
-              data-step-index="0"
-              className={`procedure-step p-6 md:p-7 procedure-fade procedure-delay-1 ${
-                visibleSteps[0] ? "visible" : ""
-              }`}
-            >
-              <div className="mb-4 flex justify-center">
-                <svg
-                  className="text-cyan-300/80"
-                  style={{ width: "1cm", height: "1cm" }}
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="1.6"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
-                  <circle cx="12" cy="8" r="3.2" />
-                  <path d="M5 20c1.2-3 3.4-4.8 7-4.8s5.8 1.8 7 4.8" />
-                </svg>
-              </div>
-              <div className="text-xs uppercase tracking-[0.22em] text-cyan-300 mb-3">
-                Шаг 1
-              </div>
-              <h3 className="text-lg md:text-xl font-semibold mb-2">
-                Консультация и план
-              </h3>
-              <p className="text-sm md:text-base opacity-90">
-                Врач собирает анамнез, исключает противопоказания и вместе с
-                тобой определяет зоны коррекции и ожидаемый результат.
-              </p>
-            </div>
-
-            {/* Шаг 2 */}
-            <div
-              ref={(el) => {
-                stepRefs.current[1] = el;
-              }}
-              data-step-index="1"
-              className={`procedure-step p-6 md:p-7 procedure-fade procedure-delay-2 ${
-                visibleSteps[1] ? "visible" : ""
-              }`}
-            >
-              <div className="mb-4 flex justify-center">
-                <svg
-                  className="text-cyan-300/80"
-                  style={{ width: "1cm", height: "1cm" }}
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="1.6"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
-                  <rect x="4" y="5" width="16" height="12" rx="2.5" />
-                  <path d="M4 10h16" />
-                  <path d="M9 15h2.5" />
-                </svg>
-              </div>
-
-              <div className="text-xs uppercase tracking-[0.22em] text-cyan-300 mb-3">
-                Шаг 2
-              </div>
-              <h3 className="text-lg md:text-xl font-semibold mb-2">
-                Подготовка и разметка
-              </h3>
-              <p className="text-sm md:text-base opacity-90">
-                Кожа обрабатывается антисептиком, при необходимости наносится
-                анестезирующий крем, косметолог размечает контуры введения
-                LipoLong.
-              </p>
-            </div>
-
-            {/* Шаг 3 */}
-            <div
-              ref={(el) => {
-                stepRefs.current[2] = el;
-              }}
-              data-step-index="2"
-              className={`procedure-step p-6 md:p-7 procedure-fade procedure-delay-3 ${
-                visibleSteps[2] ? "visible" : ""
-              }`}
-            >
-              <div className="mb-4 flex justify-center">
-                <svg
-                  className="text-cyan-300/80"
-                  style={{ width: "1cm", height: "1cm" }}
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="1.6"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
-                  <path d="M5 19l4-4" />
-                  <path d="M11 13l6-6" />
-                  <rect x="13" y="3" width="6" height="4" rx="1.2" />
-                  <rect x="3" y="15" width="6" height="4" rx="1.2" />
-                </svg>
-              </div>
-
-              <div className="text-xs uppercase tracking-[0.22em] text-cyan-300 mb-3">
-                Шаг 3
-              </div>
-              <h3 className="text-lg md:text-xl font-semibold mb-2">
-                Инъекционный этап
-              </h3>
-              <p className="text-sm md:text-base opacity-90">
-                Препарат вводится точечно в жировую ткань. Процедура обычно
-                занимает 20–40&nbsp;минут и переносится комфортно.
-              </p>
-            </div>
-
-            {/* Шаг 4 */}
-            <div
-              ref={(el) => {
-                stepRefs.current[3] = el;
-              }}
-              data-step-index="3"
-              className={`procedure-step p-6 md:p-7 procedure-fade procedure-delay-4 ${
-                visibleSteps[3] ? "visible" : ""
-              }`}
-            >
-              <div className="mb-4 flex justify-center">
-                <svg
-                  className="text-cyan-300/80"
-                  style={{ width: "1cm", height: "1cm" }}
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="1.6"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
-                  <path d="M12 3v4" />
-                  <path d="M7 7h10" />
-                  <rect x="5" y="7" width="14" height="11" rx="2" />
-                  <path d="M9 13.5l2 2l4-4" />
-                </svg>
-              </div>
-
-              <div className="text-xs uppercase tracking-[0.22em] text-cyan-300 mb-3">
-                Шаг 4
-              </div>
-              <h3 className="text-lg md:text-xl font-semibold mb-2">
-                Восстановление и результат
-              </h3>
-              <p className="text-sm md:text-base opacity-90">
-                Первые изменения обычно заметны через 7–10&nbsp;дней, курс
-                состоит из нескольких сеансов, которые подбирает специалист.
-              </p>
-            </div>
-          </div>
-
-          <p className="mt-10 text-sm md:text-base opacity-70 max-w-3xl mx-auto text-center">
-            LipoLong работает с жировыми клетками деликатно, не повреждая ткани
-            и сохраняя комфортный период восстановления.
-          </p>
-        </div>
-      </section>
-
-            {/* ================================
-                СЕКЦИЯ 4 — КОНТАКТЫ LIPOLONG
-            ================================ */}
-            <section
-              id="s4"
-              className="snap-section contacts-section px-4 md:px-0 s4-no-scroll photo-scroll-bg"
-              ref={contactsRef}
-              style={CONTACTS_BG}
-            >
-              <div className={`${contactsVisible ? "contacts-animated" : ""} w-full max-w-6xl mx-auto`}>
-                <div className="s4-shell">
-                  <div className="s4-head text-center">
-                    <h2 className="s4-title text-3xl md:text-5xl font-extrabold text-cyan-200">Запись на процедуру LipoLong</h2>
-                    <p className="s4-sub text-lg md:text-xl opacity-90 text-cyan-100">
-                      Выберите удобный способ связи — оставьте заявку через форму или оформите покупку напрямую. Мы поможем подобрать время и ответим на вопросы.
-                    </p>
-                  </div>
-
-                  <div className="s4-grid">
-                    <div className="s4-visual-card glass-card">
-                      <div className="s4-pack-frame">
-                        <div className="pack-animated-wrap">
-                          <Image
-                            src="/images/pack-placeholder.png"
-                            alt="Упаковка LipoLong"
-                            width={520}
-                            height={520}
-                            className="s4-pack-image"
-                            priority
-                          />
-                        </div>
-                      </div>
-                      <div className="s4-pack-content">
-                        <p className="s4-eyebrow">LipoLong — инновационный липомодулятор</p>
-                        <h3 className="s4-pack-title">Контур тела под контролем</h3>
-                        <p className="s4-pack-text">
-                          Локально уменьшает жировые отложения, корректирует контуры тела и помогает поддерживать результат без продолжительной реабилитации.
-                        </p>
-                        <ul className="s4-pack-list">
-                          <li>Безопасный состав: гиалуронат натрия + липолитики</li>
-                          <li>Короткая процедура и быстрый возврат к режиму</li>
-                          <li>Подходит для живота, боков, бедер и рук</li>
-                        </ul>
-                      </div>
-                      <dl className="s4-pack-meta">
-                        <div>
-                          <dt>Форма выпуска</dt>
-                          <dd>Ампула 8 мл</dd>
-                        </div>
-                        <div>
-                          <dt>Условия хранения</dt>
-                          <dd>При t° 2‑25°С, защищать от света</dd>
-                        </div>
-                      </dl>
-                      <div className="s4-actions">
-                        <a
-                          href="/order"
-                          role="button"
-                          className="btn-buy-primary"
-                          style={{ padding: "1rem 2rem", fontSize: "1.05rem" }}
-                        >
-                          Купить LipoLong
-                        </a>
-                      </div>
-                    </div>
-
-                    <div className="glass-card p-6 md:p-10 w-full s4-form-card">
-                      <div className="s4-form-head">
-                        <p className="s4-pill s4-pill--ghost">Быстрая запись</p>
-                        <h3 className="text-2xl md:text-3xl font-bold text-cyan-100">Оставьте свои контакты</h3>
-                        <p className="text-sm md:text-base text-cyan-100/80">
-                          Мы уточним, какая зона интересует, подтвердим стоимость и согласуем время консультации.
-                        </p>
-                      </div>
-                      <div className="s4-form-fields">
-                        <label className="s4-field" htmlFor="lead-name">
-                          <span>Как к вам обращаться?</span>
-                          <input
-                            id="lead-name"
-                            name="lead-name"
-                            type="text"
-                            className="glass-input"
-                            placeholder="Например, Анна"
-                          />
-                        </label>
-                        <label className="s4-field" htmlFor="lead-phone">
-                          <span>Телефон для связи</span>
-                          <input
-                            id="lead-phone"
-                            name="lead-phone"
-                            type="tel"
-                            className="glass-input"
-                            placeholder="+7 (___) ___-__-__"
-                          />
-                        </label>
-                        <label className="s4-field s4-field--textarea" htmlFor="lead-message">
-                          <span>Комментарий или удобное время</span>
-                          <textarea
-                            id="lead-message"
-                            name="lead-message"
-                            className="glass-input"
-                            style={{ height: "110px", borderRadius: "1rem" }}
-                            placeholder="Опишите желаемую зону и формат консультации."
-                          />
-                        </label>
-                        <button className="glass-submit">
-                          Отправить заявку
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-        </section>
       {/* Мобильная плавающая кнопка CTA */}
       <div className={`mobile-cta-bar md:hidden ${showMobileCta ? "mobile-cta-bar--visible" : ""}`} aria-hidden={!showMobileCta}>
         <a
@@ -575,7 +315,7 @@ export default function Home() {
           Записаться
         </a>
         <a
-          href="#s2"
+          href="#s3"
           className="mobile-cta-btn ghost"
           aria-label="Смотреть результаты LipoLong"
         >

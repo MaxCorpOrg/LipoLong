@@ -80,9 +80,9 @@ export default function DotNav() {
 
   const SECTION_LABELS = [
     "Главная",
+    "Запись на процедуру",
     "Результаты LipoLong",
-    "Как проходит процедура",
-    "Контакты LipoLong",
+    "Футер",
   ];
 
   return (
