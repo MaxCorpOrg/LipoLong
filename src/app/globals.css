@@ -621,8 +621,21 @@ nextjs-dev-overlay,
 .contacts-section {
   position: relative;
   overflow: hidden;
-  background: radial-gradient(circle at 60% 40%, #03161c 0%, #01090d 55%, #000000 100%);
+  background-color: #01070a;
+  background-image: url("/backgrounds/s2-contacts-768.webp");
   color: #e8ffff;
+}
+
+@media (min-width: 768px) {
+  .contacts-section {
+    background-image: url("/backgrounds/s2-contacts-1280.webp");
+  }
+}
+
+@media (min-width: 1280px) {
+  .contacts-section {
+    background-image: url("/backgrounds/s2-contacts-1920.webp");
+  }
 }
 
 

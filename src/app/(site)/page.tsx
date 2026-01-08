@@ -12,10 +12,6 @@ const RESULTS_BG = makeScrollBg(
   "/backgrounds/hero-scroll.png",
   "linear-gradient(180deg, rgba(1, 7, 10, 0), rgba(0, 0, 0, 0))"
 );
-const CONTACTS_BG = makeScrollBg(
-  "/backgrounds/hero-scroll.png",
-  "linear-gradient(180deg, rgba(1, 7, 10, 0), rgba(0, 0, 0, 0))"
-);
 
 export default function Home() {
   const heroRef = useRef<HTMLElement | null>(null);
@@ -152,16 +148,15 @@ export default function Home() {
                 target="_blank"
                 rel="noopener noreferrer"
                 role="button"
-                aria-label="Открыть общий чат LipoLong в Telegram"
+                aria-label="Открыть чат LipoLong в Telegram"
                 className="btn-hero btn-hero--primary"
               >
                 <span className="btn-hero-icon" aria-hidden="true">
-                  {/* SVG иконка чата. Используем stroke=currentColor, иконка возьмёт цвет из .btn-hero-icon */}
-                  <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M21 15a4 4 0 0 1-4 4H7l-4 4V5a2 2 0 0 1 2-2h14a4 4 0 0 1 4 4z" />
+                  <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">
+                    <path d="M21.8 4.2c.5-1.5-.5-2.5-2-2L4.1 8c-1.7.6-1.7 1.9-.3 2.3l4.1 1.3 1.6 4.9c.3.9.6 1.2 1.3 1.2.7 0 1-.3 1.4-.7l2-2 4.1 3c.8.4 1.4.2 1.6-.7L21.8 4.2zm-15 6.6L18 6.2l-8.5 6.4-.3 3.1-1.2-3.8-4.2-1.1z" />
                   </svg>
                 </span>
-                <span>Общий чат</span>
+                <span>Чат в TG</span>
               </a>
             </div>
           </div>
@@ -175,7 +170,6 @@ export default function Home() {
         id="s2"
         className="snap-section contacts-section px-4 md:px-0 s4-no-scroll photo-scroll-bg"
         ref={contactsRef}
-        style={CONTACTS_BG}
       >
         <div className={`${contactsVisible ? "contacts-animated" : ""} w-full max-w-6xl mx-auto`}>
           <div className="s4-shell">
@@ -191,7 +185,7 @@ export default function Home() {
                 <div className="s4-pack-frame">
                   <div className="pack-animated-wrap">
                     <Image
-                      src="/images/pack-placeholder.png"
+                      src="/images/pack-placeholder.webp"
                       alt="Упаковка LipoLong"
                       width={520}
                       height={520}

@@ -18,52 +18,42 @@ export default function DotNav() {
     sectionsRef.current = sections;
     setCount(sections.length);
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            const idx = Number(
-              (entry.target as HTMLElement).dataset.dotIndex ?? -1
-            );
-            if (!Number.isNaN(idx) && idx >= 0) {
-              setActiveIndex(idx);
-            }
-          }
-        });
-      },
-      { threshold: 0.35 }
-    );
-
-    sections.forEach((sec, i) => {
-      sec.dataset.dotIndex = String(i);
-      observer.observe(sec);
-    });
-
     let frame = 0;
-    const handleScrollFallback = () => {
+    const updateActive = () => {
+      const current = sectionsRef.current;
+      if (!current.length) return;
+      const viewportCenter = window.innerHeight / 2;
+      let bestIndex = 0;
+      let bestDistance = Number.POSITIVE_INFINITY;
+      current.forEach((sec, i) => {
+        const rect = sec.getBoundingClientRect();
+        const center = rect.top + rect.height / 2;
+        const distance = Math.abs(center - viewportCenter);
+        if (distance < bestDistance) {
+          bestDistance = distance;
+          bestIndex = i;
+        }
+      });
+      setActiveIndex(bestIndex);
+    };
+
+    const handleScroll = () => {
       if (frame) return;
       frame = window.requestAnimationFrame(() => {
         frame = 0;
-        const current = sectionsRef.current;
-        const scrollPos = window.scrollY + window.innerHeight / 2;
-        for (let i = 0; i < current.length; i++) {
-          const sec = current[i];
-          const rectTop = sec.getBoundingClientRect().top + window.scrollY;
-          const height = sec.clientHeight;
-          if (rectTop <= scrollPos && rectTop + height > scrollPos) {
-            setActiveIndex(i);
-            break;
-          }
-        }
+        updateActive();
       });
     };
 
-    handleScrollFallback();
-    window.addEventListener("scroll", handleScrollFallback, { passive: true });
+    updateActive();
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    document.addEventListener("scroll", handleScroll, { passive: true, capture: true });
+    window.addEventListener("resize", handleScroll);
 
     return () => {
-      observer.disconnect();
-      window.removeEventListener("scroll", handleScrollFallback);
+      window.removeEventListener("scroll", handleScroll);
+      document.removeEventListener("scroll", handleScroll, { capture: true } as AddEventListenerOptions);
+      window.removeEventListener("resize", handleScroll);
       if (frame) {
         window.cancelAnimationFrame(frame);
       }
