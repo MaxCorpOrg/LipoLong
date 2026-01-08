@@ -230,14 +230,9 @@ nextjs-dev-overlay,
   background-size: cover;
   background-position: center top;
   background-repeat: no-repeat;
-  background-attachment: fixed;
+  background-attachment: scroll;
 }
 
-@media (max-width: 1024px) {
-  .photo-scroll-bg {
-    background-attachment: scroll;
-  }
-}
 
 /* Контент выше фоновых слоев секции */
 .snap-section > * {
