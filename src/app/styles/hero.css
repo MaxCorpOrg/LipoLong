@@ -397,29 +397,30 @@
   }
 }
 
-@media (min-width: 1600px) and (min-height: 900px) {
+@media (min-width: 1440px) and (min-height: 800px) {
   .hero-content {
-    gap: clamp(14px, 2.2vh, 24px);
+    max-width: 1200px;
+    gap: clamp(16px, 2.4vh, 26px);
   }
   .hero-logo-wrap {
-    width: clamp(360px, 32vw, 620px);
-    max-width: 620px;
+    width: clamp(420px, 36vw, 700px);
+    max-width: 700px;
   }
   .hero-logo-image {
-    max-height: min(50vh, 520px);
+    max-height: min(52vh, 560px);
   }
   .hero-title {
-    font-size: clamp(30px, 2.6vw, 52px) !important;
+    font-size: clamp(34px, 2.8vw, 56px) !important;
   }
   .hero-lead {
-    font-size: clamp(18px, 1.4vw, 22px) !important;
+    font-size: clamp(19px, 1.6vw, 24px) !important;
   }
   .hero-buttons-row {
-    gap: clamp(0.9rem, 1.1vw, 1.4rem);
-    margin-top: clamp(8px, 1.6vh, 18px);
+    gap: clamp(1rem, 1.2vw, 1.6rem);
+    margin-top: clamp(10px, 1.8vh, 20px);
   }
   .btn-hero {
-    min-height: clamp(56px, 6vh, 66px);
-    font-size: clamp(0.85rem, 0.75vw, 1rem);
+    min-height: clamp(58px, 6.4vh, 70px);
+    font-size: clamp(0.9rem, 0.85vw, 1.05rem);
   }
 }
