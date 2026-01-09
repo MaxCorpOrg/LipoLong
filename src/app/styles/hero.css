@@ -397,7 +397,7 @@
   }
 }
 
-@media (min-width: 1440px) and (min-height: 800px) {
+@media (min-width: 1440px) {
   .hero-content {
     max-width: 1200px;
     gap: clamp(16px, 2.4vh, 26px);
@@ -422,5 +422,15 @@
   .btn-hero {
     min-height: clamp(58px, 6.4vh, 70px);
     font-size: clamp(0.9rem, 0.85vw, 1.05rem);
+  }
+}
+
+.hero-lead-nowrap {
+  white-space: nowrap;
+}
+
+@media (max-width: 640px) {
+  .hero-lead-nowrap {
+    white-space: normal;
   }
 }

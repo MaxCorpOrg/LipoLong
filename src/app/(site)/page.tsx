@@ -81,7 +81,8 @@ export default function Home() {
           <p className="hero-lead text-lg md:text-2xl mb-10 opacity-90 max-w-3xl mx-auto">
             Безоперационная липомодификация с быстрым эффектом.
             <br />
-            Современная процедура для безопасного изменения контуров тела.
+            Современная процедура для безопасного изменения{" "}
+            <span className="hero-lead-nowrap">контуров тела.</span>
           </p>
 
           {/* КНОПКИ HERO — "Подробнее" по центру, "Чат" справа */}
