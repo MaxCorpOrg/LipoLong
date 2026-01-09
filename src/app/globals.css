@@ -764,6 +764,7 @@ nextjs-dev-overlay,
     0 0 14px rgba(59, 130, 246, 0.7);
   letter-spacing: 0.18em;
   text-transform: uppercase;
+  white-space: nowrap;
   animation: headerBrandGlow 6s ease-in-out infinite;
   margin-right: 0.625rem; /* 10px зазор между брендом и иконками */
   text-decoration: none;
@@ -778,7 +779,10 @@ nextjs-dev-overlay,
 .header-brand,
 .header-icon-btn {
   position: relative;
-  top: 10px; 
+}
+
+.header-shell {
+  padding-inline: clamp(10px, 1.8vw, 24px);
 }
 
 
