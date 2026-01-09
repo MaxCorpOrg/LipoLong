@@ -72,7 +72,7 @@ export default function DotNav() {
     "Главная",
     "Запись на процедуру",
     "Результаты LipoLong",
-    "Футер",
+    "Контакты",
   ];
 
   return (

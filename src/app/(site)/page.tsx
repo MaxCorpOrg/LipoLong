@@ -208,7 +208,7 @@ export default function Home() {
                 <dl className="s4-pack-meta">
                   <div>
                     <dt>Форма выпуска</dt>
-                    <dd>Ампула 8 мл</dd>
+                    <dd>В упаковке 2 флакона по 4 мл.</dd>
                   </div>
                   <div>
                     <dt>Условия хранения</dt>
@@ -289,8 +289,12 @@ export default function Home() {
               Результаты LipoLong
             </h2>
 
-            <p className="s2-sub text-lg md:text-xl opacity-90 max-w-2xl text-cyan-100">
-              Посмотри, как меняются зоны после процедуры. Слайды листаются автоматически, но ты всегда можешь переключить их вручную.
+            <p className="s2-sub text-lg md:text-xl opacity-90 max-w-4xl text-cyan-100">
+              Посмотри, как меняются зоны после процедуры.
+              <br className="s2-sub-break" />
+              <span className="s2-sub-nowrap">
+                Слайды листаются автоматически, но ты всегда можешь переключить их вручную.
+              </span>
             </p>
           </div>
 

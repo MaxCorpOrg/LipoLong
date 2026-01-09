@@ -107,7 +107,7 @@ export default function Footer() {
                 </div>
                 <div>
                   <p className="footer-label">График</p>
-                  <p className="footer-value">Пн–Вс 8:00 – 21:00</p>
+                  <p className="footer-value">Пн–Вс 10:00 – 22:00</p>
                   <p className="footer-meta-text">
                     Консультируем и оформляем заказы
                   </p>

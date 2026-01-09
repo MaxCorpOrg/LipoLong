@@ -76,6 +76,14 @@
   margin-bottom: clamp(6px, 1.2vh, 12px);
 }
 
+.s2-sub-break {
+  display: block;
+}
+
+.s2-sub-nowrap {
+  white-space: nowrap;
+}
+
 .slider-wrapper {
   position: relative;
   width: 100%;
@@ -374,7 +382,15 @@
   line-height: 1.6;
 }
 
-@media (max-width: 640px) {
+@media (max-width: 1024px) {
+  .s2-sub-break {
+    display: none;
+  }
+
+  .s2-sub-nowrap {
+    white-space: normal;
+  }
+
   .slider-wrapper {
     width: 100%;
     max-width: 100%;

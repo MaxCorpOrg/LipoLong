@@ -871,6 +871,8 @@ nextjs-dev-overlay,
 
 .header-icon-btn svg {
   display: block;
+  width: 1.3rem;
+  height: 1.3rem;
 }
 
 
