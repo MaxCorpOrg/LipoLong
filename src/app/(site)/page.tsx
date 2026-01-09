@@ -144,11 +144,18 @@ export default function Home() {
                 className="btn-hero btn-hero--primary"
               >
                 <span className="btn-hero-icon" aria-hidden="true">
-                  <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">
-                    <path d="M21.8 4.2c.5-1.5-.5-2.5-2-2L4.1 8c-1.7.6-1.7 1.9-.3 2.3l4.1 1.3 1.6 4.9c.3.9.6 1.2 1.3 1.2.7 0 1-.3 1.4-.7l2-2 4.1 3c.8.4 1.4.2 1.6-.7L21.8 4.2zm-15 6.6L18 6.2l-8.5 6.4-.3 3.1-1.2-3.8-4.2-1.1z" />
+                  <svg
+                    viewBox="0 0 24 24"
+                    width="18"
+                    height="18"
+                    fill="currentColor"
+                    aria-hidden="true"
+                    className="btn-hero-icon-svg btn-hero-icon-svg--tg"
+                  >
+                    <path d="M22 4.3c.4-1.4-.7-2-2-1.5L4.3 8.9c-1.4.5-1.4 1.6-.2 2l3.9 1.2 1.5 4.6c.2.7 1 .9 1.5.4l2.1-2 3.9 2.9c.6.4 1.3.1 1.5-.6L22 4.3zm-13.4 7.5 8.4-5.2-6.3 6-.2 2.7-1-3.2-3.4-1.1 2.5-0.9z" />
                   </svg>
                 </span>
-                <span>Чат в TG</span>
+                <span>Наш чат в ТГ</span>
               </a>
             </div>
           </div>
