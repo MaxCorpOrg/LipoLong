@@ -396,3 +396,30 @@
     margin-bottom: clamp(16px, 5vh, 32px);
   }
 }
+
+@media (min-width: 1600px) and (min-height: 900px) {
+  .hero-content {
+    gap: clamp(14px, 2.2vh, 24px);
+  }
+  .hero-logo-wrap {
+    width: clamp(360px, 32vw, 620px);
+    max-width: 620px;
+  }
+  .hero-logo-image {
+    max-height: min(50vh, 520px);
+  }
+  .hero-title {
+    font-size: clamp(30px, 2.6vw, 52px) !important;
+  }
+  .hero-lead {
+    font-size: clamp(18px, 1.4vw, 22px) !important;
+  }
+  .hero-buttons-row {
+    gap: clamp(0.9rem, 1.1vw, 1.4rem);
+    margin-top: clamp(8px, 1.6vh, 18px);
+  }
+  .btn-hero {
+    min-height: clamp(56px, 6vh, 66px);
+    font-size: clamp(0.85rem, 0.75vw, 1rem);
+  }
+}
