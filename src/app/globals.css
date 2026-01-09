@@ -852,6 +852,10 @@ nextjs-dev-overlay,
   background-size: 180% 180%;
 }
 
+.header-icon-btn--tg svg {
+  transform: translate(-2.5px, 0.6px);
+}
+
 /* Ховер и активные состояния */
 .header-icon-btn:hover {
   transform: translateY(-2px) scale(1.05);

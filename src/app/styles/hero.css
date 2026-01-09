@@ -325,7 +325,7 @@
 }
 
 .btn-hero-icon-svg--tg {
-  transform: translateX(-1px);
+  transform: translate(-1.8px, 0.6px);
 }
 
 /* Ховер и активное состояние */
