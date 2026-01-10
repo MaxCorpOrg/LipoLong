@@ -85,7 +85,7 @@ export default function Home() {
             <span className="hero-lead-nowrap">контуров тела.</span>
           </p>
 
-          {/* КНОПКИ HERO — "Подробнее" по центру, "Чат" справа */}
+          {/* КНОПКИ HERO — "Сотрудничество" по центру, "Чат" справа */}
           <div className="hero-buttons-row">
             {/* Слот слева — кнопка "Записаться" */}
             <div className="hero-btn-slot hero-btn-slot--left">
@@ -121,15 +121,15 @@ export default function Home() {
                 <span>Записаться</span>
               </a>
             </div>
-            {/* Слот центра — кнопка "Подробнее" */}
+            {/* Слот центра — кнопка "Сотрудничество" */}
             <div className="hero-btn-slot hero-btn-slot--center">
               <a
-                href="#s3"
+                href="#s5-coop"
                 role="button"
-                aria-label="Подробнее о результатах LipoLong"
+                aria-label="Перейти к сотрудничеству"
                 className="btn-hero btn-hero--secondary"
               >
-                Подробнее ↓
+                Сотрудничество
               </a>
             </div>
 

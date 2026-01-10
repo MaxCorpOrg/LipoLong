@@ -74,33 +74,62 @@ export default function DotNav() {
     "Результаты LipoLong",
     "Контакты",
   ];
+  const showBack = count > 0 && active >= count - 1;
 
   return (
-    <div
-      role="navigation"
-      aria-label="Навигация по секциям"
-      data-count={count}
-      className="dotnav-root hidden md:flex md:flex-col md:gap-3 md:items-center"
-    >
-      <div aria-live="polite" className="sr-only" role="status">
-        {SECTION_LABELS[active] ?? `Секция ${active + 1}`}
+    <>
+      <div
+        role="navigation"
+        aria-label="Навигация по секциям"
+        data-count={count}
+        className="dotnav-root hidden md:flex md:flex-col md:gap-3 md:items-center"
+      >
+        <div aria-live="polite" className="sr-only" role="status">
+          {SECTION_LABELS[active] ?? `Секция ${active + 1}`}
+        </div>
+        {Array.from({ length: count }).map((_, i) => (
+          <button
+            key={i}
+            onClick={() => scrollTo(i)}
+            aria-label={SECTION_LABELS[i] ?? `Секция ${i + 1}`}
+            title={SECTION_LABELS[i] ?? `Секция ${i + 1}`}
+            className={`dot ${active === i ? "dot--active" : ""}`}
+            aria-current={active === i ? "true" : undefined}
+          >
+            <span
+              className={`dot__inner ${
+                active === i ? "dot__inner--active" : ""
+              }`}
+            />
+          </button>
+        ))}
+        {showBack ? (
+          <button
+            type="button"
+            onClick={() => scrollTo(0)}
+            aria-label="Вернуться на главную"
+            title="Вернуться на главную"
+            className="dotnav-back"
+          >
+            <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true">
+              <path d="M12 5l-6 6h4v8h4v-8h4z" fill="currentColor" />
+            </svg>
+          </button>
+        ) : null}
       </div>
-      {Array.from({ length: count }).map((_, i) => (
+      {showBack ? (
         <button
-          key={i}
-          onClick={() => scrollTo(i)}
-          aria-label={SECTION_LABELS[i] ?? `Секция ${i + 1}`}
-          title={SECTION_LABELS[i] ?? `Секция ${i + 1}`}
-          className={`dot ${active === i ? "dot--active" : ""}`}
-          aria-current={active === i ? "true" : undefined}
+          type="button"
+          onClick={() => scrollTo(0)}
+          aria-label="Вернуться на главную"
+          title="Вернуться на главную"
+          className="dotnav-back dotnav-back--mobile md:hidden"
         >
-          <span
-            className={`dot__inner ${
-              active === i ? "dot__inner--active" : ""
-            }`}
-          />
+          <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true">
+            <path d="M12 5l-6 6h4v8h4v-8h4z" fill="currentColor" />
+          </svg>
         </button>
-      ))}
-    </div>
+      ) : null}
+    </>
   );
 }

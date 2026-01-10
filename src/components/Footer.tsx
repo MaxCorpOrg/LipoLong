@@ -116,43 +116,53 @@ export default function Footer() {
             </ul>
           </div>
 
-          <div className="footer-card footer-card--secondary">
-            <div className="footer-meta">
-              <p className="footer-label text-cyan-200/90">Реквизиты компании</p>
-              <p className="footer-value">
-                ИНН: <span className="footer-meta-strong">—</span>
-              </p>
-              <p className="footer-meta-text">
-                Предоставим дополнительные документы по запросу или познакомим с
-                ними в один клик.
-              </p>
-            </div>
-
-            <div className="footer-docs">
-              <p className="footer-label text-cyan-200/90">Документы</p>
+          <div
+            id="s5-coop"
+            className="footer-card footer-card--secondary footer-card--coop"
+          >
+            <p className="footer-coop-title">
+              Приглашаем к сотрудничеству оптовых партнёров
+            </p>
+            <p className="footer-coop-subtitle">
+              Эксклюзивные условия, стабильные поставки и прямая связь с
+              представителем LipoLong
+            </p>
+            <div className="footer-coop-actions">
               <a
-                href="/docs"
+                href="https://t.me/Vorgesar"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="btn-hero btn-hero--secondary inline-flex items-center gap-3 text-sm md:text-base py-2 px-5"
+                className="footer-coop-link"
+                aria-label="Написать в Telegram"
               >
-                <svg
-                  viewBox="0 0 24 24"
-                  width="18"
-                  height="18"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="1.6"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  aria-hidden="true"
-                >
-                  <path d="M7 3h7l4 4v14H7z" />
-                  <path d="M14 3v5h5" />
-                  <path d="M10 13h6" />
-                  <path d="M10 17h4" />
-                </svg>
-                Смотреть документы
+                <span className="footer-coop-icon footer-coop-icon--tg">
+                  <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor">
+                    <path d="M21.8 4.2c.5-1.5-.5-2.5-2-2L4.1 8c-1.7.6-1.7 1.9-.3 2.3l4.1 1.3 1.6 4.9c.3.9 1.2 1.1 1.9.4l2.4-2.5 4.4 3.2c.8.5 1.5.2 1.7-.7L21.8 4.2zM8.6 12.2 18.5 6.8l-7.9 7.4-.3 3.4-1.2-3.8-3.7-1.2 3.2-.4z" />
+                  </svg>
+                </span>
+                <span className="footer-coop-text">
+                  <span className="footer-coop-label">Telegram</span>
+                  <span className="footer-coop-desc">
+                    Получить условия и оптовые цены
+                  </span>
+                </span>
+              </a>
+              <a
+                href="tel:+79042440444"
+                className="footer-coop-link"
+                aria-label="Позвонить +7 904 244 04 44"
+              >
+                <span className="footer-coop-icon footer-coop-icon--phone">
+                  <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor">
+                    <path d="M6.6 10.8a15.9 15.9 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.24 11.7 11.7 0 0 0 3.7 1.2 1 1 0 0 1 .9 1v3.5a1 1 0 0 1-1 1A17.9 17.9 0 0 1 4 5a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 .9 11.7 11.7 0 0 0 1.2 3.7 1 1 0 0 1-.24 1l-2.2 2.2z" />
+                  </svg>
+                </span>
+                <span className="footer-coop-text">
+                  <span className="footer-coop-label">Телефон</span>
+                  <span className="footer-coop-desc">
+                    Позвонить и обсудить сотрудничество
+                  </span>
+                </span>
               </a>
             </div>
           </div>
