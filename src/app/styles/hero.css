@@ -152,6 +152,8 @@
   animation: heroLogoBreath 6s ease-in-out infinite;
   will-change: transform, filter;
   filter: drop-shadow(0 12px 30px rgba(6,182,212,0.12)) drop-shadow(0 0 26px rgba(59,130,246,0.06));
+  pointer-events: none;
+  user-select: none;
 }
 
 @keyframes heroLogoBreath {

@@ -208,11 +208,19 @@ export default function Home() {
                 <dl className="s4-pack-meta">
                   <div>
                     <dt>Форма выпуска</dt>
-                    <dd>В упаковке 2 флакона по 4 мл.</dd>
+                    <dd>
+                      В упаковке
+                      <br />
+                      2 флакона по 4 мл.
+                    </dd>
                   </div>
                   <div>
                     <dt>Условия хранения</dt>
-                    <dd>При t° 2‑25°С, защищать от света</dd>
+                    <dd>
+                      При t° 2‑25°С,
+                      <br />
+                      защищать от света
+                    </dd>
                   </div>
                 </dl>
                 <div className="s4-actions">
