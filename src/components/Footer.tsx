@@ -52,7 +52,7 @@ export default function Footer() {
                   >
                     +7 904 244 04 44
                   </a>
-                  <p className="footer-meta-text">Ежедневно 8:00–21:00 по МСК</p>
+                  <p className="footer-meta-text">Ежедневно 10:00–22:00 по МСК</p>
                 </div>
               </li>
 
@@ -107,7 +107,7 @@ export default function Footer() {
                 </div>
                 <div>
                   <p className="footer-label">График</p>
-                  <p className="footer-value">Пн–Вс 10:00 – 22:00</p>
+                  <p className="footer-value">Пн–Вс 10:00 – 22:00 по МСК</p>
                   <p className="footer-meta-text">
                     Консультируем и оформляем заказы
                   </p>
