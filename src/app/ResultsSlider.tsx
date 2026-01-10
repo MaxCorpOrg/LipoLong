@@ -80,7 +80,7 @@ export default function ResultsSlider() {
 
     const id = setInterval(
       () => setIndex((prev) => (prev + 1) % slides.length),
-      6000
+      4500
     );
     return () => clearInterval(id);
   }, [isVisible]);
@@ -129,12 +129,7 @@ export default function ResultsSlider() {
               alt={current.label}
               width={1536}
               height={412}
-              style={{
-                width: "100%",
-                height: "100%",
-                objectFit: "contain",
-                objectPosition: "center",
-              }}
+              className="slider-image-img"
               loading="lazy"
               sizes="(max-width: 640px) 100vw, (max-width: 1280px) 90vw, 1200px"
             />

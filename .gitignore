@@ -41,3 +41,8 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# local dev artifacts
+/prisma/dev.db
+/public/backgrounds/главная/
+/public/lipolong_favicon_io/
