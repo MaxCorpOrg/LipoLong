@@ -78,15 +78,17 @@
   .hero-buttons-row {
     padding-inline: 0.75rem;
     margin-top: clamp(12px, 3vh, 24px);
-    margin-bottom: clamp(20px, 7vh, 46px);
+    margin-bottom: clamp(14px, 5vh, 32px);
   }
 
   .hero-btn-slot .btn-hero {
-    width: min(4.2cm, 88vw) !important;
-    max-width: 320px;
+    width: min(5.4cm, 92vw) !important;
+    max-width: 360px;
     display: inline-flex;
     margin-left: auto;
     margin-right: auto;
+    white-space: nowrap;
+    letter-spacing: 0.12em;
   }
 
   .hero-btn-slot--left {
@@ -380,8 +382,8 @@
   .hero-content {
     position: static;
     top: auto;
-    gap: clamp(12px, 3vh, 18px);
-    padding-bottom: clamp(20px, 6vh, 56px);
+    gap: clamp(10px, 2.2vh, 16px);
+    padding-bottom: clamp(14px, 4vh, 32px);
     padding-inline: clamp(14px, 5vw, 20px);
   }
   .hero-title {
@@ -393,17 +395,17 @@
     line-height: 1.36 !important;
   }
   .hero-logo-wrap {
-    width: clamp(150px, 52vw, 220px);
-    max-width: 240px;
-    margin-top: 6px !important;
+    width: clamp(270px, 78vw, 420px);
+    max-width: 420px;
+    margin-top: -22px !important;
   }
   .hero-logo-image {
-    max-height: min(26vh, 220px);
+    max-height: min(38vh, 340px);
   }
   .hero-buttons-row {
     gap: 0.75rem;
     margin-top: clamp(10px, 2.5vh, 16px);
-    margin-bottom: clamp(16px, 5vh, 32px);
+    margin-bottom: clamp(12px, 4vh, 24px);
   }
 }
 
