@@ -7,6 +7,9 @@ import Image from "next/image";
 export default function Home() {
   const heroRef = useRef<HTMLElement | null>(null);
   const [showMobileCta, setShowMobileCta] = useState(false);
+  const [leadStatus, setLeadStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+  const [leadError, setLeadError] = useState("");
+  const [leadStartedAt, setLeadStartedAt] = useState(() => Date.now().toString());
 
   useEffect(() => {
     const hero = heroRef.current;
@@ -46,6 +49,48 @@ export default function Home() {
     observer.observe(el);
     return () => observer.disconnect();
   }, []);
+
+  const handleLeadSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    setLeadStatus("loading");
+    setLeadError("");
+
+    const form = event.currentTarget;
+    const formData = new FormData(form);
+    const payload = {
+      name: (formData.get("name") ?? "").toString(),
+      email: (formData.get("email") ?? "").toString(),
+      phone: (formData.get("phone") ?? "").toString(),
+      message: (formData.get("message") ?? "").toString(),
+      website: (formData.get("website") ?? "").toString(),
+      startedAt: (formData.get("startedAt") ?? leadStartedAt).toString(),
+    };
+
+    try {
+      const res = await fetch("/api/lead", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok || !data?.ok) {
+        throw new Error(data?.error || "Не удалось отправить. Попробуйте ещё раз.");
+      }
+
+      setLeadStatus("success");
+      form.reset();
+      setLeadStartedAt(Date.now().toString());
+    } catch (err) {
+      const message =
+        err instanceof Error && err.message
+          ? err.message
+          : "Не удалось отправить. Попробуйте ещё раз.";
+      console.error(err);
+      setLeadError(message);
+      setLeadStatus("error");
+    }
+  };
 
   return (
     <main>
@@ -243,41 +288,69 @@ export default function Home() {
                     Мы уточним, какая зона интересует, подтвердим стоимость и согласуем время консультации.
                   </p>
                 </div>
-                <div className="s4-form-fields">
+                <form className="s4-form-fields" onSubmit={handleLeadSubmit}>
                   <label className="s4-field" htmlFor="lead-name">
                     <span>Как к вам обращаться?</span>
                     <input
                       id="lead-name"
-                      name="lead-name"
+                      name="name"
                       type="text"
                       className="glass-input"
                       placeholder="Например, Анна"
+                      autoComplete="name"
+                    />
+                  </label>
+                  <label className="s4-field" htmlFor="lead-email">
+                    <span>Email</span>
+                    <input
+                      id="lead-email"
+                      name="email"
+                      type="email"
+                      className="glass-input"
+                      placeholder="you@example.com"
+                      autoComplete="email"
                     />
                   </label>
                   <label className="s4-field" htmlFor="lead-phone">
                     <span>Телефон для связи</span>
                     <input
                       id="lead-phone"
-                      name="lead-phone"
+                      name="phone"
                       type="tel"
                       className="glass-input"
                       placeholder="+7 (___) ___-__-__"
+                      autoComplete="tel"
                     />
                   </label>
                   <label className="s4-field s4-field--textarea" htmlFor="lead-message">
                     <span>Комментарий или удобное время</span>
                     <textarea
                       id="lead-message"
-                      name="lead-message"
+                      name="message"
                       className="glass-input"
                       style={{ height: "110px", borderRadius: "1rem" }}
                       placeholder="Опишите желаемую зону и формат консультации."
                     />
                   </label>
-                  <button className="glass-submit">
-                    Отправить заявку
+                  <div style={{ display: "none" }} aria-hidden="true">
+                    <label htmlFor="lead-website">Ваш сайт</label>
+                    <input id="lead-website" name="website" tabIndex={-1} autoComplete="off" />
+                    <input type="hidden" name="startedAt" value={leadStartedAt} readOnly />
+                  </div>
+                  <button className="glass-submit" type="submit" disabled={leadStatus === "loading"}>
+                    {leadStatus === "loading" ? "Отправка..." : "Отправить заявку"}
                   </button>
-                </div>
+                  {leadStatus === "success" && (
+                    <span className="text-sm text-cyan-300 text-center">
+                      Спасибо! Мы свяжемся с вами в ближайшее время.
+                    </span>
+                  )}
+                  {leadStatus === "error" && (
+                    <span className="text-sm text-rose-400 text-center">
+                      {leadError || "Не удалось отправить. Попробуйте ещё раз."}
+                    </span>
+                  )}
+                </form>
               </div>
             </div>
           </div>
