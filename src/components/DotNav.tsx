@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 export default function DotNav() {
   const [active, setActive] = useState(0);
   const [count, setCount] = useState(0);
+  const [isDesktop, setIsDesktop] = useState(false);
   const sectionsRef = useRef<HTMLElement[]>([]);
   const pathname = usePathname();
   const setActiveIndex = (next: number) =>
@@ -60,6 +61,14 @@ export default function DotNav() {
     };
   }, [pathname]);
 
+  useEffect(() => {
+    const media = window.matchMedia("(min-width: 768px)");
+    const update = () => setIsDesktop(media.matches);
+    update();
+    media.addEventListener("change", update);
+    return () => media.removeEventListener("change", update);
+  }, []);
+
   const scrollTo = (i: number) => {
     setActive(i);
     const node = document.querySelectorAll(".snap-section")[i] as
@@ -87,9 +96,9 @@ export default function DotNav() {
         <div aria-live="polite" className="sr-only" role="status">
           {SECTION_LABELS[active] ?? `Секция ${active + 1}`}
         </div>
-        {Array.from({ length: count }).map((_, i) => (
-          <button
-            key={i}
+      {Array.from({ length: count }).map((_, i) => (
+        <button
+          key={i}
             onClick={() => scrollTo(i)}
             aria-label={SECTION_LABELS[i] ?? `Секция ${i + 1}`}
             title={SECTION_LABELS[i] ?? `Секция ${i + 1}`}
@@ -100,30 +109,30 @@ export default function DotNav() {
               className={`dot__inner ${
                 active === i ? "dot__inner--active" : ""
               }`}
-            />
-          </button>
-        ))}
-        {showBack ? (
-          <button
-            type="button"
-            onClick={() => scrollTo(0)}
-            aria-label="Вернуться на главную"
-            title="Вернуться на главную"
-            className="dotnav-back"
-          >
-            <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true">
-              <path d="M12 5l-6 6h4v8h4v-8h4z" fill="currentColor" />
-            </svg>
-          </button>
-        ) : null}
-      </div>
-      {showBack ? (
+          />
+        </button>
+      ))}
+      {showBack && isDesktop ? (
         <button
           type="button"
           onClick={() => scrollTo(0)}
           aria-label="Вернуться на главную"
           title="Вернуться на главную"
-          className="dotnav-back dotnav-back--mobile md:hidden"
+          className="dotnav-back"
+        >
+          <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true">
+            <path d="M12 5l-6 6h4v8h4v-8h4z" fill="currentColor" />
+          </svg>
+        </button>
+      ) : null}
+    </div>
+      {showBack && !isDesktop ? (
+        <button
+          type="button"
+          onClick={() => scrollTo(0)}
+          aria-label="Вернуться на главную"
+          title="Вернуться на главную"
+          className="dotnav-back dotnav-back--mobile"
         >
           <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true">
             <path d="M12 5l-6 6h4v8h4v-8h4z" fill="currentColor" />

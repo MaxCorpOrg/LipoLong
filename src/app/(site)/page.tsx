@@ -92,6 +92,17 @@ export default function Home() {
     }
   };
 
+  const handleCoopClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
+    const target = document.getElementById("s5-coop");
+    if (!target) {
+      return;
+    }
+    event.preventDefault();
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    target.scrollIntoView({ behavior: prefersReducedMotion ? "auto" : "smooth", block: "start" });
+    window.history.replaceState(null, "", "#s5-coop");
+  };
+
   return (
     <main>
       {/* ============================
@@ -173,6 +184,7 @@ export default function Home() {
                 role="button"
                 aria-label="Перейти к сотрудничеству"
                 className="btn-hero btn-hero--secondary"
+                onClick={handleCoopClick}
               >
                 Сотрудничество
               </a>

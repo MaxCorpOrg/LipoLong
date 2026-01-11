@@ -121,11 +121,14 @@ export default function Footer() {
             className="footer-card footer-card--secondary footer-card--coop"
           >
             <p className="footer-coop-title">
-              Приглашаем к сотрудничеству оптовых партнёров
+              Приглашаем к сотрудничеству
+              <br />
+              оптовых партнёров
             </p>
             <p className="footer-coop-subtitle">
-              Эксклюзивные условия, стабильные поставки и прямая связь с
-              представителем LipoLong
+              Эксклюзивные условия, стабильные поставки и прямая
+              <br />
+              связь с представителем LipoLong
             </p>
             <div className="footer-coop-actions">
               <a
@@ -143,7 +146,9 @@ export default function Footer() {
                 <span className="footer-coop-text">
                   <span className="footer-coop-label">Telegram</span>
                   <span className="footer-coop-desc">
-                    Получить условия и оптовые цены
+                    Получить условия
+                    <br />
+                    и оптовые цены
                   </span>
                 </span>
               </a>
@@ -159,8 +164,10 @@ export default function Footer() {
                 </span>
                 <span className="footer-coop-text">
                   <span className="footer-coop-label">Телефон</span>
-                  <span className="footer-coop-desc">
-                    Позвонить и обсудить сотрудничество
+                  <span className="footer-coop-desc footer-coop-desc--phone">
+                    Позвонить
+                    <br />
+                    и обсудить сотрудничество
                   </span>
                 </span>
               </a>
