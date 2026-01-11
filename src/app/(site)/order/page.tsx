@@ -22,7 +22,7 @@ const DUST_POINTS: DustPoint[] = [
 
 export default function OrderPage() {
   return (
-    <section className="snap-section contacts-section px-4 md:px-0">
+    <section className="snap-section contacts-section px-6 md:px-0">
       {/* Секция 4 */}
       <div className="contacts-glow" />
 
@@ -37,9 +37,9 @@ export default function OrderPage() {
         ))}
       </div>
 
-      <div className="w-full max-w-5xl mx-auto pt-28 pb-24 relative z-[2]">
+      <div className="w-full max-w-6xl mx-auto pt-16 md:pt-24 pb-24 px-0 md:px-8 relative z-[2]">
         {/* Логотип */}
-        <div className="flex justify-center mb-8">
+        <div className="flex justify-center mb-6 md:mb-8">
           <div className="hero-logo-wrap">
             <Image
               src="/Logo.png"
@@ -53,7 +53,7 @@ export default function OrderPage() {
         </div>
 
         {/* Заголовок и описание */}
-        <div className="text-center mb-10">
+        <div className="text-center mb-10 md:mb-12">
           <h1 className="text-3xl md:text-5xl font-extrabold mb-4 text-cyan-200">
             Запись на процедуру LipoLong
           </h1>
@@ -63,9 +63,9 @@ export default function OrderPage() {
         </div>
 
         {/* 2 колонки: текст + форма */}
-        <div className="grid gap-10 md:grid-cols-[minmax(0,1.1fr),minmax(0,1fr)] items-start">
+        <div className="grid gap-8 md:gap-12 md:grid-cols-[minmax(0,1.1fr),minmax(0,1fr)] items-start">
           {/* Левая колонка — процесс */}
-          <div className="space-y-5 text-cyan-100 text-sm md:text-base">
+          <div className="space-y-5 text-cyan-100 text-sm md:text-base text-left">
             <h2 className="text-xl md:text-2xl font-semibold text-cyan-200">
               Что будет после отправки заявки
             </h2>
@@ -82,7 +82,9 @@ export default function OrderPage() {
           </div>
 
           {/* Правая колонка — форма */}
-          <OrderForm />
+          <div className="w-full max-w-xl mx-auto md:max-w-none">
+            <OrderForm />
+          </div>
         </div>
       </div>
     </section>

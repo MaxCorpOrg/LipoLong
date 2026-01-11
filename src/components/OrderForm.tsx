@@ -97,7 +97,7 @@ export default function OrderForm() {
   return (
     <form
       onSubmit={onSubmit}
-      className="glass-card w-full max-w-xl mx-auto space-y-6 p-6 md:p-8"
+      className="glass-card w-full space-y-6 p-6 md:p-8"
     >
       <h3 className="text-2xl font-bold mb-2 text-cyan-200 text-center">
         Оставьте заявку
