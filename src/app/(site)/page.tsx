@@ -92,37 +92,30 @@ export default function Home() {
     }
   };
 
-  useEffect(() => {
-    const scrollToCoop = () => {
-      const target = document.getElementById("s5-coop");
-      if (!target) {
-        return;
+  const scrollToCoop = () => {
+    const target = document.getElementById("s5-coop");
+    if (!target) {
+      return;
+    }
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const header = document.querySelector("header");
+    const headerOffset = header instanceof HTMLElement ? header.offsetHeight : 0;
+    const targetTop = target.getBoundingClientRect().top + window.scrollY - headerOffset - 12;
+    target.scrollIntoView({ behavior: prefersReducedMotion ? "auto" : "smooth", block: "start" });
+    window.setTimeout(() => {
+      const rect = target.getBoundingClientRect();
+      if (rect.top > window.innerHeight || rect.bottom < 0) {
+        window.scrollTo({ top: Math.max(0, targetTop), behavior: "auto" });
+        document.documentElement.scrollTop = Math.max(0, targetTop);
+        document.body.scrollTop = Math.max(0, targetTop);
       }
-      const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-      const header = document.querySelector("header");
-      const headerOffset = header instanceof HTMLElement ? header.offsetHeight : 0;
-      const targetTop = target.getBoundingClientRect().top + window.scrollY - headerOffset - 12;
-      target.scrollIntoView({ behavior: prefersReducedMotion ? "auto" : "smooth", block: "start" });
-      window.setTimeout(() => {
-        const rect = target.getBoundingClientRect();
-        if (rect.top > window.innerHeight || rect.bottom < 0) {
-          window.scrollTo({ top: Math.max(0, targetTop), behavior: "auto" });
-          document.documentElement.scrollTop = Math.max(0, targetTop);
-          document.body.scrollTop = Math.max(0, targetTop);
-        }
-      }, 350);
-    };
+    }, 350);
+  };
 
-    const handleHash = () => {
-      if (window.location.hash === "#s5-coop") {
-        scrollToCoop();
-      }
-    };
-
-    handleHash();
-    window.addEventListener("hashchange", handleHash);
-    return () => window.removeEventListener("hashchange", handleHash);
-  }, []);
+  const handleCoopClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
+    event.preventDefault();
+    scrollToCoop();
+  };
 
   return (
     <main>
@@ -205,6 +198,7 @@ export default function Home() {
                 role="button"
                 aria-label="Перейти к сотрудничеству"
                 className="btn-hero btn-hero--secondary"
+                onClick={handleCoopClick}
               >
                 Сотрудничество
               </a>
