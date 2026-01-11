@@ -4,9 +4,6 @@ import { prisma } from "@/lib/prisma";
 import { getOrCreateSessionId } from "@/lib/session";
 import { checkRateLimit, sendOrder, validateOrderPayload } from "@/lib/sendOrder";
 
-const MIN_FILL_MS = 3000;
-const MAX_FILL_MS = 30 * 60 * 1000;
-
 function respond(
   request: NextRequest,
   status: number,
@@ -30,22 +27,9 @@ export async function POST(request: NextRequest) {
   const email = (body?.email ?? "").toString();
   const message = (body?.message ?? "").toString();
   const website = (body?.website ?? "").toString(); // honeypot
-  const startedAtRaw = body?.startedAt;
 
   if (website.trim()) {
     return respond(request, 400, { ok: false, error: "Подозрение на спам" });
-  }
-
-  const startedAt = Number(startedAtRaw);
-  if (!Number.isFinite(startedAt)) {
-    return respond(request, 400, { ok: false, error: "Сессия формы устарела. Обновите страницу." });
-  }
-  const elapsed = Date.now() - startedAt;
-  if (elapsed < MIN_FILL_MS) {
-    return respond(request, 400, { ok: false, error: "Слишком быстрое заполнение. Попробуйте ещё раз." });
-  }
-  if (elapsed > MAX_FILL_MS) {
-    return respond(request, 400, { ok: false, error: "Сессия формы устарела. Обновите страницу." });
   }
 
   const forwardedFor = request.headers.get("x-forwarded-for");
