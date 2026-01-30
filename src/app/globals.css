@@ -796,6 +796,50 @@ nextjs-dev-overlay,
   padding-inline: clamp(10px, 1.8vw, 24px);
 }
 
+.maintenance-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(16px, 4vw, 48px);
+  background: rgba(2, 6, 23, 0.88);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+
+.maintenance-card {
+  max-width: 720px;
+  width: min(100%, 720px);
+  padding: clamp(20px, 4vw, 36px);
+  border-radius: 24px;
+  text-align: center;
+  background: linear-gradient(135deg, rgba(15, 23, 42, 0.95), rgba(30, 41, 59, 0.9));
+  border: 1px solid rgba(148, 163, 184, 0.28);
+  box-shadow:
+    0 20px 60px rgba(2, 6, 23, 0.6),
+    0 0 40px rgba(34, 211, 238, 0.2);
+}
+
+.maintenance-title {
+  font-size: clamp(20px, 3vw, 32px);
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #f8fafc;
+  text-shadow:
+    0 0 12px rgba(34, 211, 238, 0.45),
+    0 0 24px rgba(59, 130, 246, 0.4);
+}
+
+.maintenance-subtitle {
+  margin-top: 12px;
+  font-size: clamp(14px, 2vw, 18px);
+  color: rgba(226, 232, 240, 0.8);
+  letter-spacing: 0.04em;
+}
+
 
 @keyframes headerBrandGlow {
   0% {
