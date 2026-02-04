@@ -2,6 +2,7 @@ import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 
 import { prisma } from "@/lib/prisma";
+import { getMaintenanceState, setMaintenanceEnabled } from "@/lib/maintenance";
 import AdminTrafficClient from "./TrafficClient";
 
 export const dynamic = "force-dynamic";
@@ -20,6 +21,7 @@ export default async function TrafficPage({ searchParams }: SearchParams) {
   const passwordEnv = process.env.ADMIN_DASHBOARD_PASSWORD ?? "admin";
   const cookieStore = await cookies();
   const authed = cookieStore.get(AUTH_COOKIE)?.value === "ok";
+  const maintenance = await getMaintenanceState();
 
   const loginAction = async (formData: FormData) => {
     "use server";
@@ -42,6 +44,13 @@ export default async function TrafficPage({ searchParams }: SearchParams) {
     "use server";
     const store = await cookies();
     store.set(AUTH_COOKIE, "", { path: "/", maxAge: 0 });
+    redirect("/admin/traffic");
+  };
+
+  const maintenanceAction = async (formData: FormData) => {
+    "use server";
+    const enabled = formData.get("enabled") === "true";
+    await setMaintenanceEnabled(enabled);
     redirect("/admin/traffic");
   };
 
@@ -108,7 +117,27 @@ export default async function TrafficPage({ searchParams }: SearchParams) {
 
   return (
     <div className="min-h-screen bg-slate-950 text-slate-100">
-      <div className="max-w-7xl mx-auto px-4 pt-4 flex justify-end">
+      <div className="max-w-7xl mx-auto px-4 pt-4 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+        <div className="flex flex-wrap items-center gap-3 bg-slate-900/70 border border-slate-800 rounded-xl px-4 py-3">
+          <div className="text-sm">
+            <span className="text-slate-400">Экран блокировки:</span>{" "}
+            <span className={maintenance.enabled ? "text-cyan-300 font-semibold" : "text-emerald-300 font-semibold"}>
+              {maintenance.enabled ? "включен" : "выключен"}
+            </span>
+          </div>
+          <form action={maintenanceAction}>
+            <input type="hidden" name="enabled" value={maintenance.enabled ? "false" : "true"} />
+            <button
+              className={`text-sm font-semibold px-3 py-1.5 rounded-lg transition-colors ${
+                maintenance.enabled
+                  ? "bg-emerald-600 hover:bg-emerald-500 text-white"
+                  : "bg-cyan-600 hover:bg-cyan-500 text-white"
+              }`}
+            >
+              {maintenance.enabled ? "Выключить" : "Включить"}
+            </button>
+          </form>
+        </div>
         <form action={logoutAction}>
           <button className="text-sm text-slate-300 hover:text-white underline">Выйти</button>
         </form>
