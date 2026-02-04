@@ -12,13 +12,17 @@ const schema = z.object({
     .max(120, "Слишком длинное имя"),
   email: z
     .string()
-    .email("Введите корректный email")
-    .max(120, "Слишком длинный email"),
-  phone: z
+    .max(120, "Слишком длинный email")
+    .refine((value) => value.trim() === "" || /\S+@\S+\.\S+/.test(value), "Введите корректный email"),
+  telegram: z
     .string()
-    .max(32, "Слишком длинный номер")
+    .max(64, "Слишком длинный Telegram")
     .optional()
     .or(z.literal("")),
+  phone: z
+    .string()
+    .min(5, "Укажите телефон")
+    .max(32, "Слишком длинный номер"),
   message: z
     .string()
     .min(5, "Минимум 5 символов")
@@ -45,6 +49,7 @@ export default function OrderForm() {
     defaultValues: {
       name: "",
       email: "",
+      telegram: "",
       phone: "",
       message: "",
       website: "",
@@ -62,6 +67,7 @@ export default function OrderForm() {
         body: JSON.stringify({
           name: values.name,
           email: values.email,
+          telegram: values.telegram,
           phone: values.phone,
           message: values.message,
           startedAt: values.startedAt,
@@ -78,6 +84,7 @@ export default function OrderForm() {
       reset({
         name: "",
         email: "",
+        telegram: "",
         phone: "",
         message: "",
         website: "",
@@ -124,7 +131,7 @@ export default function OrderForm() {
 
       <div>
         <label className="block text-xs uppercase tracking-[0.18em] text-cyan-200 mb-1">
-          Email
+          Email (необязательно)
         </label>
         <input
           id="order-email"
@@ -141,7 +148,24 @@ export default function OrderForm() {
 
       <div>
         <label className="block text-xs uppercase tracking-[0.18em] text-cyan-200 mb-1">
-          Телефон (необязательно)
+          Telegram (необязательно)
+        </label>
+        <input
+          id="order-telegram"
+          {...register("telegram")}
+          className="glass-input w-full"
+          placeholder="@username"
+          type="text"
+          maxLength={64}
+        />
+        {errors.telegram && (
+          <p className="text-sm text-rose-400 mt-1">{errors.telegram.message}</p>
+        )}
+      </div>
+
+      <div>
+        <label className="block text-xs uppercase tracking-[0.18em] text-cyan-200 mb-1">
+          Телефон
         </label>
         <input
           id="order-phone"
@@ -150,6 +174,7 @@ export default function OrderForm() {
           placeholder="+7 (___) ___-__-__"
           type="tel"
           maxLength={32}
+          required
         />
         {errors.phone && (
           <p className="text-sm text-rose-400 mt-1">{errors.phone.message}</p>

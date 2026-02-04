@@ -218,7 +218,7 @@ export default function AdminTrafficClient({ visits, leads, outbound, sessionIdF
                         <div className="text-slate-200">{l.name}</div>
                         <div className="text-xs text-slate-400">{formatDate(l.createdAt)}</div>
                         <div className="text-xs text-slate-400">
-                          {l.email} {l.phone ? `• ${l.phone}` : ""}
+                          {l.email || "—"} {l.phone ? `• ${l.phone}` : ""}
                         </div>
                         <div className="text-xs text-slate-300 break-words">{l.message || "—"}</div>
                       </div>

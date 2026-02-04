@@ -60,6 +60,7 @@ export default function Home() {
     const payload = {
       name: (formData.get("name") ?? "").toString(),
       email: (formData.get("email") ?? "").toString(),
+      telegram: (formData.get("telegram") ?? "").toString(),
       phone: (formData.get("phone") ?? "").toString(),
       message: (formData.get("message") ?? "").toString(),
       website: (formData.get("website") ?? "").toString(),
@@ -335,7 +336,7 @@ export default function Home() {
                     />
                   </label>
                   <label className="s4-field" htmlFor="lead-email">
-                    <span>Email</span>
+                    <span>Email (необязательно)</span>
                     <input
                       id="lead-email"
                       name="email"
@@ -343,6 +344,17 @@ export default function Home() {
                       className="glass-input"
                       placeholder="you@example.com"
                       autoComplete="email"
+                    />
+                  </label>
+                  <label className="s4-field" htmlFor="lead-telegram">
+                    <span>Telegram (необязательно)</span>
+                    <input
+                      id="lead-telegram"
+                      name="telegram"
+                      type="text"
+                      className="glass-input"
+                      placeholder="@username"
+                      autoComplete="off"
                     />
                   </label>
                   <label className="s4-field" htmlFor="lead-phone">
@@ -354,6 +366,7 @@ export default function Home() {
                       className="glass-input"
                       placeholder="+7 (___) ___-__-__"
                       autoComplete="tel"
+                      required
                     />
                   </label>
                   <label className="s4-field s4-field--textarea" htmlFor="lead-message">

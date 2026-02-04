@@ -25,6 +25,7 @@ export async function POST(request: NextRequest) {
   const name = (body?.name ?? "").toString();
   const phone = (body?.phone ?? "").toString();
   const email = (body?.email ?? "").toString();
+  const telegram = (body?.telegram ?? "").toString();
   const message = (body?.message ?? "").toString();
   const website = (body?.website ?? "").toString(); // honeypot
 
@@ -41,7 +42,7 @@ export async function POST(request: NextRequest) {
     return respond(request, 429, { ok: false, error: rate.error });
   }
 
-  const validation = validateOrderPayload({ name, email, phone, message });
+  const validation = validateOrderPayload({ name, email, phone, message, telegram });
   if (!validation.ok) {
     return respond(request, 400, { ok: false, error: validation.error });
   }
@@ -50,18 +51,20 @@ export async function POST(request: NextRequest) {
   const { sessionId, response } = getOrCreateSessionId(request, successResponse);
 
   try {
+    const messageForStorage = appendTelegramToMessage(message, telegram);
+
     await prisma.lead.create({
       data: {
         name,
         phone,
         email,
-        message,
+        message: messageForStorage,
         sessionId,
       },
     });
 
     // сохраняем текущую бизнес-логику отправки письма/телеграма
-    await sendOrder({ name, email, phone, message });
+    await sendOrder({ name, email, phone, message, telegram });
   } catch (error) {
     console.error("Lead save failed", error);
     return respond(request, 500, { ok: false, error: "Не удалось сохранить заявку" });
@@ -70,3 +73,11 @@ export async function POST(request: NextRequest) {
   return response;
 }
 export const runtime = "nodejs";
+
+function appendTelegramToMessage(message: string, telegram: string) {
+  const cleanMessage = message.trim();
+  const cleanTelegram = telegram.trim();
+  if (!cleanTelegram) return message;
+  if (!cleanMessage) return `Telegram: ${cleanTelegram}`;
+  return `${cleanMessage}\n\nTelegram: ${cleanTelegram}`;
+}

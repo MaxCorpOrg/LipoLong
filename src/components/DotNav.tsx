@@ -12,6 +12,10 @@ export default function DotNav() {
   const setActiveIndex = (next: number) =>
     setActive((prev) => (prev === next ? prev : next));
 
+  if (pathname?.startsWith("/description")) {
+    return null;
+  }
+
   useEffect(() => {
     const sections = Array.from(
       document.querySelectorAll<HTMLElement>(".snap-section")

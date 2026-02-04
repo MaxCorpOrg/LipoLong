@@ -3,6 +3,7 @@ import nodemailer from "nodemailer";
 export type OrderPayload = {
   name: string;
   email: string;
+  telegram?: string;
   phone?: string;
   message: string;
 };
@@ -31,19 +32,23 @@ export function checkRateLimit(ip: string): { ok: boolean; error?: string } {
 export function validateOrderPayload(payload: OrderPayload): { ok: boolean; error?: string } {
   const name = payload.name.trim();
   const email = payload.email.trim();
+  const telegram = (payload.telegram ?? "").trim();
   const phone = (payload.phone ?? "").trim();
   const message = payload.message.trim();
 
   if (name.length < 2) return { ok: false, error: "Укажите имя (мин. 2 символа)" };
   if (name.length > 120) return { ok: false, error: "Слишком длинное имя" };
-  if (!/\S+@\S+/.test(email)) return { ok: false, error: "Некорректный email" };
+  if (email && !/\S+@\S+\.\S+/.test(email)) return { ok: false, error: "Некорректный email" };
   if (email.length > 120) return { ok: false, error: "Email слишком длинный" };
+  if (telegram.length > 64) return { ok: false, error: "Telegram слишком длинный" };
+  if (phone.length < 5) return { ok: false, error: "Укажите телефон" };
   if (phone.length > 32) return { ok: false, error: "Телефон слишком длинный" };
   if (message.length < 3) return { ok: false, error: "Слишком короткое сообщение" };
   if (message.length > 2000) return { ok: false, error: "Сообщение слишком длинное" };
 
   payload.name = name;
   payload.email = email;
+  payload.telegram = telegram;
   payload.phone = phone;
   payload.message = message;
   return { ok: true };
@@ -72,13 +77,15 @@ export async function sendOrder(payload: OrderPayload): Promise<{ ok: boolean; e
   const emailSubject = "Новая заявка LipoLong";
   const emailText = `Новая заявка LipoLong
 Имя: ${payload.name}
-Email: ${payload.email}
+Email: ${payload.email || "—"}
+Telegram: ${payload.telegram || "—"}
 Телефон: ${payload.phone || "—"}
 Сообщение: ${payload.message}`;
 
   const htmlSafe = {
     name: escapeHtml(payload.name),
-    email: escapeHtml(payload.email),
+    email: escapeHtml(payload.email || "—"),
+    telegram: escapeHtml(payload.telegram || "—"),
     phone: escapeHtml(payload.phone || "—"),
     message: escapeHtml(payload.message),
   };
@@ -93,6 +100,7 @@ Email: ${payload.email}
 <ul>
   <li><strong>Имя:</strong> ${htmlSafe.name}</li>
   <li><strong>Email:</strong> ${htmlSafe.email}</li>
+  <li><strong>Telegram:</strong> ${htmlSafe.telegram}</li>
   <li><strong>Телефон:</strong> ${htmlSafe.phone}</li>
   <li><strong>Сообщение:</strong><br/>${htmlSafe.message.replace(/\n/g, "<br/>")}</li>
 </ul>`,
@@ -108,9 +116,11 @@ Email: ${payload.email}
   if (BOT_TOKEN && CHAT_ID) {
     const tgText = `Новая заявка на LipoLong%0AИмя: ${encodeURIComponent(
       payload.name
-    )}%0AEmail: ${encodeURIComponent(payload.email)}%0AТелефон: ${encodeURIComponent(
-      payload.phone || ""
-    )}%0AСообщение: ${encodeURIComponent(payload.message)}`;
+    )}%0AEmail: ${encodeURIComponent(payload.email || "—")}%0ATelegram: ${encodeURIComponent(
+      payload.telegram || "—"
+    )}%0AТелефон: ${encodeURIComponent(payload.phone || "—")}%0AСообщение: ${encodeURIComponent(
+      payload.message
+    )}`;
 
     try {
       const res = await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
