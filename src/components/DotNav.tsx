@@ -9,14 +9,12 @@ export default function DotNav() {
   const [isDesktop, setIsDesktop] = useState(false);
   const sectionsRef = useRef<HTMLElement[]>([]);
   const pathname = usePathname();
+  const isHidden = pathname?.startsWith("/description") ?? false;
   const setActiveIndex = (next: number) =>
     setActive((prev) => (prev === next ? prev : next));
 
-  if (pathname?.startsWith("/description")) {
-    return null;
-  }
-
   useEffect(() => {
+    if (isHidden) return;
     const sections = Array.from(
       document.querySelectorAll<HTMLElement>(".snap-section")
     );
@@ -63,15 +61,20 @@ export default function DotNav() {
         window.cancelAnimationFrame(frame);
       }
     };
-  }, [pathname]);
+  }, [pathname, isHidden]);
 
   useEffect(() => {
+    if (isHidden) return;
     const media = window.matchMedia("(min-width: 768px)");
     const update = () => setIsDesktop(media.matches);
     update();
     media.addEventListener("change", update);
     return () => media.removeEventListener("change", update);
-  }, []);
+  }, [isHidden]);
+
+  if (isHidden) {
+    return null;
+  }
 
   const scrollTo = (i: number) => {
     setActive(i);
