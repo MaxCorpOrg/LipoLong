@@ -303,6 +303,14 @@ export default function Home() {
                   >
                     Купить LipoLong
                   </a>
+                  <a
+                    href="/description"
+                    role="button"
+                    className="btn-buy-secondary"
+                    style={{ padding: "1rem 2rem", fontSize: "1.05rem" }}
+                  >
+                    Описание
+                  </a>
                 </div>
               </div>
 
