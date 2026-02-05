@@ -596,6 +596,22 @@ nextjs-dev-overlay,
   line-height: 1.5;
 }
 
+.order-privacy-note {
+  margin-top: 0.75rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(226, 232, 240, 0.85);
+  padding: 0.4rem 0.75rem;
+  border-radius: 9999px;
+  border: 1px solid rgba(34, 211, 238, 0.4);
+  background: rgba(2, 6, 23, 0.55);
+  box-shadow: 0 0 18px rgba(34, 211, 238, 0.12);
+}
+
 
 
 
@@ -1043,8 +1059,8 @@ nextjs-dev-overlay,
 
 
 .header-icon-btn--phone {
-  background-image: linear-gradient(135deg, #22c55e, #22d3ee);
-  background-size: 180% 180%;
+  background-image: none;
+  background-color: #64748b;
 }
 
 .header-icon-btn--wa {
@@ -1059,6 +1075,25 @@ nextjs-dev-overlay,
 
 .header-icon-btn--tg svg {
   transform: translate(-2.5px, 0.6px);
+}
+
+.header-icon-btn--max {
+  width: 2.4rem;
+  height: 2.4rem;
+  padding: 0;
+  background: linear-gradient(135deg, #38bdf8 0%, #4f46e5 55%, #7c3aed 100%);
+  border: none;
+  border-radius: 9999px;
+  overflow: hidden;
+  box-shadow: 0 6px 16px rgba(15, 23, 42, 0.35);
+}
+
+.header-icon-btn--max svg,
+.header-icon-btn--max img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  transform: scale(0.9);
 }
 
 /* Ховер и активные состояния */
@@ -1610,7 +1645,7 @@ nextjs-dev-overlay,
 }
 
 .footer-coop-icon--phone {
-  background: radial-gradient(circle at 30% 20%, #4ade80 0%, #16a34a 70%);
+  background: radial-gradient(circle at 30% 20%, #94a3b8 0%, #64748b 70%);
 }
 
 .footer-coop-icon--tg svg {
@@ -1675,6 +1710,10 @@ nextjs-dev-overlay,
   background: rgba(15, 23, 42, 0.65);
   box-shadow: 0 12px 30px rgba(56, 189, 248, 0.2);
   color: #5eead4;
+}
+
+.footer-list-icon--phone {
+  color: #94a3b8;
 }
 
 .footer-label {
@@ -1751,6 +1790,12 @@ nextjs-dev-overlay,
 
   .footer-coop-actions {
     justify-items: center;
+  }
+
+  .footer-coop-desc,
+  .footer-coop-desc--phone {
+    font-size: 0.96rem;
+    white-space: normal;
   }
 }
 

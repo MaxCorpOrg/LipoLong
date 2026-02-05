@@ -55,10 +55,10 @@ export default function OrderPage() {
         {/* Заголовок и описание */}
         <div className="text-center mb-10 md:mb-12">
           <h1 className="text-3xl md:text-5xl font-extrabold mb-4 text-cyan-200">
-            Запись на процедуру LipoLong
+            Оформление заказа
           </h1>
           <p className="text-lg md:text-xl opacity-90 max-w-2xl mx-auto text-cyan-100">
-            Оставьте контакты и пару слов — подберём удобное время и ответим на вопросы.
+            Оставьте контакты и комментарии по необходимости
           </p>
         </div>
 
@@ -70,14 +70,11 @@ export default function OrderPage() {
               Что будет после отправки заявки
             </h2>
             <ul className="space-y-2 opacity-90">
-              <li>• Свяжемся в течение 15–30 минут.</li>
-              <li>• Уточним цели и зоны, расскажем о показаниях и противопоказаниях.</li>
-              <li>• Подберём комфортную дату и предложим стоимость.</li>
-              <li>• Дадим рекомендации по подготовке и восстановлению.</li>
+              <li>• После оформления заявки с вами свяжутся в течение 15–30 минут.</li>
             </ul>
 
-            <div className="mt-4 text-xs md:text-sm opacity-70">
-              Мы не передаём данные третьим лицам. Используем только для связи и записи в LipoLong.
+            <div className="order-privacy-note">
+              ★ Мы не передаём данные третьим лицам
             </div>
           </div>
 

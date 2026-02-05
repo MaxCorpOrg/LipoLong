@@ -131,24 +131,25 @@ export default function OrderForm() {
 
       <div>
         <label className="block text-xs uppercase tracking-[0.18em] text-cyan-200 mb-1">
-          Email (необязательно)
+          Телефон
         </label>
         <input
-          id="order-email"
-          {...register("email")}
+          id="order-phone"
+          {...register("phone")}
           className="glass-input w-full"
-          placeholder="you@example.com"
-          type="email"
-          maxLength={120}
+          placeholder="+7 (___) ___-__-__"
+          type="tel"
+          maxLength={32}
+          required
         />
-        {errors.email && (
-          <p className="text-sm text-rose-400 mt-1">{errors.email.message}</p>
+        {errors.phone && (
+          <p className="text-sm text-rose-400 mt-1">{errors.phone.message}</p>
         )}
       </div>
 
       <div>
         <label className="block text-xs uppercase tracking-[0.18em] text-cyan-200 mb-1">
-          Telegram (необязательно)
+          Telegram
         </label>
         <input
           id="order-telegram"
@@ -165,19 +166,18 @@ export default function OrderForm() {
 
       <div>
         <label className="block text-xs uppercase tracking-[0.18em] text-cyan-200 mb-1">
-          Телефон
+          Email
         </label>
         <input
-          id="order-phone"
-          {...register("phone")}
+          id="order-email"
+          {...register("email")}
           className="glass-input w-full"
-          placeholder="+7 (___) ___-__-__"
-          type="tel"
-          maxLength={32}
-          required
+          placeholder="you@example.com"
+          type="email"
+          maxLength={120}
         />
-        {errors.phone && (
-          <p className="text-sm text-rose-400 mt-1">{errors.phone.message}</p>
+        {errors.email && (
+          <p className="text-sm text-rose-400 mt-1">{errors.email.message}</p>
         )}
       </div>
 

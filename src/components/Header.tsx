@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
 
 import OutboundLink from "@/components/OutboundLink";
 
@@ -22,7 +21,7 @@ const phone = {
 };
 
 const whatsapp = {
-  href: "https://wa.me/79042440444",
+  href: "https://wa.me/79539766078",
   label: "Написать в WhatsApp LipoLong",
   className: "header-icon-btn header-icon-btn--wa",
   icon: (
@@ -53,11 +52,18 @@ const telegram = {
   ),
 };
 
-const CONTACTS = [phone, whatsapp, telegram];
+const maxMessenger = {
+  href: "https://max.ru/u/f9LHodD0cOIXADxaRo9U9W_VHmDuRL5fMKsJO5O9YAs5rg0iZYqYmXKw0dw",
+  label: "Открыть Max и написать +7 (904) 244-04-44",
+  className: "header-icon-btn header-icon-btn--max",
+  icon: (
+    <img src="/max.svg" width={20} height={20} alt="" aria-hidden="true" />
+  ),
+};
+
+const CONTACTS = [phone, whatsapp, telegram, maxMessenger];
 
 export default function Header() {
-  const [open, setOpen] = useState(false);
-
   return (
     <header className="fixed top-0 left-0 right-0 z-50 header-glass">
       <div className="header-shell w-full h-14 sm:h-16 flex items-center justify-between gap-3 relative">
@@ -65,51 +71,19 @@ export default function Header() {
           LipoLong
         </Link>
 
-        <div className="flex items-center gap-2 sm:gap-3">
-          <button
-            type="button"
-            className="header-menu-btn md:hidden"
-            onClick={() => setOpen((v) => !v)}
-            aria-label="Контакты"
-            aria-expanded={open}
-          >
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round">
-              <path d="M4 7h16" />
-              <path d="M4 12h16" />
-              <path d="M4 17h16" />
-            </svg>
-          </button>
-
-          <nav className="hidden md:flex items-center gap-2 sm:gap-3">
-            {CONTACTS.map((item) => (
-              item.href.startsWith("http") ? (
-                <OutboundLink key={item.href} href={item.href} aria-label={item.label} className={item.className}>
-                  {item.icon}
-                </OutboundLink>
-              ) : (
-                <a key={item.href} href={item.href} aria-label={item.label} className={item.className}>
-                  {item.icon}
-                </a>
-              )
-            ))}
-          </nav>
-        </div>
-
-        {open ? (
-          <div className="header-mobile-drawer md:hidden">
-            {CONTACTS.map((item) => (
-              item.href.startsWith("http") ? (
-                <OutboundLink key={item.href} href={item.href} aria-label={item.label} className={item.className}>
-                  {item.icon}
-                </OutboundLink>
-              ) : (
-                <a key={item.href} href={item.href} aria-label={item.label} className={item.className}>
-                  {item.icon}
-                </a>
-              )
-            ))}
-          </div>
-        ) : null}
+        <nav className="flex items-center gap-2 sm:gap-3">
+          {CONTACTS.map((item) => (
+            item.href.startsWith("http") ? (
+              <OutboundLink key={item.href} href={item.href} aria-label={item.label} className={item.className}>
+                {item.icon}
+              </OutboundLink>
+            ) : (
+              <a key={item.href} href={item.href} aria-label={item.label} className={item.className}>
+                {item.icon}
+              </a>
+            )
+          ))}
+        </nav>
       </div>
     </header>
   );

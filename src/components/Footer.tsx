@@ -18,17 +18,13 @@ export default function Footer() {
       <div className="footer-shell w-full max-w-6xl mx-auto px-6 relative z-[2] text-[#e8ffff]">
         <div className="footer-head text-center md:text-left">
           <h2 className="footer-title">LipoLong</h2>
-          <p className="footer-sub">
-            Подберем удобное время консультации, расскажем о процедуре и сразу
-            оформим заказ — выберите нужный канал связи.
-          </p>
         </div>
 
         <div className="footer-grid">
           <div className="footer-card">
             <ul className="footer-list">
               <li className="footer-list-item">
-                <div className="footer-list-icon">
+                <div className="footer-list-icon footer-list-icon--phone">
                   <svg
                     aria-hidden="true"
                     viewBox="0 0 24 24"
@@ -63,6 +59,33 @@ export default function Footer() {
                     viewBox="0 0 24 24"
                     width="22"
                     height="22"
+                    fill="currentColor"
+                  >
+                    <path d="M21.8 4.2c.5-1.5-.5-2.5-2-2L4.1 8c-1.7.6-1.7 1.9-.3 2.3l4.1 1.3 1.6 4.9c.3.9 1.2 1.1 1.9.4l2.4-2.5 4.4 3.2c.8.5 1.5.2 1.7-.7L21.8 4.2zM8.6 12.2 18.5 6.8l-7.9 7.4-.3 3.4-1.2-3.8-3.7-1.2 3.2-.4z" />
+                  </svg>
+                </div>
+                <div>
+                  <p className="footer-label">TELEGRAM</p>
+                  <a
+                    href="https://t.me/Vorgesar"
+                    className="footer-value"
+                    aria-label="Написать в Telegram @Vorgesar"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    @Vorgesar
+                  </a>
+                  <p className="footer-meta-text">Ответим в Telegram</p>
+                </div>
+              </li>
+
+              <li className="footer-list-item">
+                <div className="footer-list-icon">
+                  <svg
+                    aria-hidden="true"
+                    viewBox="0 0 24 24"
+                    width="22"
+                    height="22"
                     fill="none"
                     stroke="currentColor"
                     strokeWidth="1.6"
@@ -74,7 +97,7 @@ export default function Footer() {
                   </svg>
                 </div>
                 <div>
-                  <p className="footer-label">E-mail</p>
+                  <p className="footer-label">EMAIL</p>
                   <a
                     href="mailto:Oblcom@bk.ru"
                     className="footer-value"
@@ -120,11 +143,7 @@ export default function Footer() {
             id="s5-coop"
             className="footer-card footer-card--secondary footer-card--coop"
           >
-            <p className="footer-coop-title">
-              Приглашаем к сотрудничеству
-              <br />
-              оптовых партнёров
-            </p>
+            <p className="footer-coop-title">Приглашаем к сотрудничеству</p>
             <p className="footer-coop-subtitle">
               Эксклюзивные условия, стабильные поставки и прямая
               <br />

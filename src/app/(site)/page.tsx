@@ -245,9 +245,9 @@ export default function Home() {
         <div className={`${contactsVisible ? "contacts-animated" : ""} w-full max-w-6xl mx-auto`}>
           <div className="s4-shell">
             <div className="s4-head text-center">
-              <h2 className="s4-title text-3xl md:text-5xl font-extrabold text-cyan-200">Запись на процедуру LipoLong</h2>
+              <h2 className="s4-title text-3xl md:text-5xl font-extrabold text-cyan-200">Оформление заказа</h2>
               <p className="s4-sub text-lg md:text-xl opacity-90 text-cyan-100">
-                Выберите удобный способ связи — оставьте заявку через форму или оформите покупку напрямую. Мы поможем подобрать время и ответим на вопросы.
+                Выберите удобный способ связи — оставьте заявку через форму или оформите покупку. Мы поможем подобрать время и ответим на вопросы.
               </p>
             </div>
 
@@ -272,9 +272,9 @@ export default function Home() {
                     Локально уменьшает жировые отложения, корректирует контуры тела и помогает поддерживать результат без продолжительной реабилитации.
                   </p>
                   <ul className="s4-pack-list">
-                    <li>Безопасный состав: гиалуронат натрия + липолитики</li>
-                    <li>Короткая процедура и быстрый возврат к режиму</li>
-                    <li>Подходит для живота, боков, бедер и рук</li>
+                    <li>Безопасный состав</li>
+                    <li>Короткая процедура</li>
+                    <li>Подходит для всех частей тела</li>
                   </ul>
                 </div>
                 <dl className="s4-pack-meta">
@@ -325,7 +325,7 @@ export default function Home() {
                 </div>
                 <form className="s4-form-fields" onSubmit={handleLeadSubmit}>
                   <label className="s4-field" htmlFor="lead-name">
-                    <span>Как к вам обращаться?</span>
+                    <span>Имя</span>
                     <input
                       id="lead-name"
                       name="name"
@@ -335,19 +335,20 @@ export default function Home() {
                       autoComplete="name"
                     />
                   </label>
-                  <label className="s4-field" htmlFor="lead-email">
-                    <span>Email (необязательно)</span>
+                  <label className="s4-field" htmlFor="lead-phone">
+                    <span>Телефон</span>
                     <input
-                      id="lead-email"
-                      name="email"
-                      type="email"
+                      id="lead-phone"
+                      name="phone"
+                      type="tel"
                       className="glass-input"
-                      placeholder="you@example.com"
-                      autoComplete="email"
+                      placeholder="+7 (___) ___-__-__"
+                      autoComplete="tel"
+                      required
                     />
                   </label>
                   <label className="s4-field" htmlFor="lead-telegram">
-                    <span>Telegram (необязательно)</span>
+                    <span>Telegram</span>
                     <input
                       id="lead-telegram"
                       name="telegram"
@@ -357,16 +358,15 @@ export default function Home() {
                       autoComplete="off"
                     />
                   </label>
-                  <label className="s4-field" htmlFor="lead-phone">
-                    <span>Телефон для связи</span>
+                  <label className="s4-field" htmlFor="lead-email">
+                    <span>Email</span>
                     <input
-                      id="lead-phone"
-                      name="phone"
-                      type="tel"
+                      id="lead-email"
+                      name="email"
+                      type="email"
                       className="glass-input"
-                      placeholder="+7 (___) ___-__-__"
-                      autoComplete="tel"
-                      required
+                      placeholder="you@example.com"
+                      autoComplete="email"
                     />
                   </label>
                   <label className="s4-field s4-field--textarea" htmlFor="lead-message">
